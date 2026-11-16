@@ -1,0 +1,112 @@
+{
+    "version": "2.0.0",
+
+    "tasks":
+    [
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "command": "cl",
+            "args": [
+                "/EHsc",
+                "/std:c++17",
+                "/nologo",
+
+                "/W4",
+                "/Zi",
+                "/Od",
+
+                "/Fobuild\\obj\\",
+                "/Febuild\\AzureEngine.exe",
+
+                "src\\main.cpp",
+
+                "src\\Azure8\\CPU.cpp",
+                "src\\Azure8\\Memory.cpp",
+                "src\\Azure8\\Emulator.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build Release",
+            "type": "shell",
+            "command": "cl",
+            "args": [
+                "/EHsc",
+                "/std:c++17",
+                "/nologo",
+
+                "/W4",
+                "/O2",
+
+                "/Fobuild\\obj\\",
+                "/Febuild\\AzureEngine.exe",
+
+                "src\\main.cpp",
+
+                "src\\Azure8\\CPU.cpp",
+                "src\\Azure8\\Memory.cpp",
+                "src\\Azure8\\Emulator.cpp"
+            ],
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build Tests",
+            "type": "shell",
+            "command": "cl",
+            "args": [
+                "/EHsc",
+                "/std:c++17",
+                "/nologo",
+
+                "/W4",
+                "/Zi",
+                "/Od",
+
+                "/Fobuild\\obj\\",
+                "/Febuild\\AzureEngineTests.exe",
+
+                "tests\\main.cpp",
+
+                "tests\\TestCPU.cpp",
+                "tests\\TestFlags.cpp",
+                "tests\\TestMemory.cpp",
+                "tests\\TestStack.cpp",
+
+                "tests\\TestInstructionMOV.cpp",
+                "tests\\TestInstructionLOAD.cpp",
+                "tests\\TestInstructionSTORE.cpp",
+
+                "tests\\TestInstructionPUSH.cpp",
+                "tests\\TestInstructionPOP.cpp",
+                "tests\\TestInstructionCALL.cpp",
+                "tests\\TestInstructionRET.cpp",
+
+                "tests\\TestInstructionINC.cpp",
+                "tests\\TestInstructionDEC.cpp",
+                "tests\\TestInstructionADD.cpp",
+                "tests\\TestInstructionSUB.cpp",
+
+                "tests\\TestInstructionCMP.cpp",
+                "tests\\TestInstructionJMP.cpp",
+                "tests\\TestInstructionJZ.cpp",
+                "tests\\TestInstructionJNZ.cpp",
+
+                "src\\Azure8\\CPU.cpp",
+                "src\\Azure8\\Memory.cpp",
+                "src\\Azure8\\Emulator.cpp"
+            ],
+            "problemMatcher": [
+                "$msCompile"
+            ]
+        }
+    ]
+}
