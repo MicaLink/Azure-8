@@ -1,649 +1,581 @@
-# AzureEngine Architecture v1.0
+# Azure-8 CPU Architecture v1.0
 
-> Projet : **AzureEngine**
+> Projet : **Azure-8**
+>
+> Document : **Architecture CPU**
 >
 > Version : **1.0**
 >
-> Statut : **Fondation Architecturale**
+> Statut : **Officiel**
 >
-> Auteur : **Thomas GALLIOT**
+> Architecture : **8 bits**
 >
-> Date : **Architecture initiale**
->
-> Document de référence : **Architecture globale AzureEngine**
+> Module : **Azure-8**
 
 ---
 
 # Introduction
 
-Ce document définit l'architecture officielle d'AzureEngine.
+Ce document décrit l'architecture interne du processeur Azure‑8.
 
-Il établit les fondations techniques, organisationnelles et stratégiques du projet.
-
-À partir de cette version :
+L'objectif du CPU Azure‑8 est de fournir une architecture simple, cohérente et documentée permettant :
 
 ```txt
-AzureEngine
-=
-Projet principal
+L'apprentissage du bas niveau
+
+L'expérimentation
+
+La validation de concepts CPU
+
+L'exécution de ROMs Azure‑8
 ```
 
-et :
+Azure‑8 ne reproduit aucun processeur réel existant.
 
-```txt
-Azure-8
-=
-Premier module AzureEngine
-```
-
-Azure-8 n'est plus considéré comme le produit final du projet mais comme une étape fondatrice permettant de valider l'architecture générale.
+Il s'agit d'une architecture propriétaire conçue spécifiquement pour le projet.
 
 ---
 
-# Vision
+# Vue Générale
 
-AzureEngine est une plateforme modulaire destinée au développement rétro orienté bas niveau.
-
-L'objectif du projet est de fournir :
+Le processeur Azure‑8 est un CPU :
 
 ```txt
-- des machines virtuelles ;
-- des émulateurs ;
-- des SDK ;
-- des IDE ;
-- des outils de débogage ;
-- des outils de développement ;
-- un système de distribution modulaire.
-```
+8 bits
 
-AzureEngine n'est pas un simple émulateur.
+Little Endian
 
-AzureEngine est un écosystème complet.
+Adressage mémoire 16 bits
 
----
-
-# Principes fondamentaux
-
-Le projet doit privilégier :
-
-```txt
-✅ Simplicité
-
-✅ Modularité
-
-✅ Lisibilité
-
-✅ Documentation continue
-
-✅ Performance
-
-✅ Contrôle du matériel
-
-✅ Faible niveau d'abstraction
-
-✅ Portabilité
-
-✅ Maintenabilité
-```
-
-Le projet doit conserver une philosophie proche :
-
-```txt
-Commodore
-
-Amiga
-
-Atari
-
-Nintendo
-
-Sega
-
-Ordinateurs personnels des années 80-90
+Architecture à registres
 ```
 
 ---
 
-# Architecture générale
+# Caractéristiques
+
+## Taille des données
 
 ```txt
-AzureEngine
+8 bits
+```
+
+---
+
+## Taille des adresses
+
+```txt
+16 bits
+```
+
+---
+
+## Taille mémoire adressable
+
+```txt
+65536 octets
+
+64 Ko
+```
+
+---
+
+## Endianness
+
+```txt
+Little Endian
+```
+
+Exemple :
+
+```txt
+Valeur 0x1234
+
+Mémoire :
+
+34 12
+```
+
+---
+
+# Registres
+
+Le processeur dispose de sept registres.
+
+---
+
+## Registres Utilisateur
+
+### A
+
+```txt
+Registre général
+```
+
+---
+
+### B
+
+```txt
+Registre général
+```
+
+---
+
+### C
+
+```txt
+Registre général
+```
+
+---
+
+### D
+
+```txt
+Registre général
+```
+
+---
+
+## Registres Système
+
+### PC
+
+Program Counter.
+
+Type :
+
+```txt
+16 bits
+```
+
+Rôle :
+
+```txt
+Adresse de la prochaine instruction.
+```
+
+---
+
+### SP
+
+Stack Pointer.
+
+Type :
+
+```txt
+16 bits
+```
+
+Rôle :
+
+```txt
+Sommet de la pile.
+```
+
+---
+
+### FLAGS
+
+Registre d'état.
+
+Type :
+
+```txt
+8 bits
+```
+
+Rôle :
+
+```txt
+Conserver les indicateurs du processeur.
+```
+
+---
+
+# Registre FLAGS
+
+Les indicateurs actuellement définis sont :
+
+---
+
+## ZERO
+
+```txt
+Z
+```
+
+Positionné lorsque le résultat d'une opération vaut :
+
+```txt
+0
+```
+
+---
+
+## CARRY
+
+```txt
+C
+```
+
+Positionné lorsqu'une opération génère une retenue.
+
+---
+
+## NEGATIVE
+
+```txt
+N
+```
+
+Positionné lorsqu'un résultat est négatif.
+
+---
+
+## OVERFLOW
+
+```txt
+V
+```
+
+Positionné lorsqu'un dépassement signé est détecté.
+
+---
+
+# Mémoire
+
+Le CPU possède un espace mémoire unique.
+
+---
+
+## Adresse minimale
+
+```txt
+0x0000
+```
+
+---
+
+## Adresse maximale
+
+```txt
+0xFFFF
+```
+
+---
+
+## Taille totale
+
+```txt
+64 Ko
+```
+
+---
+
+# Organisation de la Mémoire
+
+Architecture actuelle :
+
+```txt
+0000h ────────────── FFFFh
 │
-├── Launcher
-│
-├── Engine Core
-│
-├── Runtime
-│
-├── Debugger
-│
-├── Marketplace
-│
-├── Modules Machines
-│
-├── SDK
-│
-├── IDE
-│
-└── Outils Développeur
+└── RAM Azure‑8
 ```
 
-Chaque composant possède ses propres responsabilités.
+La mémoire est entièrement adressable.
 
 ---
 
-# AzureEngine Launcher
+# Gestion de Pile
 
-## Description
-
-Le Launcher constitue le point d'entrée principal d'AzureEngine.
-
-## Responsabilités
-
-```txt
-- gestion des modules ;
-- installation ;
-- mises à jour ;
-- gestion des versions ;
-- activation des composants ;
-- accès Marketplace ;
-- lancement des environnements.
-```
-
-## Objectif
-
-Créer une expérience unifiée.
+Le processeur utilise une pile logicielle.
 
 ---
 
-# Engine Core
-
-## Description
-
-Le Engine Core est le cœur partagé de la plateforme.
-
-## Responsabilités
+## Registre utilisé
 
 ```txt
-- gestion des modules ;
-- gestion des dépendances ;
-- système d'évènements ;
-- journalisation ;
-- configuration ;
-- services communs.
-```
-
-## Règle fondamentale
-
-Le Engine Core :
-
-```txt
-NE CONTIENT AUCUN CODE SPÉCIFIQUE
-À UNE MACHINE PARTICULIÈRE.
+SP
 ```
 
 ---
 
-# Runtime
-
-## Description
-
-Le Runtime fournit l'environnement d'exécution.
-
-## Responsabilités
+## Opérations supportées
 
 ```txt
-- chargement des modules ;
-- gestion mémoire ;
-- exécution ;
-- ressources ;
-- communication inter-modules.
+Push8()
+
+Pop8()
+
+Push16()
+
+Pop16()
 ```
 
 ---
 
-# Debugger
+## Utilisation
 
-## Description
-
-Le Debugger est partagé par tous les modules.
-
-## Fonctionnalités
+La pile est utilisée par :
 
 ```txt
-- registres ;
-- mémoire ;
-- pile ;
-- exécution pas à pas ;
-- breakpoints ;
-- watchpoints ;
-- logs.
-```
+PUSH
 
-## Extensions
+POP
 
-Chaque module peut ajouter :
+CALL
 
-```txt
-- registres spécifiques ;
-- visualisations spécifiques ;
-- outils dédiés.
+RET
 ```
 
 ---
 
-# Modules Machines
+# Cycle CPU
 
-## Description
-
-Les machines sont des modules indépendants.
-
-## Exemples
+Le processeur fonctionne selon le cycle classique :
 
 ```txt
-Azure-8
+FETCH
 
-CHIP-8
+↓
 
-Intel 8080
+DECODE
 
-MOS 6502
+↓
 
-Z80
-
-Game Boy
-
-NES
-
-Master System
-
-Mega Drive
-```
-
-Chaque machine possède :
-
-```txt
-- CPU ;
-- mémoire ;
-- ROM ;
-- périphériques ;
-- documentation ;
-- tests.
+EXECUTE
 ```
 
 ---
 
-# Azure-8
+## FETCH
 
-## Description
-
-Azure-8 est le premier module officiel.
-
-## Objectifs
+Lecture de l'instruction située à l'adresse :
 
 ```txt
-- valider AzureEngine ;
-- valider les outils ;
-- valider les workflows ;
-- valider le versioning ;
-- servir de machine de référence.
-```
-
-## Statut
-
-```txt
-Projet pilote permanent.
+PC
 ```
 
 ---
 
-# SDK
+## DECODE
 
-## Description
+Identification de l'opcode.
 
-Chaque module peut disposer d'un SDK.
+---
 
-## Exemples
+## EXECUTE
+
+Exécution de l'instruction correspondante.
+
+---
+
+## Mise à jour
+
+Le processeur ajuste :
 
 ```txt
-Azure8-SDK
+PC
 
-CHIP8-SDK
+FLAGS
 
-GameBoy-SDK
+SP
 ```
 
-## Fonctionnalités
+si nécessaire.
+
+---
+
+# Jeu d'Instructions
+
+Version :
 
 ```txt
-- assemblage ;
-- compilation ;
-- génération ROM ;
-- packaging ;
-- automatisation.
+v0.0.3
 ```
 
 ---
 
-# IDE
-
-## Description
-
-Chaque module peut disposer d'un IDE dédié.
-
-## Exemples
+## Contrôle CPU
 
 ```txt
-Azure8-IDE
+NOP
 
-CHIP8-IDE
-
-GameBoy-IDE
-```
-
-## Fonctionnalités minimales
-
-```txt
-- édition ;
-- exécution ;
-- compilation ;
-- débogage.
-```
-
-## Fonctionnalités avancées
-
-```txt
-- profiling ;
-- éditeur de sprites ;
-- éditeur de tiles ;
-- éditeur audio ;
-- éditeur de cartes.
+HLT
 ```
 
 ---
 
-# Marketplace
-
-## Description
-
-Le Marketplace permet l'installation de modules.
-
-## Types de modules
+## Manipulation de Données
 
 ```txt
-Machines
+MOV
 
-SDK
+LOAD
 
-IDE
-
-Bibliothèques
-
-Extensions
-
-Jeux
-
-Exemples
-
-Outils
+STORE
 ```
 
 ---
 
-# Arborescence officielle
+## Gestion de Pile
 
 ```txt
-AzureEngine/
+PUSH
 
-├── engine/
-│
-│   ├── core/
-│   ├── runtime/
-│   ├── debugger/
-│   └── launcher/
-│
-├── modules/
-│
-│   ├── azure8/
-│   ├── chip8/
-│   ├── gameboy/
-│   ├── nes/
-│   └── future/
-│
-├── developer/
-│
-│   ├── sdk/
-│   └── ide/
-│
-├── marketplace/
-│
-├── docs/
-│
-├── tests/
-│
-└── tools/
+POP
+
+CALL
+
+RET
 ```
 
 ---
 
-# Séparation des responsabilités
-
-## Utilisateur
-
-Modules destinés à l'utilisateur final :
+## Arithmétique
 
 ```txt
-Machines
+INC
 
-Émulateurs
+DEC
 
-ROMs
+ADD
 
-Jeux
+SUB
 ```
 
 ---
 
-## Développeur
-
-Modules destinés au développement :
+## Comparaison
 
 ```txt
-SDK
-
-IDE
-
-Profilers
-
-Debuggers
-
-Compilateurs
-
-Assembleurs
+CMP
 ```
 
 ---
 
-# Gestion des versions
-
-Chaque composant possède son propre cycle de vie.
-
-## Exemple
+## Branchements
 
 ```txt
-AzureEngine      v1.0.0
+JMP
 
-Azure-8          v0.0.3
+JZ
 
-Azure8-SDK       v0.0.1
-
-Azure8-IDE       v0.0.1
-
-CHIP-8           v0.1.0
-
-CHIP8-SDK        v0.1.0
-
-CHIP8-IDE        v0.1.0
+JNZ
 ```
 
 ---
 
-# Gestion des tags Git
+# Interactions CPU
 
-## Tags plateforme
+Le CPU interagit uniquement avec :
 
 ```txt
-v1.0.0
+Mémoire
 
-v1.1.0
+Pile
 
-v1.2.0
+Registres
+
+ROM exécutée
+```
+
+Le processeur ne possède actuellement :
+
+```txt
+Aucun système vidéo
+
+Aucun système audio
+
+Aucun périphérique
 ```
 
 ---
 
-## Tags modules
+# Gestion des Erreurs
+
+Le processeur doit être capable de gérer :
 
 ```txt
-azure8-v0.0.3
+Opcode invalide
 
-azure8-sdk-v0.0.1
+ROM invalide
 
-azure8-ide-v0.0.1
+Adresse incorrecte
 
-chip8-v0.1.0
+Pile invalide
 ```
+
+sans provoquer de comportement imprévisible.
 
 ---
 
-# Compatibilité
+# Limitations Actuelles
 
-## Priorité
+Version v0.0.3 :
 
 ```txt
-Windows
+Pas d'interruptions
 
-Linux
+Pas de DMA
+
+Pas de MMU
+
+Pas de gestion périphériques
+
+Pas de mode privilégié
 ```
+
+Ces fonctionnalités pourront être étudiées dans des versions futures.
 
 ---
 
-## Secondaire
+# Objectifs de Conception
+
+Le CPU Azure‑8 doit rester :
 
 ```txt
-macOS
+Simple
+
+Lisible
+
+Prévisible
+
+Documenté
+
+Facile à tester
 ```
 
----
-
-# Ordre de développement officiel
-
-## Phase 1
-
-```txt
-Azure-8
-```
-
----
-
-## Phase 2
-
-```txt
-Architecture AzureEngine
-```
-
----
-
-## Phase 3
-
-```txt
-Azure8-SDK
-```
-
----
-
-## Phase 4
-
-```txt
-Azure8-IDE
-```
-
----
-
-## Phase 5
-
-```txt
-AzureEngine Launcher
-```
-
----
-
-## Phase 6
-
-```txt
-CHIP-8
-```
-
----
-
-## Phase 7
-
-```txt
-Marketplace
-```
-
----
-
-## Phase 8
-
-```txt
-Nouveaux modules
-```
-
----
-
-# Objectif final
-
-Construire une plateforme capable :
-
-```txt
-✅ de créer des jeux ;
-
-✅ de créer des machines virtuelles ;
-
-✅ de créer des émulateurs ;
-
-✅ de créer des SDK ;
-
-✅ de créer des IDE ;
-
-✅ de distribuer des modules ;
-
-✅ de fédérer une communauté ;
-
-✅ de promouvoir le développement bas niveau.
-```
+afin de servir de plateforme pédagogique et technique.
 
 ---
 
 # Conclusion
 
-AzureEngine constitue désormais le projet principal.
+Le processeur Azure‑8 constitue le cœur de la machine virtuelle Azure‑8.
 
-Azure-8 devient officiellement le premier module de référence.
-
-L'ensemble des développements futurs devront respecter cette architecture afin de garantir :
+Son architecture volontairement simple permet :
 
 ```txt
-- la cohérence du projet ;
-- la maintenabilité ;
-- la modularité ;
-- la portabilité ;
-- l'évolutivité.
+L'apprentissage
+
+L'expérimentation
+
+Le développement bas niveau
+
+La validation des outils Azure‑8
 ```
+
+tout en servant de base technique pour l'évolution future du projet.
 
 ---
 
 **Fin du document**
-**AzureEngine Architecture v1.0**
-**Statut : Référence architecturale officielle**
+
+**Azure-8_CPU_Architecture_v1.0.md**
+
+**Version : 1.0**
+
+**Statut : Officiel**

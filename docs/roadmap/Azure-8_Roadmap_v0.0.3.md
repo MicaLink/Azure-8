@@ -4,88 +4,134 @@
 >
 > Écosystème : **AzureEngine**
 >
-> Version : **v0.0.3-alpha**
+> Version : **v0.0.3**
 >
 > Statut : **Préparation Release**
 >
-> Progression globale : **92 %**
+> Progression estimée : **92 %**
+>
+> Type : **Première Release Officielle**
 >
 > Dépôt : **Azure-8**
 >
-> Objectif final : **Publication du premier module officiel AzureEngine**
+> Tag cible :
+>
+> ```txt
+> azure8-v0.0.3
+> ```
 
 ---
 
 # Introduction
 
-La version v0.0.3 représente l'achèvement du cœur fonctionnel de la machine virtuelle Azure‑8.
+La version v0.0.3 constitue la première version complète de la machine virtuelle Azure‑8.
 
-Cette version clôt la phase expérimentale du projet et marque officiellement la transition suivante :
+Cette version marque la fin de la phase de conception fondamentale et la transition vers une publication officielle du projet.
+
+Azure‑8 n'est désormais plus considéré comme le projet principal.
+
+Azure‑8 devient officiellement :
 
 ```txt
-Ancienne vision
-
-Azure-8
-=
-Projet principal
-
-↓
-
-Nouvelle vision
-
-AzureEngine
-=
-Plateforme principale
-
-Azure-8
-=
-Premier module officiel
+Le premier module de l'écosystème AzureEngine.
 ```
 
-La v0.0.3 devient donc la première release officielle d'un module AzureEngine.
-
----
-
-# Objectifs de la Release
-
-## Objectifs Techniques
+Cette roadmap couvre l'ensemble des travaux nécessaires avant la publication officielle de :
 
 ```txt
-✅ CPU stable
-
-✅ Mémoire stable
-
-✅ Pile stable
-
-✅ Jeu d'instructions stable
-
-✅ ROMs de validation
-
-✅ Tests automatisés
+azure8-v0.0.3
 ```
 
 ---
 
-## Objectifs Architecture
+# Objectifs Stratégiques
+
+## Azure‑8
+
+Valider :
 
 ```txt
-✅ Validation du modèle AzureEngine
+✅ Architecture CPU
 
-✅ Validation du système de modules
+✅ Architecture mémoire
 
-✅ Validation workflow développement
+✅ Architecture pile
 
-✅ Validation de la documentation
+✅ Jeu d'instructions
+
+✅ Infrastructure de tests
+
+✅ Documentation technique
 ```
 
 ---
 
-# État des Fonctionnalités
+## AzureEngine
 
-## Architecture CPU
+Utiliser Azure‑8 pour :
 
 ```txt
-✅ CPU 8 bits
+✅ Valider le modèle de modules
+
+✅ Valider la documentation
+
+✅ Valider le workflow de développement
+
+✅ Préparer Azure8-SDK
+
+✅ Préparer Azure8-IDE
+```
+
+---
+
+# État Général du Projet
+
+## Fonctionnalités
+
+```txt
+✅ TERMINÉ
+```
+
+---
+
+## ROMs
+
+```txt
+✅ TERMINÉ
+```
+
+---
+
+## Tests
+
+```txt
+✅ TERMINÉ
+```
+
+---
+
+## Documentation
+
+```txt
+🟨 EN COURS DE FINALISATION
+```
+
+---
+
+## Release
+
+```txt
+🟨 EN PRÉPARATION
+```
+
+---
+
+# Fonctionnalités Livrées
+
+## CPU
+
+```txt
+✅ Architecture 8 bits
 
 ✅ Adressage mémoire 16 bits
 
@@ -125,8 +171,6 @@ La v0.0.3 devient donc la première release officielle d'un module AzureEngine.
 ## Mémoire
 
 ```txt
-✅ RAM 64 Ko
-
 ✅ Read8()
 
 ✅ Write8()
@@ -166,7 +210,7 @@ La v0.0.3 devient donc la première release officielle d'un module AzureEngine.
 
 ---
 
-# Jeu d'Instructions v0.0.3
+# Jeu d'Instructions Livré
 
 ## Contrôle CPU
 
@@ -178,7 +222,7 @@ La v0.0.3 devient donc la première release officielle d'un module AzureEngine.
 
 ---
 
-## Données
+## Manipulation de Données
 
 ```txt
 ✅ MOV
@@ -190,7 +234,7 @@ La v0.0.3 devient donc la première release officielle d'un module AzureEngine.
 
 ---
 
-## Gestion de Pile
+## Pile
 
 ```txt
 ✅ PUSH
@@ -241,13 +285,11 @@ La v0.0.3 devient donc la première release officielle d'un module AzureEngine.
 # Lot A
 ## Architecture CPU
 
-Objectif :
+### Objectif
 
-```txt
-Créer le processeur Azure‑8.
-```
+Concevoir et implémenter l'architecture du processeur Azure‑8.
 
-Statut :
+### Statut
 
 ```txt
 ✅ TERMINÉ
@@ -256,15 +298,13 @@ Statut :
 ---
 
 # Lot B
-## Gestion Mémoire
+## Architecture Mémoire
 
-Objectif :
+### Objectif
 
-```txt
-Créer le système mémoire.
-```
+Concevoir et implémenter la mémoire et l'adressage.
 
-Statut :
+### Statut
 
 ```txt
 ✅ TERMINÉ
@@ -273,15 +313,13 @@ Statut :
 ---
 
 # Lot C
-## Gestion de Pile
+## Architecture Pile
 
-Objectif :
+### Objectif
 
-```txt
-Créer le système de pile.
-```
+Concevoir et implémenter le système de pile.
 
-Statut :
+### Statut
 
 ```txt
 ✅ TERMINÉ
@@ -292,13 +330,11 @@ Statut :
 # Lot D
 ## Jeu d'Instructions
 
-Objectif :
+### Objectif
 
-```txt
-Implémentation complète du jeu d'instructions.
-```
+Concevoir et implémenter le jeu d'instructions officiel.
 
-Statut :
+### Statut
 
 ```txt
 ✅ TERMINÉ
@@ -308,6 +344,10 @@ Statut :
 
 # Lot E
 ## Validation Fonctionnelle
+
+### Objectif
+
+Valider l'ensemble des fonctionnalités au moyen de ROMs de référence.
 
 ### ROMs Fondamentales
 
@@ -372,115 +412,36 @@ Statut :
 ### Résultat
 
 ```txt
-✅ Validation fonctionnelle complète
-
 ✅ 21 ROMs validées
+
+✅ Validation fonctionnelle terminée
 ```
 
 ---
 
 # Lot F
-## Préparation AzureEngine
+## Transformation en Module AzureEngine
 
-Pendant le développement d'Azure‑8, les fondations d'AzureEngine ont été définies.
+### Objectif
 
----
+Transformer Azure‑8 en module autonome conforme à la vision AzureEngine.
 
-## Documents produits
-
-```txt
-✅ AzureEngine Master Specification
-
-✅ AzureEngine Architecture
-
-✅ AzureEngine Repository Layout
-
-✅ AzureEngine Versioning
-
-✅ AzureEngine Module Specification
-
-✅ AzureEngine Plugin API
-
-✅ AzureEngine Development Roadmap
-
-✅ Azure8 SDK Architecture
-
-✅ Azure8 IDE Architecture
-```
-
----
-
-### Résultat
+### Réalisé
 
 ```txt
-✅ AzureEngine défini
-
-✅ Vision 2.0 validée
-
-✅ Architecture stabilisée
-```
-
----
-
-# Lot G
-## Extraction Azure‑8
-
-Objectif :
-
-```txt
-Transformer Azure‑8 en module autonome.
-```
-
----
-
-## Dépôt
-
-```txt
-✅ Dépôt Azure‑8 créé
+✅ Nouveau dépôt Azure‑8
 
 ✅ README.md
 
 ✅ CHANGELOG.md
 
-✅ LICENSE
+✅ Manifest module
 
-✅ azure8.module.json
-```
+✅ Structure modulaire
 
----
+✅ Samples
 
-## Arborescence
-
-```txt
-✅ assets/
-
-✅ docs/
-
-✅ roms/
-
-✅ samples/
-
-✅ src/
-
-✅ tests/
-
-✅ tools/
-```
-
----
-
-## Documentation
-
-```txt
-✅ Architecture
-
-✅ Spécifications
-
-✅ Notes de Release
-
-✅ Audit Sécurité
-
-✅ Roadmaps
+✅ Outils
 ```
 
 ---
@@ -488,7 +449,48 @@ Transformer Azure‑8 en module autonome.
 ### Résultat
 
 ```txt
-🟨 Dépôt prêt pour audit final
+✅ Azure‑8 est désormais indépendant
+
+✅ Prêt à être intégré dans AzureEngine
+```
+
+---
+
+# Lot G
+## Consolidation Documentaire
+
+### Objectif
+
+Créer une documentation complète et maintenable.
+
+### Réalisé
+
+```txt
+✅ CPU Architecture
+
+✅ Technical Specification
+
+✅ Instruction Set
+
+✅ Architecture Guide
+
+✅ Roadmaps
+
+✅ Release Notes
+
+✅ Security Audit
+
+✅ Quality Audit
+
+✅ Documentation Audit
+```
+
+---
+
+### Résultat
+
+```txt
+🟨 Audit documentaire à exécuter
 ```
 
 ---
@@ -496,116 +498,46 @@ Transformer Azure‑8 en module autonome.
 # Lot H
 ## Audit de Sécurité
 
-Objectif :
-
-Garantir la robustesse du moteur avant publication.
-
----
-
-## H1 - Mémoire
-
-Vérifications :
+### Document
 
 ```txt
-⬜ Lecture hors limites
+docs/security/Security_Audit_v0.0.3.md
+```
 
-⬜ Écriture hors limites
+### Objectif
 
-⬜ Adresses invalides
+Valider la robustesse du moteur.
 
-⬜ Little Endian
+### Contrôles
+
+```txt
+⬜ Mémoire
+
+⬜ Pile
+
+⬜ CPU
+
+⬜ CALL / RET
+
+⬜ ROM
+
+⬜ Gestion des erreurs
+
+⬜ Robustesse globale
 ```
 
 ---
 
-## H2 - Pile
-
-Vérifications :
-
-```txt
-⬜ Overflow
-
-⬜ Underflow
-
-⬜ Cohérence SP
-
-⬜ Corruption mémoire
-```
-
----
-
-## H3 - CPU
-
-Vérifications :
-
-```txt
-⬜ Fetch
-
-⬜ Decode
-
-⬜ Execute
-```
-
----
-
-### Cas Invalides
-
-```txt
-⬜ Opcode invalide
-
-⬜ Opcode inconnu
-
-⬜ ROM vide
-
-⬜ ROM tronquée
-```
-
----
-
-## H4 - CALL / RET
-
-Vérifications :
-
-```txt
-⬜ Adresses retour
-
-⬜ Appels imbriqués
-
-⬜ RET invalide
-
-⬜ Pile corrompue
-```
-
----
-
-## H5 - ROM
-
-Scénarios :
-
-```txt
-⬜ ROM vide
-
-⬜ ROM corrompue
-
-⬜ ROM incomplète
-
-⬜ ROM de taille minimale
-
-⬜ ROM trop volumineuse
-```
-
----
-
-### Résultat attendu
+### Critère de validation
 
 ```txt
 ✅ Aucun crash connu
 
-✅ Aucune corruption mémoire connue
+✅ Aucune corruption mémoire
 
-✅ Aucune corruption pile connue
+✅ Aucune corruption pile
 
-✅ Détection erreurs fiable
+✅ Gestion correcte des erreurs
 ```
 
 ---
@@ -613,68 +545,32 @@ Scénarios :
 # Lot I
 ## Audit Qualité
 
-Objectif :
-
-Valider la qualité du code et du dépôt.
-
----
-
-## Audit Code
+### Document
 
 ```txt
-⬜ CPU.cpp
-
-⬜ CPU.h
-
-⬜ Emulator.cpp
-
-⬜ Emulator.h
-
-⬜ Memory.cpp
-
-⬜ Memory.h
+docs/reports/Quality_Audit_v0.0.3.md
 ```
 
----
+### Objectif
 
-## Audit Tests
+Valider la qualité globale du projet.
 
-```txt
-⬜ Couverture
-
-⬜ Nommage
-
-⬜ Cohérence
-```
-
----
-
-## Audit Dépôt
+### Contrôles
 
 ```txt
-⬜ Structure
+⬜ Code source
 
-⬜ Organisation
+⬜ Tests
 
-⬜ Fichiers inutiles
+⬜ Dépôt
 
-⬜ .gitignore
-```
+⬜ Documentation
 
----
+⬜ Manifest
 
-## Audit Documentation
+⬜ Build
 
-```txt
-⬜ README.md
-
-⬜ CHANGELOG.md
-
-⬜ Release Notes
-
-⬜ Roadmaps
-
-⬜ Specifications
+⬜ Maintenabilité
 ```
 
 ---
@@ -682,182 +578,34 @@ Valider la qualité du code et du dépôt.
 # Lot J
 ## Audit de Cohérence Documentaire
 
-Objectif :
-
-Garantir que tous les documents décrivent exactement le même système.
-
----
-
-## J1 - Vérification Versions
-
-Comparer :
+### Document
 
 ```txt
-README
-
-CHANGELOG
-
-Release Notes
-
-Manifest
-
-Roadmaps
+docs/reports/Documentation_Audit_v0.0.3.md
 ```
 
-Contrôles :
+### Objectif
+
+Garantir que l'ensemble de la documentation décrit exactement le même système.
+
+### Contrôles
 
 ```txt
-⬜ Même version
+⬜ Versions
 
-⬜ Même statut
+⬜ Architecture CPU
 
-⬜ Même périmètre
-```
+⬜ Jeu d'instructions
 
----
+⬜ ROMs
 
-## J2 - Architecture CPU
+⬜ Tests
 
-Comparer :
+⬜ Roadmaps
 
-```txt
-README
+⬜ Manifest
 
-CPU Architecture
-
-Technical Specification
-```
-
-Contrôles :
-
-```txt
-⬜ Registres
-
-⬜ Mémoire
-
-⬜ FLAGS
-
-⬜ Adressage
-```
-
----
-
-## J3 - Jeu d'Instructions
-
-Comparer :
-
-```txt
-Instruction Set
-
-README
-
-ROMs
-
-Tests
-```
-
-Contrôles :
-
-```txt
-⬜ Instructions présentes
-
-⬜ OpCodes
-
-⬜ Documentation cohérente
-```
-
----
-
-## J4 - ROMs
-
-Comparer :
-
-```txt
-Roadmap
-
-README
-
-Dossier roms/
-```
-
-Contrôles :
-
-```txt
-⬜ Nombre ROMs
-
-⬜ Noms
-
-⬜ Documentation
-```
-
----
-
-## J5 - Tests
-
-Comparer :
-
-```txt
-Tests
-
-README
-
-Roadmap
-```
-
-Contrôles :
-
-```txt
-⬜ Couverture
-
-⬜ Cohérence
-
-⬜ Nommage
-```
-
----
-
-## J6 - Manifest
-
-Comparer :
-
-```txt
-azure8.module.json
-
-README
-
-Release Notes
-```
-
-Contrôles :
-
-```txt
-⬜ ID
-
-⬜ Nom
-
-⬜ Version
-
-⬜ Auteur
-```
-
----
-
-### Livrable
-
-```txt
-Documentation_Audit_v0.0.3.md
-```
-
----
-
-### Résultat attendu
-
-```txt
-✅ Aucune contradiction
-
-✅ Aucune référence obsolète
-
-✅ Documentation cohérente
+⬜ Release Notes
 ```
 
 ---
@@ -874,9 +622,7 @@ Documentation_Audit_v0.0.3.md
 
 ⬜ Tests
 
-⬜ 0 erreur
-
-⬜ 0 warning critique
+⬜ Aucun blocage
 ```
 
 ---
@@ -888,6 +634,14 @@ Documentation_Audit_v0.0.3.md
 
 ⬜ Exécution
 
+⬜ Aucun blocage
+```
+
+---
+
+### Qualité
+
+```txt
 ⬜ 0 erreur
 
 ⬜ 0 warning critique
@@ -896,56 +650,46 @@ Documentation_Audit_v0.0.3.md
 ---
 
 # Lot L
-## Publication Azure‑8 v0.0.3
+## Publication de la Release
 
-Conditions :
+### Conditions Obligatoires
 
 ```txt
-✅ Validation fonctionnelle
+✅ Audit Sécurité validé
 
-✅ Audit sécurité terminé
+✅ Audit Qualité validé
 
-✅ Audit qualité terminé
+✅ Audit Documentaire validé
 
-✅ Audit documentaire terminé
+✅ Build Debug validé
 
-✅ Build validé
+✅ Build Release validé
 
-✅ Dépôt finalisé
+✅ Release Notes finalisées
+
+✅ CHANGELOG finalisé
 ```
 
 ---
 
-## Livrables
+### Livraison
 
-### Release
+#### Dépôt
 
 ```txt
-Azure‑8 v0.0.3
+Azure-8
 ```
 
----
-
-### Tag Git
+#### Tag
 
 ```txt
 azure8-v0.0.3
 ```
 
----
-
-### Manifest
+#### Release
 
 ```txt
-azure8.module.json
-```
-
----
-
-### Notes de Release
-
-```txt
-Azure-8_v0.0.3_Release_Notes.md
+Azure‑8 v0.0.3
 ```
 
 ---
@@ -962,11 +706,9 @@ Azure-8_v0.0.3_Release_Notes.md
 
 ---
 
-# Après la v0.0.3
+# Planning Après Publication
 
-La roadmap v0.0.3 sera clôturée.
-
-Le développement poursuivra l'ordre suivant :
+Une fois la release v0.0.3 terminée :
 
 ```txt
 Azure8-SDK v0.0.1
@@ -1004,7 +746,7 @@ CHIP8-IDE
 
 ---
 
-## Tests
+## ROMs
 
 ```txt
 ✅ 100 %
@@ -1012,7 +754,7 @@ CHIP8-IDE
 
 ---
 
-## ROMs
+## Tests
 
 ```txt
 ✅ 100 %
@@ -1028,10 +770,18 @@ CHIP8-IDE
 
 ---
 
-## Structure dépôt
+## Structure du Dépôt
 
 ```txt
-✅ 95 %
+✅ 100 %
+```
+
+---
+
+## Documentation
+
+```txt
+🟨 95 %
 ```
 
 ---
@@ -1039,7 +789,7 @@ CHIP8-IDE
 ## Audit Sécurité
 
 ```txt
-⬜ 0 %
+⬜ À réaliser
 ```
 
 ---
@@ -1047,7 +797,7 @@ CHIP8-IDE
 ## Audit Qualité
 
 ```txt
-⬜ 0 %
+⬜ À réaliser
 ```
 
 ---
@@ -1055,7 +805,15 @@ CHIP8-IDE
 ## Audit Documentaire
 
 ```txt
-⬜ 0 %
+⬜ À réaliser
+```
+
+---
+
+## Validation Build
+
+```txt
+⬜ À réaliser
 ```
 
 ---
@@ -1070,35 +828,31 @@ CHIP8-IDE
 
 # Objectif Final
 
-Publier :
+Publier une première release stable, documentée et auditée de la machine virtuelle Azure‑8 afin de :
 
 ```txt
-azure8-v0.0.3
+✅ Clôturer la phase fondatrice
+
+✅ Valider le modèle AzureEngine
+
+✅ Préparer Azure8-SDK
+
+✅ Préparer Azure8-IDE
 ```
 
-comme :
+et faire officiellement d'Azure‑8 :
 
 ```txt
-✅ Première machine virtuelle stable AzureEngine
-
-✅ Premier module officiel AzureEngine
-
-✅ Fondation technique de l'écosystème
-```
-
-et ouvrir officiellement la phase :
-
-```txt
-azure8-sdk-v0.0.1
+Le premier module de référence de l'écosystème AzureEngine.
 ```
 
 ---
 
 **Fin du document**
 
-**Azure‑8 Roadmap v0.0.3**
-**Statut : Préparation Release 🟨**
-**Audit Sécurité requis**
-**Audit Qualité requis**
-**Audit Cohérence Documentaire requis**
-**Release non publiée**
+**Azure-8_Roadmap_v0.0.3.md**
+
+**Version : v0.0.3**
+
+**Statut : Préparation Release**
+**Tag cible : azure8-v0.0.3**
