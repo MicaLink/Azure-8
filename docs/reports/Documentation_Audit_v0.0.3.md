@@ -1,369 +1,553 @@
-# Azure-8 Roadmap v0.0.3
+# Documentation Audit v0.0.3
 
-Projet : **Azure-8**  
-Écosystème : **AzureEngine**  
-Version : **v0.0.3**  
-Statut : **Review**  
-Progression : **97 %**  
-Type : **Première Release Officielle**  
-Dépôt : **Azure-8**  
-Tag cible : **azure8-v0.0.3**
+Projet : **Azure\-8**
+
+Version Auditée : **v0.0.3**
+
+Type : **Audit de Cohérence Documentaire**
+
+Statut : **VALIDÉ**
+
+Version du Rapport : **1.1**
+
+Date : **v0.0.3**
 
 ---
 
 # Introduction
 
-La version v0.0.3 représente la première release complète d’Azure‑8.
+Ce document a pour objectif de valider la cohérence documentaire du projet Azure‑8 avant sa première publication officielle.
 
-Cette version clôt la phase fondatrice du projet et officialise Azure‑8 comme premier module de référence de l’écosystème AzureEngine.
+L'audit vérifie que l'ensemble des documents du dépôt décrivent le même système, utilisent une terminologie cohérente et ne présentent aucune contradiction fonctionnelle ou architecturale significative.
 
-L'objectif de cette roadmap est de suivre les derniers travaux nécessaires avant la publication officielle de :
+Cet audit couvre :
 
-**azure8-v0.0.3**
-
----
-
-# Objectifs Stratégiques
-
-## Azure‑8
-
-Valider :
-
-✅ Architecture CPU  
-✅ Architecture mémoire  
-✅ Mécanisme de pile  
-✅ Jeu d'instructions  
-✅ Infrastructure de tests  
-✅ Documentation technique
-
-## AzureEngine
-
-Utiliser Azure‑8 pour :
-
-✅ Valider le modèle de modules  
-✅ Valider le workflow documentaire  
-✅ Préparer Azure8-SDK  
-✅ Préparer Azure8-IDE
+- l'identité du projet ;
+- l'architecture ;
+- les spécifications ;
+- les ROMs ;
+- les tests ;
+- les roadmaps ;
+- le manifest AzureEngine ;
+- les Release Notes.
 
 ---
 
-# État Général du Projet
+# Périmètre
 
-| Domaine | Statut |
-|----------|----------|
-| Fonctionnalités | ✅ TERMINÉ |
-| Architecture | ✅ TERMINÉ |
-| ROMs | ✅ TERMINÉ |
-| Tests | ✅ TERMINÉ |
-| Documentation | ✅ TERMINÉ |
-| Audit Documentaire | ✅ VALIDÉ |
-| Audit Sécurité | ⬜ À réaliser |
-| Audit Qualité | ⬜ À réaliser |
-| Validation Build | ⬜ À réaliser |
-| Release | 🟨 EN PRÉPARATION |
+## Documentation Générale
 
----
+- README.md
+- CHANGELOG.md
 
-# Fonctionnalités Livrées
+## Architecture
 
-## CPU
+- Azure\-8\_Architecture\_Overview\_v1.0.md
+- Azure\-8\_Architecture\_Guide.md
+- Azure\-8\_CPU\_Architecture\_v1.0.md
 
-✅ Architecture 8 bits  
-✅ Adressage mémoire 16 bits  
-✅ Little Endian
+## Spécifications
 
-## Registres
+- Azure\-8\_Technical\_Specification\_v0.0.3.md
+- Azure\-8\_Instruction\_Set\_v0.0.3.md
+- Azure\-8\_Module\_Specification\_v1.0.md
 
-### Utilisateur
+## Qualité
 
-✅ A  
-✅ B  
-✅ C  
-✅ D
+- Azure\-8\_Testing\_Strategy\_v1.0.md
+- Azure\-8\_Build\_Guide.md
 
-### Système
+## Roadmaps
 
-✅ PC  
-✅ SP  
-✅ FLAGS
+- Azure\-8\_Roadmap\_v0.0.1.md
+- Azure\-8\_Roadmap\_v0.0.2.md
+- Azure\-8\_Roadmap\_v0.0.3.md
+- Azure\-8\_Development\_Roadmap\_v1.0.md
 
-## Mémoire
+## Release
 
-✅ Read8()  
-✅ Write8()  
-✅ Read16()  
-✅ Write16()
-
-## Pile
-
-✅ Push8()  
-✅ Pop8()  
-✅ Push16()  
-✅ Pop16()
-
-## FLAGS
-
-✅ ZERO  
-✅ CARRY  
-✅ NEGATIVE  
-✅ OVERFLOW
-
----
-
-# Jeu d’Instructions
-
-## Contrôle CPU
-
-✅ NOP  
-✅ HLT
-
-## Manipulation de Données
-
-✅ MOV  
-✅ LOAD  
-✅ STORE
-
-## Gestion de Pile
-
-✅ PUSH  
-✅ POP  
-✅ CALL  
-✅ RET
-
-## Arithmétique
-
-✅ INC  
-✅ DEC  
-✅ ADD  
-✅ SUB
-
-## Comparaison
-
-✅ CMP
-
-## Branchements
-
-✅ JMP  
-✅ JZ  
-✅ JNZ
-
----
-
-# Validation Fonctionnelle
-
-## ROMs Fondamentales
-
-✅ nop.rom  
-✅ halt.rom  
-✅ invalid.rom
-
-## ROMs d'Instructions
-
-✅ mov.rom  
-✅ load.rom  
-✅ store.rom  
-✅ push.rom  
-✅ pop.rom  
-✅ call.rom  
-✅ ret.rom  
-✅ inc.rom  
-✅ dec.rom  
-✅ add.rom  
-✅ sub.rom  
-✅ cmp.rom  
-✅ jmp.rom  
-✅ jz.rom  
-✅ jnz.rom
-
-## ROMs Infrastructure
-
-✅ memory16.rom  
-✅ stack8.rom  
-✅ stack16.rom
-
-## Résultat
-
-✅ 21 ROMs validées  
-✅ Validation fonctionnelle terminée
-
----
-
-# Documentation
-
-## Documents Techniques
-
-✅ CPU Architecture  
-✅ Architecture Overview  
-✅ Architecture Guide  
-✅ Technical Specification  
-✅ Module Specification  
-✅ Instruction Set
-
-## Documents de Release
-
-✅ Release Notes  
-✅ CHANGELOG  
-✅ README
+- Azure\-8\_v0.0.3\_Release\_Notes.md
 
 ## Rapports
 
-✅ Documentation Audit  
-✅ Architecture Consistency Report
-
-## Résultat
-
-✅ Documentation cohérente  
-✅ Documentation maintenable  
-✅ Documentation validée
+- Security\_Audit\_v0.0.3.md
+- Quality\_Audit\_v0.0.3.md
+- Architecture\_Consistency\_Report\_v0.0.3.md
 
 ---
 
-# Audit Documentaire
+# D1 — Versions et Statuts
 
 ## Objectif
 
-Garantir que l'ensemble des documents décrivent exactement le même système.
+Valider la cohérence du versionnement et des statuts documentaires.
+
+## Vérifications
+
+### Version
+
+✅ README cohérent
+
+✅ Architecture cohérente
+
+✅ Spécifications cohérentes
+
+✅ Manifest cohérent
+
+✅ Roadmaps cohérentes
+
+✅ Release Notes cohérentes
+
+### Statuts
+
+✅ Documents officiels identifiés
+
+✅ Documents historiques identifiés
+
+✅ Terminologie harmonisée
 
 ## Résultat
 
 ✅ VALIDÉ
 
-### Contrôles
+## Conclusion
 
-✅ Versions et statuts  
-✅ Architecture CPU  
-✅ Jeu d'instructions  
-✅ ROMs  
-✅ Tests  
-✅ Roadmaps  
-✅ Manifest  
-✅ Release Notes  
-✅ Qualité documentaire
-
-Aucune incohérence bloquante détectée.
+Les références historiques incohérentes ont été supprimées ou harmonisées.
 
 ---
 
-# Audit de Sécurité
+# D2 — Architecture CPU
 
-## Statut
+## Objectif
 
-⬜ À réaliser
+Valider la cohérence de l'architecture processeur.
 
-### Contrôles prévus
+## Vérifications
 
-⬜ Mémoire  
-⬜ Pile  
-⬜ CPU  
-⬜ CALL / RET  
-⬜ ROM  
-⬜ Gestion des erreurs  
-⬜ Robustesse globale
+### Architecture
 
----
+✅ CPU 8 bits
 
-# Audit Qualité
+✅ Adressage 16 bits
 
-## Statut
+✅ Little Endian
 
-⬜ À réaliser
+### Registres Utilisateur
 
-### Contrôles prévus
+✅ A
 
-⬜ Code source  
-⬜ Tests  
-⬜ Dépôt  
-⬜ Documentation  
-⬜ Manifest  
-⬜ Build  
-⬜ Maintenabilité
+✅ B
 
----
+✅ C
 
-# Validation Build
+✅ D
 
-## Build Debug
+### Registres Système
 
-⬜ Compilation  
-⬜ Exécution  
-⬜ Tests  
-⬜ Aucun blocage
+✅ PC
 
-## Build Release
+✅ SP
 
-⬜ Compilation  
-⬜ Exécution  
-⬜ Aucun blocage
+✅ FLAGS
 
-## Qualité
+### FLAGS
 
-⬜ Aucun warning critique  
-⬜ Exécutable fonctionnel
+✅ ZERO
+
+✅ CARRY
+
+✅ NEGATIVE
+
+✅ OVERFLOW
+
+## Résultat
+
+✅ VALIDÉ
+
+## Conclusion
+
+L'ensemble des documents décrit la même architecture CPU.
 
 ---
 
-# Conditions de Publication
+# D3 — Jeu d'Instructions
 
-La publication de :
+## Objectif
 
-**azure8-v0.0.3**
+Valider la cohérence du jeu d'instructions.
 
-nécessite :
+## Vérifications
 
-✅ Documentation Audit validé  
-⬜ Security Audit validé  
-⬜ Quality Audit validé  
-⬜ Build Debug validé  
-⬜ Build Release validé  
-⬜ Release Notes finalisées  
-⬜ CHANGELOG finalisé
+### Contrôle CPU
+
+✅ NOP
+
+✅ HLT
+
+### Manipulation de Données
+
+✅ MOV
+
+✅ LOAD
+
+✅ STORE
+
+### Pile
+
+✅ PUSH
+
+✅ POP
+
+✅ CALL
+
+✅ RET
+
+### Arithmétique
+
+✅ INC
+
+✅ DEC
+
+✅ ADD
+
+✅ SUB
+
+### Comparaison
+
+✅ CMP
+
+### Branchements
+
+✅ JMP
+
+✅ JZ
+
+✅ JNZ
+
+## Résultat
+
+✅ VALIDÉ
+
+## Conclusion
+
+Le jeu d'instructions est cohérent entre les spécifications, l'architecture et l'implémentation.
 
 ---
 
-# Progression Globale
+# D4 — ROMs
 
-| Domaine | Avancement |
-|----------|------------|
-| Architecture | ✅ 100 % |
-| Instructions | ✅ 100 % |
-| ROMs | ✅ 100 % |
-| Tests | ✅ 100 % |
-| Documentation | ✅ 100 % |
-| Audit Documentaire | ✅ 100 % |
-| Audit Sécurité | ⬜ 0 % |
-| Audit Qualité | ⬜ 0 % |
-| Validation Build | ⬜ 0 % |
-| Publication | 🟨 En préparation |
+## Objectif
+
+Valider la cohérence de la documentation des ROMs.
+
+## Vérifications
+
+### ROMs Fondamentales
+
+✅ nop.rom
+
+✅ halt.rom
+
+✅ invalid.rom
+
+### ROMs d'Instructions
+
+✅ mov.rom
+
+✅ load.rom
+
+✅ store.rom
+
+✅ push.rom
+
+✅ pop.rom
+
+✅ call.rom
+
+✅ ret.rom
+
+✅ inc.rom
+
+✅ dec.rom
+
+✅ add.rom
+
+✅ sub.rom
+
+✅ cmp.rom
+
+✅ jmp.rom
+
+✅ jz.rom
+
+✅ jnz.rom
+
+### ROMs Infrastructure
+
+✅ memory16.rom
+
+✅ stack8.rom
+
+✅ stack16.rom
+
+## Résultat
+
+✅ VALIDÉ
+
+## Conclusion
+
+Toutes les documentations utilisent désormais le même inventaire officiel de ROMs.
 
 ---
 
-# Après la Release
+# D5 — Tests
 
-Une fois Azure‑8 v0.0.3 publié :
+## Objectif
 
-1. Azure8-SDK v0.0.1
-2. Azure8-IDE v0.0.1
-3. AzureEngine Launcher
-4. CHIP‑8
-5. CHIP8-SDK
-6. CHIP8-IDE
+Valider la cohérence de la stratégie de tests.
+
+## Vérifications
+
+### Infrastructure
+
+✅ TestCPU.cpp
+
+✅ TestMemory.cpp
+
+✅ TestStack.cpp
+
+✅ TestFlags.cpp
+
+### Instructions
+
+✅ TestInstructionMOV.cpp
+
+✅ TestInstructionLOAD.cpp
+
+✅ TestInstructionSTORE.cpp
+
+✅ TestInstructionPUSH.cpp
+
+✅ TestInstructionPOP.cpp
+
+✅ TestInstructionCALL.cpp
+
+✅ TestInstructionRET.cpp
+
+✅ TestInstructionINC.cpp
+
+✅ TestInstructionDEC.cpp
+
+✅ TestInstructionADD.cpp
+
+✅ TestInstructionSUB.cpp
+
+✅ TestInstructionCMP.cpp
+
+✅ TestInstructionJMP.cpp
+
+✅ TestInstructionJZ.cpp
+
+✅ TestInstructionJNZ.cpp
+
+## Résultat
+
+✅ VALIDÉ
+
+## Conclusion
+
+Le nommage des tests est homogène dans toute la documentation.
 
 ---
 
-# Objectif Final
+# D6 — Roadmaps
 
-Publier une première release stable, documentée, testée et auditée de la machine virtuelle Azure‑8 afin de :
+## Objectif
 
-✅ Finaliser la phase fondatrice du projet  
-✅ Valider le modèle AzureEngine  
-✅ Préparer Azure8-SDK  
-✅ Préparer Azure8-IDE  
-✅ Fournir le premier module officiel de référence AzureEngine
+Valider la cohérence des feuilles de route du projet.
+
+## Vérifications
+
+✅ Historique cohérent
+
+✅ Progression cohérente
+
+✅ Versions cohérentes
+
+✅ Objectifs cohérents
+
+✅ Planification cohérente
+
+## Résultat
+
+✅ VALIDÉ
 
 ---
 
-**Fin du document**  
-**Azure-8_Roadmap_v0.0.3.md**  
-**Version : v0.0.3**  
-**Statut : Review**  
-**Tag cible : azure8-v0.0.3**
+# D7 — Manifest AzureEngine
+
+## Objectif
+
+Valider l'identité officielle du module.
+
+## Vérifications
+
+✅ id = azure8
+
+✅ name = Azure\-8
+
+✅ version = 0.0.3
+
+✅ type = machine
+
+### Cohérence
+
+✅ README
+
+✅ Module Specification
+
+✅ Release Notes
+
+✅ Manifest
+
+## Résultat
+
+✅ VALIDÉ
+
+---
+
+# D8 — Release Notes
+
+## Objectif
+
+Valider la cohérence des notes de version.
+
+## Vérifications
+
+✅ Fonctionnalités cohérentes
+
+✅ Architecture cohérente
+
+✅ ROMs cohérentes
+
+✅ Manifest cohérent
+
+✅ Version cohérente
+
+## Résultat
+
+✅ VALIDÉ
+
+---
+
+# D9 — Qualité Documentaire
+
+## Objectif
+
+Évaluer la cohérence documentaire globale.
+
+## Vérifications
+
+✅ Terminologie homogène
+
+✅ Références cohérentes
+
+✅ Architecture cohérente
+
+✅ Spécifications cohérentes
+
+✅ Documentation de test cohérente
+
+✅ Release cohérente
+
+✅ Structure documentaire cohérente
+
+## Résultat
+
+✅ VALIDÉ
+
+---
+
+# Incohérences Détectées
+
+## Critiques
+
+Aucune.
+
+## Majeures
+
+Aucune.
+
+## Mineures
+
+Aucune incohérence bloquante identifiée.
+
+---
+
+# Synthèse
+
+| Contrôle | Résultat |
+| --- | --- |
+| D1 Versions et Statuts | ✅ VALIDÉ |
+| D2 Architecture CPU | ✅ VALIDÉ |
+| D3 Jeu d'Instructions | ✅ VALIDÉ |
+| D4 ROMs | ✅ VALIDÉ |
+| D5 Tests | ✅ VALIDÉ |
+| D6 Roadmaps | ✅ VALIDÉ |
+| D7 Manifest | ✅ VALIDÉ |
+| D8 Release Notes | ✅ VALIDÉ |
+| D9 Qualité Documentaire | ✅ VALIDÉ |
+
+---
+
+# Décision Finale
+
+## Critères
+
+✅ Documentation cohérente
+
+✅ Architecture cohérente
+
+✅ Références cohérentes
+
+✅ Versionnement cohérent
+
+✅ Manifest cohérent
+
+✅ Terminologie cohérente
+
+## Résultat
+
+✅ AUDIT VALIDÉ
+
+## Autorisation
+
+✅ Documentation approuvée pour la publication de la release **azure8\-v0.0.3**
+
+---
+
+# Conclusion
+
+La documentation Azure‑8 a fait l'objet d'un audit complet de cohérence documentaire.
+
+Les incohérences initialement identifiées concernant :
+
+- le versionnement ;
+- les statuts ;
+- la représentation architecturale ;
+- les ROMs ;
+- les conventions de tests ;
+- la cohérence entre spécifications et implémentation ;
+
+ont été corrigées.
+
+La documentation est désormais jugée cohérente, maintenable et conforme à l'architecture actuelle du projet Azure‑8.
+
+**Fin du document**
+
+**Documentation\_Audit\_v0.0.3.md**
+
+**Version : v0.0.3**
+
+**Statut : VALIDÉ**
+
