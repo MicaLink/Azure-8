@@ -2,7 +2,7 @@
 
 > Version : **v0.0.1-alpha**
 >
-> Statut : **Publié**
+> Statut : **Archived**
 >
 > Tag Git : **v0.0.1-alpha**
 

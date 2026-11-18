@@ -446,10 +446,15 @@ void CPU::Step(Memory& memory)
 
             u8& value = GetRegister(reg);
 
+            const u8 oldValue = value;
+
             value++;
 
             UpdateZeroFlag(value);
             UpdateNegativeFlag(value);
+
+            // Overflow signé : +127 -> -128
+            UpdateOverflowFlag(oldValue == 0x7F);
             break;
         }
         case OPCODE_DEC:
@@ -458,10 +463,15 @@ void CPU::Step(Memory& memory)
 
             u8& value = GetRegister(reg);
 
+            const u8 oldValue = value;
+
             value--;
             
             UpdateZeroFlag(value);
             UpdateNegativeFlag(value);
+
+            // Overflow signé : -128 -> +127
+            UpdateOverflowFlag(oldValue == 0x80);
             break;
         }
         case OPCODE_ADD:
@@ -477,10 +487,19 @@ void CPU::Step(Memory& memory)
 
             UpdateCarryFlag(result > 0xFF);
 
+            const u8 oldDst = destination;
             destination = static_cast<u8>(result);
 
             UpdateZeroFlag(destination);
             UpdateNegativeFlag(destination);
+
+            // Overflow signé
+            const bool overflow = (
+                ((oldDst ^ source) & 0x80) == 0 &&
+                ((oldDst ^ destination) & 0x80) != 0
+            );
+
+            UpdateOverflowFlag(overflow);
             break;
         }
         case OPCODE_SUB:
@@ -494,6 +513,7 @@ void CPU::Step(Memory& memory)
 
             const bool borrow = destination < source;
 
+            const u8 oldDst = destination;
             const u8 result = static_cast<u8>(destination - source);
 
             UpdateCarryFlag(borrow);
@@ -502,6 +522,15 @@ void CPU::Step(Memory& memory)
 
             UpdateZeroFlag(destination);
             UpdateNegativeFlag(destination);
+
+            // Overflow signé
+            const bool overflow =
+            (
+                ((oldDst ^ source) & 0x80) != 0 &&
+                ((oldDst ^ destination) & 0x80) != 0
+            );
+
+            UpdateOverflowFlag(overflow);
             break;
         }
         case OPCODE_CMP:

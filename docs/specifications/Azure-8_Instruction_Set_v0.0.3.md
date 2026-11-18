@@ -1,8 +1,8 @@
 # Azure-8 Instruction Set Specification v0.0.3
 
-Version : v0.0.3-alpha
+Version : v0.0.3
 
-Statut : Draft
+Statut : Officiel
 
 ---
 

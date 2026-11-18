@@ -6,7 +6,7 @@
 >
 > Type : **Audit Sécurité et Robustesse**
 >
-> Statut : **À réaliser**
+> Statut : **Draft**
 >
 > Audit obligatoire avant publication de :
 >

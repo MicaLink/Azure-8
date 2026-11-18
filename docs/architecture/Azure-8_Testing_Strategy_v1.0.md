@@ -81,7 +81,7 @@ Chaque test doit vérifier une seule fonctionnalité.
 Exemple :
 
 ```txt
-TestMOV
+TestInstructionMOV.cpp
 
 ↓
 

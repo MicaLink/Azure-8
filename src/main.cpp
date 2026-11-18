@@ -8,7 +8,7 @@ int main()
     // Configuration
     //-------------------------------------------------
 
-    constexpr const char* ROM_PATH = "roms/overflow.rom";
+    constexpr const char* ROM_PATH = "roms/add.rom";
 
     //-------------------------------------------------
     // Init

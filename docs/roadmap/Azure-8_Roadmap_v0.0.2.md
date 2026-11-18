@@ -2,7 +2,7 @@
 
 > Version : **v0.0.2-alpha**
 >
-> Statut : **Publiée**
+> Statut : **Archived**
 >
 > Version précédente : **v0.0.1-alpha**
 >

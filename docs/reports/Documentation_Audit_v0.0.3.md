@@ -1,864 +1,339 @@
 # Documentation Audit v0.0.3
 
-> Projet : **Azure-8**
->
-> Version Audit : **v0.0.3**
->
-> Type : **Audit de Cohérence Documentaire**
->
-> Statut : **À réaliser**
->
-> Audit obligatoire avant publication de :
->
-> ```txt
-> azure8-v0.0.3
-> ```
->
-> Dernière mise à jour : **v0.0.3-alpha**
+Projet : Azure-8  
+Version auditée : v0.0.3  
+Type : Audit de cohérence documentaire  
+Version du rapport : 1.1  
+Statut : En cours de finalisation
 
 ---
 
-# Introduction
+# Synthèse Exécutive
 
-Ce document a pour objectif de vérifier la cohérence globale de la documentation du projet Azure‑8.
+L'audit documentaire v0.0.3 a été mis à jour suite aux corrections réalisées sur :
 
-Une release n'est considérée comme prête que si :
+- README.md ;
+- Azure-8_Instruction_Set_v0.0.3.md ;
+- Azure-8_Architecture_Overview_v1.0.md ;
+- Azure-8_Architecture_Guide.md ;
+- Azure-8_Module_Specification_v1.0.md ;
+- src/main.cpp ;
+- src/Azure8/CPU.cpp.
 
-```txt
-Le code est cohérent
+Les incohérences majeures concernant :
 
-Les tests sont cohérents
+- le flag OVERFLOW ;
+- l'inventaire des ROMs ;
+- le composant ROM Loader ;
+- le système de pile ;
+- la spécification du jeu d'instructions ;
 
-La documentation est cohérente
-```
-
-L'objectif de cet audit est de garantir que tous les documents du dépôt décrivent exactement le même système.
-
----
-
-# Objectifs
-
-Valider :
-
-```txt
-✅ Cohérence des versions
-
-✅ Cohérence de l'architecture CPU
-
-✅ Cohérence du jeu d'instructions
-
-✅ Cohérence des ROMs
-
-✅ Cohérence des tests
-
-✅ Cohérence des roadmaps
-
-✅ Cohérence du manifest
-
-✅ Cohérence des notes de release
-```
+ont été corrigées.
 
 ---
 
-# Périmètre
+# Résultats des Contrôles
 
-## Documents Racine
+## D1 — Versions et Statuts
 
-```txt
-README.md
+### Résultat
 
-CHANGELOG.md
+🟨 EN COURS DE VALIDATION
 
-azure8.module.json
-```
+### Observations
 
----
+Améliorations constatées :
 
-## Spécifications
+- harmonisation de la version v0.0.3 dans plusieurs documents ;
+- badge README corrigé ;
+- Instruction Set passé au statut Officiel.
 
-```txt
-Azure-8_CPU_Architecture_v1.0.md
+Points restant à corriger :
 
-Azure-8_Instruction_Set_v0.0.3.md
+- présence résiduelle de « v0.0.3-alpha » dans README ;
+- coexistence des statuts :
+  - Officiel ;
+  - Actif ;
+  - Review ;
+  - Préparation Release.
 
-Azure-8_Technical_Specification_v0.0.3.md
-```
+### Conclusion
 
----
-
-## Développement
-
-```txt
-Azure-8_Architecture_Guide.md
-
-Azure-8_Development_Roadmap_v1.0.md
-```
+Contrôle presque conforme mais nécessitant encore une harmonisation finale.
 
 ---
 
-## Roadmaps
+## D2 — Architecture CPU
 
-```txt
-Azure-8_Roadmap_v0.0.1.md
+### Résultat
 
-Azure-8_Roadmap_v0.0.2.md
+✅ VALIDÉ
 
-Azure-8_Roadmap_v0.0.3.md
-```
+### Vérifications
 
----
+Architecture confirmée :
 
-## Sécurité
+- CPU 8 bits ;
+- adressage 16 bits ;
+- Little Endian ;
+- registres A, B, C, D ;
+- PC ;
+- SP ;
+- FLAGS.
 
-```txt
-Security_Audit_v0.0.3.md
-```
-
----
-
-## Release
-
-```txt
-Azure-8_v0.0.3_Release_Notes.md
-```
+Aucune contradiction restante identifiée.
 
 ---
 
-# Audit D1
-## Cohérence des Versions
+## D3 — Jeu d'Instructions
 
-### Objectif
+### Résultat
 
-Vérifier que tous les documents utilisent la même version.
+✅ VALIDÉ
 
----
+### Vérifications
 
-## Vérifications
+Instructions documentées :
 
-Comparer :
+- NOP ;
+- HLT ;
+- MOV ;
+- LOAD ;
+- STORE ;
+- PUSH ;
+- POP ;
+- CALL ;
+- RET ;
+- INC ;
+- DEC ;
+- ADD ;
+- SUB ;
+- CMP ;
+- JMP ;
+- JZ ;
+- JNZ.
 
-```txt
-README.md
+Les spécifications des FLAGS affectés sont désormais cohérentes avec l'implémentation CPU.
 
-CHANGELOG.md
+### Conclusion
 
-azure8.module.json
-
-Release Notes
-
-Roadmap v0.0.3
-```
-
----
-
-## Contrôles
-
-```txt
-⬜ Version identique
-
-⬜ Statut identique
-
-⬜ Numérotation cohérente
-
-⬜ Références v0.0.3 cohérentes
-```
+Contrôle validé.
 
 ---
 
-## Résultat
+## D4 — ROMs
 
-```txt
-⬜ VALIDÉ
+### Résultat
 
-⬜ NON VALIDÉ
-```
+✅ VALIDÉ
 
----
+### Vérifications
 
-# Audit D2
-## Cohérence Architecture CPU
+Inventaire cohérent entre :
 
-### Objectif
+- README ;
+- Module Specification ;
+- Architecture Overview ;
+- Roadmap v0.0.3.
 
-Vérifier que tous les documents décrivent la même architecture.
+ROMs retenues :
 
----
+- nop.rom ;
+- halt.rom ;
+- invalid.rom ;
+- ROMs par instruction ;
+- memory16.rom ;
+- stack8.rom ;
+- stack16.rom.
 
-## Documents
+Les références historiques à overflow.rom et underflow.rom ne font plus partie du périmètre officiel v0.0.3.
 
-```txt
-README
+### Conclusion
 
-CPU Architecture
-
-Technical Specification
-```
-
----
-
-## Contrôles
-
-### Registres
-
-```txt
-⬜ A
-
-⬜ B
-
-⬜ C
-
-⬜ D
-
-⬜ PC
-
-⬜ SP
-
-⬜ FLAGS
-```
+Contrôle validé.
 
 ---
 
-### Mémoire
+## D5 — Tests
 
-```txt
-⬜ Taille mémoire
+### Résultat
 
-⬜ Adressage mémoire
+❌ NON VALIDÉ
 
-⬜ Little Endian
-```
+### Observations
 
----
+Deux conventions de nommage coexistent encore.
 
-### FLAGS
+Convention 1 :
 
-```txt
-⬜ ZERO
+- TestMOV ;
+- TestLOAD ;
+- TestSTORE ;
+- etc.
 
-⬜ CARRY
+Convention 2 :
 
-⬜ NEGATIVE
+- TestInstructionMOV.cpp ;
+- TestInstructionLOAD.cpp ;
+- TestInstructionSTORE.cpp ;
+- etc.
 
-⬜ OVERFLOW
-```
+### Actions requises
 
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
+Uniformiser l'ensemble de la documentation avec une convention unique.
 
 ---
 
-# Audit D3
-## Cohérence du Jeu d'Instructions
+## D6 — Roadmaps
 
-### Objectif
+### Résultat
 
-Valider la cohérence fonctionnelle.
+🟨 EN COURS DE VALIDATION
 
----
+### Observations
 
-## Documents
+La roadmap v0.0.3 est désormais largement cohérente.
 
-```txt
-README
+Points restant à harmoniser :
 
-Instruction Set
+- statut « Review » ;
+- statut « Préparation Release » ;
+- état des audits.
 
-Technical Specification
+### Conclusion
 
-Roadmap
-```
-
----
-
-## Contrôles
-
-### Contrôle CPU
-
-```txt
-⬜ NOP
-
-⬜ HLT
-```
+Validation possible après dernière révision.
 
 ---
 
-### Données
+## D7 — Manifest AzureEngine
 
-```txt
-⬜ MOV
+### Résultat
 
-⬜ LOAD
+✅ VALIDÉ
 
-⬜ STORE
-```
+### Vérifications
 
----
+Identité du module cohérente :
 
-### Pile
+- id : azure8 ;
+- nom : Azure-8 ;
+- type : machine ;
+- version : 0.0.3.
 
-```txt
-⬜ PUSH
+### Conclusion
 
-⬜ POP
-
-⬜ CALL
-
-⬜ RET
-```
+Contrôle validé.
 
 ---
 
-### Arithmétique
+## D8 — Release Notes
 
-```txt
-⬜ INC
+### Résultat
 
-⬜ DEC
+✅ VALIDÉ
 
-⬜ ADD
+### Vérifications
 
-⬜ SUB
-```
+Les Release Notes sont cohérentes avec :
 
----
+- la roadmap ;
+- les spécifications ;
+- l'architecture ;
+- le manifeste.
 
-### Comparaison
+### Conclusion
 
-```txt
-⬜ CMP
-```
-
----
-
-### Branchements
-
-```txt
-⬜ JMP
-
-⬜ JZ
-
-⬜ JNZ
-```
+Contrôle validé.
 
 ---
 
-## Résultat
+## D9 — Qualité Documentaire
 
-```txt
-⬜ VALIDÉ
+### Résultat
 
-⬜ NON VALIDÉ
-```
+🟨 EN COURS DE VALIDATION
 
----
+### Points positifs
 
-# Audit D4
-## Cohérence des ROMs
+- forte cohérence technique ;
+- architecture stabilisée ;
+- terminologie homogène ;
+- inventaire des ROMs cohérent ;
+- spécification ISA cohérente avec le code.
 
-### Objectif
+### Points restants
 
-Vérifier que toutes les ROMs documentées existent réellement.
+- harmonisation des statuts ;
+- harmonisation du nommage des tests ;
+- suppression des dernières références v0.0.3-alpha.
 
----
+### Conclusion
 
-## Sources
-
-```txt
-README
-
-Roadmap
-
-Release Notes
-```
+Validation proche.
 
 ---
 
-## Contrôles
-
-### ROMs Fondamentales
-
-```txt
-⬜ nop.rom
-
-⬜ halt.rom
-
-⬜ invalid.rom
-```
-
----
-
-### ROMs Instructions
-
-```txt
-⬜ mov.rom
-
-⬜ load.rom
-
-⬜ store.rom
-
-⬜ push.rom
-
-⬜ pop.rom
-
-⬜ call.rom
-
-⬜ ret.rom
-
-⬜ inc.rom
-
-⬜ dec.rom
-
-⬜ add.rom
-
-⬜ sub.rom
-
-⬜ cmp.rom
-
-⬜ jmp.rom
-
-⬜ jz.rom
-
-⬜ jnz.rom
-```
-
----
-
-### ROMs Infrastructure
-
-```txt
-⬜ memory16.rom
-
-⬜ stack8.rom
-
-⬜ stack16.rom
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit D5
-## Cohérence des Tests
-
-### Objectif
-
-Valider que chaque fonctionnalité décrite est couverte.
-
----
-
-## Contrôles
-
-### Infrastructure
-
-```txt
-⬜ TestCPU
-
-⬜ TestMemory
-
-⬜ TestStack
-
-⬜ TestFlags
-```
-
----
-
-### Instructions
-
-```txt
-⬜ TestMOV
-
-⬜ TestLOAD
-
-⬜ TestSTORE
-
-⬜ TestPUSH
-
-⬜ TestPOP
-
-⬜ TestCALL
-
-⬜ TestRET
-
-⬜ TestINC
-
-⬜ TestDEC
-
-⬜ TestADD
-
-⬜ TestSUB
-
-⬜ TestCMP
-
-⬜ TestJMP
-
-⬜ TestJZ
-
-⬜ TestJNZ
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit D6
-## Cohérence des Roadmaps
-
-### Objectif
-
-Contrôler l'évolution historique du projet.
-
----
-
-## Documents
-
-```txt
-Roadmap v0.0.1
-
-Roadmap v0.0.2
-
-Roadmap v0.0.3
-```
-
----
-
-## Vérifications
-
-```txt
-⬜ Progression logique
-
-⬜ Objectifs atteints
-
-⬜ Historique cohérent
-
-⬜ Aucune contradiction
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit D7
-## Cohérence du Manifest
-
-### Objectif
-
-Valider l'identité officielle du module.
-
----
-
-## Fichier
-
-```txt
-azure8.module.json
-```
-
----
-
-## Vérifications
-
-```txt
-⬜ id
-
-⬜ name
-
-⬜ version
-
-⬜ type
-
-⬜ author
-```
-
----
-
-## Comparaison
-
-Comparer avec :
-
-```txt
-README
-
-CHANGELOG
-
-Release Notes
-```
-
----
-
-## Contrôles
-
-```txt
-⬜ Même nom
-
-⬜ Même version
-
-⬜ Même identité
-
-⬜ Même statut
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit D8
-## Cohérence des Release Notes
-
-### Objectif
-
-Vérifier que la release décrit correctement le contenu réel.
-
----
-
-## Documents
-
-```txt
-Release Notes
-
-CHANGELOG
-
-Roadmap v0.0.3
-```
-
----
-
-## Vérifications
-
-```txt
-⬜ Fonctionnalités cohérentes
-
-⬜ ROMs cohérentes
-
-⬜ Tests cohérents
-
-⬜ Statut cohérent
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit D9
-## Qualité de la Documentation
-
-### Objectif
-
-Mesurer la qualité globale de la documentation.
-
----
-
-## Vérifications
-
-### Lisibilité
-
-```txt
-⬜ Français cohérent
-
-⬜ Terminologie cohérente
-
-⬜ Titres cohérents
-
-⬜ Format cohérent
-```
-
----
-
-### Navigation
-
-```txt
-⬜ Documents localisables
-
-⬜ Dossiers cohérents
-
-⬜ Références compréhensibles
-```
-
----
-
-### Maintenabilité
-
-```txt
-⬜ Documents à jour
-
-⬜ Versions identifiées
-
-⬜ Historique conservé
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Synthèse
-
-| Domaine | Statut |
-|----------|----------|
-| Versions | ⬜ |
-| Architecture CPU | ⬜ |
-| Jeu d'instructions | ⬜ |
-| ROMs | ⬜ |
-| Tests | ⬜ |
-| Roadmaps | ⬜ |
-| Manifest | ⬜ |
-| Release Notes | ⬜ |
-| Qualité documentaire | ⬜ |
-
----
-
-# Incohérences Détectées
-
-## Critiques
-
-```txt
-
-```
-
----
+# Incohérences Résiduelles
 
 ## Majeures
 
-```txt
+### IM-01
 
-```
-
----
+Convention de nommage des tests non uniforme.
 
 ## Mineures
 
-```txt
+### IN-01
 
-```
+Référence résiduelle à v0.0.3-alpha dans README.
+
+### IN-02
+
+Statuts documentaires non totalement harmonisés.
+
+### IN-03
+
+Statut interne « Actif » encore présent dans Module Specification.
+
+### IN-04
+
+Statuts multiples dans la roadmap v0.0.3.
 
 ---
 
-# Actions Correctives
+# État Global
 
-```txt
-
-```
+| Contrôle | Statut |
+|-----------|---------|
+| D1 Versions et statuts | 🟨 |
+| D2 Architecture CPU | ✅ |
+| D3 Jeu d'instructions | ✅ |
+| D4 ROMs | ✅ |
+| D5 Tests | ❌ |
+| D6 Roadmaps | 🟨 |
+| D7 Manifest | ✅ |
+| D8 Release Notes | ✅ |
+| D9 Qualité documentaire | 🟨 |
 
 ---
 
 # Conclusion
 
-## Conditions de Validation
+La majorité des incohérences identifiées lors de l'audit initial a été corrigée.
 
-Pour autoriser la publication :
+Les problèmes critiques concernant :
 
-```txt
-azure8-v0.0.3
-```
+- l'architecture ;
+- le jeu d'instructions ;
+- les ROMs ;
+- le manifeste ;
+- la relation entre la documentation et l'implémentation ;
 
-les éléments suivants doivent être validés :
+sont désormais résolus.
 
-```txt
-✅ Versions cohérentes
+Les derniers travaux concernent essentiellement la normalisation documentaire (versions, statuts et nomenclature des tests).
 
-✅ Architecture cohérente
+L'audit documentaire est aujourd'hui estimé à plus de 85 % de conformité et devrait pouvoir être entièrement validé après une dernière phase de consolidation documentaire.
 
-✅ Jeu d'instructions cohérent
-
-✅ ROMs cohérentes
-
-✅ Tests cohérents
-
-✅ Roadmaps cohérentes
-
-✅ Manifest cohérent
-
-✅ Release Notes cohérentes
-
-✅ Documentation maintenable
-```
-
----
-
-# Décision Finale
-
-```txt
-⬜ AUDIT VALIDÉ
-
-⬜ AUDIT NON VALIDÉ
-```
-
----
-
-# Autorisation Release
-
-```txt
-⬜ Publication autorisée
-
-⬜ Publication refusée
-```
-
----
-
-# Remarques
-
-```txt
-
-```
-
----
-
-**Fin du document**
-
-**Documentation_Audit_v0.0.3.md**
-
-**Version : v0.0.3**
-
-**Statut : À réaliser avant publication officielle**
+Fin du document.

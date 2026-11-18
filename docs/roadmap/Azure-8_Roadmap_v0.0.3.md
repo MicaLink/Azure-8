@@ -6,7 +6,7 @@
 >
 > Version : **v0.0.3**
 >
-> Statut : **Préparation Release**
+> Statut : **Review**
 >
 > Progression estimée : **92 %**
 >

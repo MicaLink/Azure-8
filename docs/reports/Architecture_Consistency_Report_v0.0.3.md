@@ -8,7 +8,7 @@
 >
 > Type : **Rapport de Cohérence Architecturale**
 >
-> Statut : **À réaliser**
+> Statut : **Draft**
 >
 > Objectif :
 >
@@ -692,15 +692,14 @@ Vérifier la cohérence de l'organisation interne.
 ## Composants Attendus
 
 ```txt
-ROM Loader
-
 Emulator
-
 CPU
-
 Memory
 
-Stack
+Mécanismes Architecturaux
+
+Chargement ROM via Emulator::LoadROM()
+Pile via SP + CPU + Memory
 ```
 
 ---

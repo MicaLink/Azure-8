@@ -66,30 +66,33 @@ Architecture logique :
                      ROM
                       │
                       ▼
-
              +----------------+
-             |  ROM Loader    |
+             |    Emulator    |
+             |  (LoadROM)     |
              +--------+-------+
-                      |
-                      ▼
-
-             +----------------+
-             |   Emulator     |
-             +--------+-------+
-                      |
+                      │
           +-----------+-----------+
-          |                       |
+          │                       │
           ▼                       ▼
-
-    +-----------+         +-----------+
-    |    CPU    |<------->|  Memory   |
-    +-----------+         +-----------+
-          |
+    +-----------+ <----------> +-----------+
+    |    CPU    |              |  Memory   |
+    +-----------+              +-----------+
+          │
           ▼
+    +-------------------------------+
+    | Stack Mechanism               |
+    | (SP + Push/Pop + Memory)      |
+    +-------------------------------+
 
-    +-----------+
-    |   Stack   |
-    +-----------+
+Remarque :
+
+Le ROM Loader n'est pas implémenté comme un composant logiciel distinct.
+Le chargement des ROMs est assuré par la fonction Emulator::LoadROM().
+
+Le mécanisme de pile n'est pas implémenté comme une classe autonome.
+La pile est réalisée conjointement par le registre SP, les fonctions Push8(),
+Pop8(), Push16(), Pop16() du CPU et l'espace mémoire associé.
+        
 ```
 
 ---
@@ -178,49 +181,20 @@ Memory.h
 
 ---
 
-## Stack
+### Chargement des ROMs
 
-La pile n'est pas un composant séparé.
+Le chargement des ROMs est assuré par la fonction
+Emulator::LoadROM().
 
-Elle repose sur :
-
-```txt
-Memory
-
-+
-
-SP (Stack Pointer)
-```
+Le projet ne possède pas de composant logiciel
+ROM Loader indépendant.
 
 Responsabilités :
 
-```txt
-Sauvegarde temporaire
-
-CALL
-
-RET
-
-Gestion du contexte
-```
-
----
-
-## ROM Loader
-
-Le chargeur de ROM est intégré à l'émulateur.
-
-Responsabilités :
-
-```txt
-Ouverture du fichier
-
-Lecture binaire
-
-Copie en mémoire
-
-Validation du chargement
-```
+- ouverture du fichier ROM ;
+- lecture binaire ;
+- copie en mémoire ;
+- validation du chargement.
 
 ---
 
@@ -638,15 +612,11 @@ Documentation   ✅
 L'architecture Azure‑8 repose sur un ensemble réduit et clairement identifié de composants :
 
 ```txt
-ROM Loader
-
 Emulator
-
 CPU
-
 Memory
+Mécanisme de pile
 
-Stack
 ```
 
 Cette organisation permet de maintenir une machine virtuelle simple, robuste et facile à faire évoluer tout en conservant une excellente lisibilité du code et de la documentation.

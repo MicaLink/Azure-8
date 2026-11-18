@@ -8,7 +8,7 @@
 >
 > Type : **Première Release Officielle**
 >
-> Statut : **Préparation Finale**
+> Statut : **Review**
 >
 > Tag Git :
 >

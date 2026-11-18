@@ -148,20 +148,12 @@ Valider AzureEngine
 
 ```txt
 Azure-8
-
+├── Emulator
 ├── CPU
-
-├── Mémoire
-
-├── Pile
-
+├── Memory
 ├── Registres
-
 ├── Jeu d'instructions
-
-├── ROM Loader
-
-└── Emulator
+└── Mécanisme de pile
 ```
 
 ---

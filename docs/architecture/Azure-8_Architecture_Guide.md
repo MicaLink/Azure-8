@@ -64,24 +64,33 @@ Architecture logique :
                      ROM
                       │
                       ▼
-
              +----------------+
-             |   Emulator     |
+             |    Emulator    |
+             |  (LoadROM)     |
              +--------+-------+
-                      |
+                      │
           +-----------+-----------+
-          |                       |
+          │                       │
           ▼                       ▼
-
-    +-----------+         +-----------+
-    |    CPU    |<------->|  Memory   |
-    +-----------+         +-----------+
-          |
+    +-----------+ <----------> +-----------+
+    |    CPU    |              |  Memory   |
+    +-----------+              +-----------+
+          │
           ▼
+    +-------------------------------+
+    | Stack Mechanism               |
+    | (SP + Push/Pop + Memory)      |
+    +-------------------------------+
 
-    +-----------+
-    |   Stack   |
-    +-----------+
+Remarque :
+
+Le ROM Loader n'est pas implémenté comme un composant logiciel distinct.
+Le chargement des ROMs est assuré par la fonction Emulator::LoadROM().
+
+Le mécanisme de pile n'est pas implémenté comme une classe autonome.
+La pile est réalisée conjointement par le registre SP, les fonctions Push8(),
+Pop8(), Push16(), Pop16() du CPU et l'espace mémoire associé.
+
 ```
 
 ---

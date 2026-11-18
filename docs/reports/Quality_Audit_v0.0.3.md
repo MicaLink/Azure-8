@@ -6,7 +6,7 @@
 >
 > Type : **Audit Qualité**
 >
-> Statut : **À réaliser**
+> Statut : **Draft**
 >
 > Audit obligatoire avant publication de :
 >
