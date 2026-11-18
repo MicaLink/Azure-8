@@ -368,13 +368,13 @@ Valider le comportement du moteur dans des situations exceptionnelles.
 
 ✅ H3 — Gestion CPU
 
-✅ H4 — CALL / RET
-
 ✅ H6 — Gestion des Erreurs
 
 ## Contrôles Partiellement Validés
 
 🟨 H1 — Gestion Mémoire
+
+🟨 H4 — CALL / RET
 
 🟨 H5 — Validation ROM
 
@@ -424,7 +424,7 @@ Des validations complémentaires restent nécessaires pour les scénarios mémoi
 
 ⬜ Publication non encore autorisée
 
-La validation finale dépend de l'achèvement des contrôles H1, H5 et H7.
+La validation finale dépend de l'achèvement des contrôles H1, H4, H5 et H7.
 
 ---
 
