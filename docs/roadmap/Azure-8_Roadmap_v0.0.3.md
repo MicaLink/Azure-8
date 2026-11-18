@@ -854,5 +854,5 @@ Le premier module de référence de l'écosystème AzureEngine.
 
 **Version : v0.0.3**
 
-**Statut : Préparation Release**
+**Statut : Review**
 **Tag cible : azure8-v0.0.3**

@@ -109,7 +109,7 @@ Thomas GALLIOT
 ## Statut
 
 ```txt
-Actif
+Officiel
 ```
 
 ---
@@ -671,35 +671,22 @@ TestFlags
 ## Instructions
 
 ```txt
-TestMOV
+TestInstructionMOV.cpp
+TestInstructionLOAD.cpp
+TestInstructionSTORE.cpp
+TestInstructionPUSH.cpp
+TestInstructionPOP.cpp
+TestInstructionCALL.cpp
+TestInstructionRET.cpp
+TestInstructionINC.cpp
+TestInstructionDEC.cpp
+TestInstructionADD.cpp
+TestInstructionSUB.cpp
+TestInstructionCMP.cpp
+TestInstructionJMP.cpp
+TestInstructionJZ.cpp
+TestInstructionJNZ.cpp
 
-TestLOAD
-
-TestSTORE
-
-TestPUSH
-
-TestPOP
-
-TestCALL
-
-TestRET
-
-TestINC
-
-TestDEC
-
-TestADD
-
-TestSUB
-
-TestCMP
-
-TestJMP
-
-TestJZ
-
-TestJNZ
 ```
 
 ---
