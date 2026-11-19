@@ -316,9 +316,6 @@ src/Azure8/Memory.cpp ^
 src/Azure8/Emulator.cpp ^
 /Fe:Azure8Tests.exe
 ```
-
-*--
-
 ## Linux
 
 Exemple :
