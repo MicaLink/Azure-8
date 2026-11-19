@@ -6,7 +6,7 @@ Version Auditée : v0.0.3
 
 Type : Audit de Cohérence Documentaire
 
-Version du Rapport : 2.2
+Version du Rapport : 2.3
 
 Statut : Validé sur le périmètre examiné
 
@@ -450,6 +450,12 @@ Aucune opération Git de publication n'a été réalisée.
 
 La présence d'un fichier, d'un test, d'une ROM, d'une checklist ou d'un rapport ne constitue pas, à elle seule, une preuve de succès fonctionnel ou de validation opérationnelle.
 
+Certains documents et certaines preuves ont été obtenus par inventaire, métadonnées ou consultations partielles.
+
+Les conclusions du présent rapport ne valent que pour les informations effectivement examinées dans le cadre de cet audit.
+
+Les éléments non consultés, inaccessibles ou seulement inventoriés ne sont pas couverts par la présente conclusion.
+
 ---
 
 # Conclusion
@@ -499,7 +505,7 @@ Ces sujets relèvent respectivement des audits qualité, sécurité et des valid
 
 **Version : v0.0.3**
 
-**Version du rapport : 2.2**
+**Version du rapport : 2.3**
 
 **Statut : Validé sur le périmètre examiné**
 
