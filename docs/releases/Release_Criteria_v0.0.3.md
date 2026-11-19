@@ -333,35 +333,35 @@ TestFlags
 ## Tests Instructions
 
 ```txt
-TestMOV
+TestInstructionMOV.cpp
 
-TestLOAD
+TestInstructionLOAD.cpp
 
-TestSTORE
+TestInstructionSTORE.cpp
 
-TestPUSH
+TestInstructionPUSH.cpp
 
-TestPOP
+TestInstructionPOP.cpp
 
-TestCALL
+TestInstructionCALL.cpp
 
-TestRET
+TestInstructionRET.cpp
 
-TestINC
+TestInstructionINC.cpp
 
-TestDEC
+TestInstructionDEC.cpp
 
-TestADD
+TestInstructionADD.cpp
 
-TestSUB
+TestInstructionSUB.cpp
 
-TestCMP
+TestInstructionCMP.cpp
 
-TestJMP
+TestInstructionJMP.cpp
 
-TestJZ
+TestInstructionJZ.cpp
 
-TestJNZ
+TestInstructionJNZ.cpp
 ```
 
 ---

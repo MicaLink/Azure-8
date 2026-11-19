@@ -14,6 +14,17 @@
 
 # Introduction
 
+Important
+
+Ce document décrit les orientations actuellement envisagées
+pour le développement futur d'Azure‑8.
+
+Les fonctionnalités, outils et intégrations mentionnés
+constituent des objectifs de développement susceptibles
+d'évoluer avec l'écosystème AzureEngine.
+
+Ce document ne constitue pas un engagement ferme de livraison.
+
 Ce document décrit les orientations de développement futures du projet Azure‑8.
 
 Contrairement aux roadmaps de release :

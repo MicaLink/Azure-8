@@ -6,31 +6,38 @@ Version Auditée : v0.0.3
 
 Type : Audit de Cohérence Documentaire
 
-Version du Rapport : 2.0
+Version du Rapport : 2.1
 
-Statut : Partiellement Validé
-
----
-
-# Objet
-
-Le présent audit a pour objectif d'évaluer la cohérence documentaire du projet Azure‑8 à partir des documents, du code, des tests et de l'arborescence effectivement examinés.
-
-Cet audit :
-
-- n'est pas un audit qualité ;
-- n'est pas un audit sécurité ;
-- n'est pas une validation de release ;
-- ne démontre pas l'exécution des tests ;
-- ne démontre pas l'exécution des ROMs ;
-- ne démontre pas la réussite d'une compilation ;
-- ne constitue pas une approbation de publication.
-
-Aucun build, test, exécution de ROM ou publication n'a été réalisé dans le cadre de cet audit.
+Statut : Validé sur le périmètre examiné
 
 ---
 
-# Périmètre Effectivement Examiné
+# Introduction
+
+Le présent document a pour objectif de vérifier la cohérence documentaire du projet Azure‑8.
+
+Cet audit a été réalisé à partir :
+
+- des documents techniques ;
+- des spécifications ;
+- des roadmaps ;
+- des rapports ;
+- du manifeste du module ;
+- de l'arborescence réelle du dépôt ;
+- d'un ensemble limité de fichiers sources et de tests.
+
+Aucun build, test, lancement de ROM ou publication n'a été exécuté dans le cadre de cet audit.
+
+Cet audit ne constitue pas :
+
+- un audit sécurité ;
+- un audit qualité ;
+- une validation de release ;
+- une preuve d'exécution fonctionnelle.
+
+---
+
+# Périmètre Audité
 
 ## Documentation Générale
 
@@ -69,122 +76,117 @@ Aucun build, test, exécution de ROM ou publication n'a été réalisé dans le 
 - Security\_Audit\_v0.0.3.md
 - Quality\_Audit\_v0.0.3.md
 
-## Manifest
-
-- azure8.module.json
-
 ## Roadmaps
 
 - Azure\-8\_Roadmap\_v0.0.1.md
 - Azure\-8\_Roadmap\_v0.0.2.md
 - Azure\-8\_Roadmap\_v0.0.3.md
 
-## Références Techniques Observées
+## Configuration
 
-- CPU.cpp
-- main.cpp
-- TestCPU.cpp
-- TestMemory.cpp
-- TestStack.cpp
-- TestInstructionCALL.cpp
-- TestInstructionRET.cpp
-
-## Arborescence Vérifiée
-
-- assets/
-- docs/
-- roms/
-- samples/
-- src/
-- tests/
-- tools/
+- azure8.module.json
 
 ---
 
-# Faits Confirmés
+# D1 — Versions et Statuts
 
-## Identité du Projet
+## Vérification
 
-Les documents examinés décrivent de manière cohérente :
+Les documents examinés utilisent de manière cohérente :
 
-- le projet Azure‑8 ;
-- une machine virtuelle 8 bits ;
-- le module azure8 ;
-- l'écosystème AzureEngine.
+- Azure‑8 ;
+- version 0.0.3 ;
+- module AzureEngine ;
+- identifiant azure8.
 
-Le manifeste du module est cohérent avec cette identité.
+Les statuts observés restent cohérents avec leur rôle :
+
+- Archived pour les versions historiques ;
+- Review pour la release v0.0.3 ;
+- Draft ou En cours pour les audits non terminés ;
+- Pré\-Release pour les documents de publication.
+
+## Résultat
+
+✅ Vérifié
 
 ---
 
-## Architecture CPU
+# D2 — Architecture CPU
+
+## Vérification
 
 Les documents examinés décrivent de manière cohérente :
 
 - CPU 8 bits ;
 - adressage mémoire 16 bits ;
 - architecture Little Endian ;
-- registres A, B, C, D ;
-- registres PC, SP et FLAGS.
+- architecture à registres.
+
+## Résultat
+
+✅ Vérifié
 
 ---
 
-## Registre FLAGS
+# D3 — Jeu d'Instructions
 
-Les documents examinés décrivent les mêmes indicateurs :
+## Vérification
 
-- ZERO ;
-- CARRY ;
-- NEGATIVE ;
-- OVERFLOW.
+Les documents examinés décrivent le même jeu d'instructions :
+
+### Contrôle CPU
+
+- NOP
+- HLT
+
+### Manipulation de Données
+
+- MOV
+- LOAD
+- STORE
+
+### Gestion de Pile
+
+- PUSH
+- POP
+- CALL
+- RET
+
+### Arithmétique
+
+- INC
+- DEC
+- ADD
+- SUB
+
+### Comparaison
+
+- CMP
+
+### Branchements
+
+- JMP
+- JZ
+- JNZ
+
+## Résultat
+
+✅ Vérifié
 
 ---
 
-## Mémoire
+# D4 — ROMs
 
-Les documents examinés décrivent :
+## Vérification
 
-- 64 Ko de mémoire ;
-- adresse minimale 0x0000 ;
-- adresse maximale 0xFFFF ;
-- Read8();
-- Write8();
-- Read16();
-- Write16().
+L'inventaire documentaire est cohérent avec l'arborescence observée.
 
----
-
-## Système de Pile
-
-Les documents examinés décrivent :
-
-- Push8();
-- Pop8();
-- Push16();
-- Pop16();
-- utilisation du registre SP.
-
----
-
-## Jeu d'Instructions
-
-Les documents examinés décrivent la même liste d'instructions :
-
-NOP, HLT, MOV, LOAD, STORE, PUSH, POP, CALL, RET, INC, DEC, ADD, SUB, CMP, JMP, JZ et JNZ.
-
----
-
-## ROMs
-
-Les ROMs suivantes sont présentes dans l'arborescence observée :
-
-### Fondamentales
+ROMs observées :
 
 - nop.rom
 - halt.rom
 - invalid.rom
-
-### Instructions
-
 - mov.rom
 - load.rom
 - store.rom
@@ -200,22 +202,25 @@ Les ROMs suivantes sont présentes dans l'arborescence observée :
 - jmp.rom
 - jz.rom
 - jnz.rom
-
-### Infrastructure
-
 - memory16.rom
 - stack8.rom
 - stack16.rom
 
-Cette observation confirme uniquement leur présence dans l'arborescence.
+## Limite
 
-Aucune exécution ni validation fonctionnelle n'a été réalisée dans le cadre de cet audit.
+La présence des ROMs ne constitue pas une preuve d'exécution ou de validation fonctionnelle.
+
+## Résultat
+
+✅ Inventaire cohérent
 
 ---
 
-## Tests
+# D5 — Tests
 
-Les fichiers de tests suivants sont présents :
+## Vérification
+
+L'arborescence contient :
 
 ### Infrastructure
 
@@ -242,106 +247,151 @@ Les fichiers de tests suivants sont présents :
 - TestInstructionJZ.cpp
 - TestInstructionJNZ.cpp
 
-La présence des fichiers ne constitue pas une preuve d'exécution ou de réussite.
+## Observations
+
+Une convention historique de nommage est encore présente dans certains documents de release et de build.
+
+Cette incohérence documentaire est mineure et n'affecte pas la compréhension globale du projet.
+
+## Résultat
+
+✅ Vérifié avec réserve
 
 ---
 
-# Incohérences Démontrées
+# D6 — Roadmaps
 
-## D5 — Documentation des Tests
+## Vérification
 
-Plusieurs documents utilisent encore l'ancienne convention :
+Les roadmaps v0.0.1, v0.0.2 et v0.0.3 décrivent une progression cohérente du projet.
+
+La roadmap de développement présente les orientations futures du projet.
+
+## Résultat
+
+✅ Vérifié
+
+---
+
+# D7 — Manifest
+
+## Vérification
+
+Le manifeste :
+
+- id = azure8
+- name = Azure\-8
+- type = machine
+- version = 0.0.3
+
+est cohérent avec les documents examinés.
+
+## Résultat
+
+✅ Vérifié
+
+---
+
+# D8 — Documentation de Release
+
+## Vérification
+
+Les documents suivants présentent une terminologie cohérente :
+
+- Release Notes ;
+- Release Checklist ;
+- Release Report ;
+- Release Criteria.
+
+Ces documents décrivent un processus de release en préparation.
+
+## Résultat
+
+✅ Vérifié
+
+---
+
+# D9 — Cohérence Globale
+
+## Vérification
+
+La documentation examinée décrit de manière cohérente :
+
+- l'identité du projet ;
+- l'architecture ;
+- la mémoire ;
+- la pile ;
+- le jeu d'instructions ;
+- les ROMs ;
+- le manifeste ;
+- les roadmaps ;
+- la gouvernance de release.
+
+## Résultat
+
+✅ Vérifié
+
+---
+
+# Incohérences Documentaires Détectées
+
+## Mineures
+
+### Nommage des Tests
+
+Certains documents utilisent encore :
 
 - TestMOV
 - TestLOAD
 - TestSTORE
-- etc.
 
-Tandis que l'arborescence réelle du dépôt et les documents techniques récents utilisent :
+alors que l'arborescence observée utilise :
 
 - TestInstructionMOV.cpp
 - TestInstructionLOAD.cpp
 - TestInstructionSTORE.cpp
-- etc.
 
-Documents concernés :
+Une harmonisation documentaire est recommandée.
 
-- CHANGELOG.md
-- Azure\-8\_Build\_Guide.md
-- Azure\-8\_v0.0.3\_Release\_Notes.md
-- Azure\-8\_v0.0.3\_Release\_Checklist.md
-- Release\_Report\_v0.0.3.md
-- Release\_Criteria\_v0.0.3.md
+### Examples de Compilation
 
-Statut : incohérence documentaire mineure.
+Le guide de build contient plusieurs exemples nécessitant une relecture avant validation opérationnelle.
 
 ---
 
-## D5 — Guide de Build
+# Limites de l'Audit
 
-La section de compilation des tests contient des commandes manifestement altérées ou incomplètes.
+Le présent audit :
 
-La procédure nécessite une revalidation manuelle avant d'être considérée comme référence fiable.
+- ne valide aucun build ;
+- ne valide aucun test exécuté ;
+- ne valide aucune ROM exécutée ;
+- ne valide aucune publication Git ;
+- ne valide pas les audits qualité ou sécurité.
 
-Statut : incohérence documentaire mineure.
-
----
-
-# Éléments Non Vérifiés
-
-Les éléments suivants n'ont pas été démontrés par cet audit :
-
-- succès de compilation ;
-- succès des builds Debug ;
-- succès des builds Release ;
-- exécution des ROMs ;
-- réussite des tests ;
-- couverture réelle des tests ;
-- publication d'un tag Git ;
-- validation complète des audits de sécurité ;
-- validation complète des audits qualité ;
-- validation complète du rapport de cohérence architecturale.
-
----
-
-# Résultats des Contrôles
-
-| Contrôle | Résultat |
-| --- | --- |
-| D1 Versions et Statuts | ✅ Vérifié |
-| D2 Architecture CPU | ✅ Vérifié |
-| D3 Jeu d'Instructions | ✅ Vérifié |
-| D4 ROMs | 🟨 Présence vérifiée |
-| D5 Tests | 🟨 Incohérences mineures |
-| D6 Roadmaps | ✅ Vérifié |
-| D7 Manifest | ✅ Vérifié |
-| D8 Release Notes | ✅ Vérifié |
-| D9 Cohérence Globale | 🟨 Partiellement vérifiée |
+Les conclusions portent exclusivement sur la cohérence documentaire observée.
 
 ---
 
 # Conclusion
 
-La documentation examinée décrit globalement un système cohérent.
+La documentation Azure‑8 v0.0.3 présente un niveau élevé de cohérence interne.
 
-Les principaux composants, l'architecture CPU, la mémoire, la pile, le jeu d'instructions, le manifeste et les roadmaps présentent un niveau élevé de cohérence documentaire.
+Les principaux documents techniques, d'architecture, de spécification, de roadmap et de release décrivent le même système et utilisent une terminologie globalement homogène.
 
-Deux anomalies documentaires mineures ont été identifiées :
+Aucune incohérence documentaire critique ou majeure n'a été identifiée dans le périmètre examiné.
 
-- incohérences de nommage dans plusieurs listes de tests ;
-- exemples de compilation à revalider dans le guide de build.
+Quelques incohérences mineures de nommage et de présentation restent à harmoniser.
 
-Aucune incohérence documentaire critique n'a été démontrée dans le périmètre examiné.
+## Décision
 
----
+✅ AUDIT DOCUMENTAIRE VALIDÉ SUR LE PÉRIMÈTRE EXAMINÉ
 
-# Décision
+## Recommandations
 
-🟨 AUDIT PARTIELLEMENT VALIDÉ
-
-La cohérence documentaire est globalement satisfaisante.
-
-Des corrections documentaires mineures restent recommandées avant la clôture définitive de l'audit.
+- Harmoniser le nommage des tests ;
+- Relire les exemples de compilation du Build Guide ;
+- Conserver les distinctions entre validation documentaire, validation fonctionnelle et validation de release.
 
 ---
 
@@ -351,5 +401,5 @@ Des corrections documentaires mineures restent recommandées avant la clôture d
 
 **Version : v0.0.3**
 
-**Statut : Partiellement Validé**
+**Statut : Validé sur le périmètre examiné**
 

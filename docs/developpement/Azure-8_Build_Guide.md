@@ -268,35 +268,35 @@ TestFlags
 ### Instructions
 
 ```txt
-TestMOV
+TestInstructionMOV.cpp
 
-TestLOAD
+TestInstructionLOAD.cpp
 
-TestSTORE
+TestInstructionSTORE.cpp
 
-TestPUSH
+TestInstructionPUSH.cpp
 
-TestPOP
+TestInstructionPOP.cpp
 
-TestCALL
+TestInstructionCALL.cpp
 
-TestRET
+TestInstructionRET.cpp
 
-TestINC
+TestInstructionINC.cpp
 
-TestDEC
+TestInstructionDEC.cpp
 
-TestADD
+TestInstructionADD.cpp
 
-TestSUB
+TestInstructionSUB.cpp
 
-TestCMP
+TestInstructionCMP.cpp
 
-TestJMP
+TestInstructionJMP.cpp
 
-TestJZ
+TestInstructionJZ.cpp
 
-TestJNZ
+TestInstructionJNZ.cpp
 ```
 
 ---
@@ -312,9 +312,9 @@ cl /std:c++17 ^
 tests/main.cpp ^
 tests/*.cpp ^
 src/Azure8/CPU.cpp ^
-src/Az*re8/Memory.cpp*^
+src/Azure8/Memory.cpp ^
 src/Azure8/Emulator.cpp ^
-*Fe:Azure8Tests.exe
+/Fe:Azure8Tests.exe
 ```
 
 *--
@@ -324,7 +324,7 @@ src/Azure8/Emulator.cpp ^
 Exemple :
 
 ```bash
-*++ -std=c++17 \
+g++ -std=c++17 \
 tests/*.cpp \
 src/Azure8/CPU.cpp \
 src/Azure8/Memory.cpp \
