@@ -1,775 +1,572 @@
-# Quality Audit v0.0.3
+# Security Audit v0.0.3
 
-> Projet : **Azure-8**
->
-> Version Audit : **v0.0.3**
->
-> Type : **Audit Qualité**
->
-> Statut : **Draft**
->
-> Audit obligatoire avant publication de :
->
-> ```txt
-> azure8-v0.0.3
-> ```
->
-> Dernière mise à jour : **v0.0.3-alpha**
+Projet : Azure\-8
+
+Version Auditée : v0.0.3
+
+Type : Audit Défensif de Sécurité
+
+Version du Rapport : 1.1
+
+Statut : Validé sur le périmètre examiné
 
 ---
 
-# Introduction
+# Résumé Exécutif
 
-Ce document a pour objectif d'évaluer la qualité globale du projet Azure‑8 avant sa première publication officielle.
+Le présent audit a été réalisé sur les composants cœur de la machine virtuelle Azure‑8.
 
-Contrairement à l'audit de sécurité, cet audit ne cherche pas à identifier les problèmes de robustesse ou les vulnérabilités.
+L'analyse a porté sur :
 
-Son objectif est de vérifier :
+- le processeur virtuel ;
+- la gestion mémoire ;
+- le chargement des ROMs ;
+- le mécanisme de pile ;
+- les mécanismes de contrôle CPU ;
+- les tests unitaires disponibles ;
+- les frontières de confiance identifiables dans les sources examinées.
 
-```txt
-Qualité du code
+L'audit a été réalisé exclusivement en lecture seule.
 
-Qualité des tests
+Aucun build n'a été exécuté.
 
-Qualité de la documentation
+Aucun test n'a été exécuté.
 
-Qualité de l'arborescence
+Aucune ROM n'a été exécutée.
 
-Qualité de la release
-```
+L'analyse repose exclusivement sur l'inspection statique du code et des tests disponibles.
+
+## Synthèse
+
+### Contrôles de sécurité observés
+
+✅ Détection des opcodes inconnus
+
+✅ Détection Stack Overflow
+
+✅ Détection Stack Underflow
+
+✅ Détection des registres invalides
+
+✅ Contrôle de taille des ROMs
+
+✅ Limitation du nombre maximal de cycles d'exécution
+
+✅ Arrêt contrôlé du CPU
+
+✅ Isolation mémoire de la machine virtuelle
+
+✅ Absence de fonctionnalités réseau observées
+
+✅ Absence d'exécution de commandes système observée
+
+### Risques résiduels observés
+
+🟡 Certains comportements limites reposent sur le modèle mémoire documenté.
+
+🟡 Plusieurs protections sont observées statiquement mais n'ont pas été exécutées dans le cadre du présent audit.
+
+### Niveau de risque global
+
+🟢 Faible
+
+Aucune vulnérabilité critique ou élevée permettant une compromission directe de l'hôte n'a été observée dans le périmètre examiné.
+
+---
+
+# Périmètre et Méthode
+
+## Sources Auditées
+
+### Machine Virtuelle
+
+- CPU.h
+- CPU.cpp
+- Memory.h
+- Memory.cpp
+- Emulator.h
+- Emulator.cpp
+- Type.h
+
+### Tests
+
+- TestCPU.cpp
+- TestMemory.cpp
+- TestFlags.cpp
+- TestStack.cpp
+- TestInstructionCALL.cpp
+- TestInstructionRET.cpp
+
+### Documentation de Référence
+
+- Azure\-8\_CPU\_Architecture\_v1.0.md
+
+## Méthode
+
+Analyse statique :
+
+- du code source ;
+- des structures mémoire ;
+- des mécanismes de pile ;
+- des opcodes ;
+- des protections observées ;
+- des tests disponibles ;
+- de la documentation architecture.
+
+Aucune exécution n'a été réalisée.
 
 ---
 
-# Objectifs
+# Architecture et Frontières de Confiance
 
-La publication de :
+## Entrée Non Fiable
 
-```txt
-azure8-v0.0.3
-```
+La principale entrée non fiable est :
 
-ne pourra être validée qu'après confirmation des critères suivants :
+ROM utilisateur
 
-```txt
-✅ Code cohérent
+chargée via :
 
-✅ Code maintenable
+LoadROM()
 
-✅ Dépôt propre
+La ROM contrôle :
 
-✅ Documentation exploitable
+- les instructions exécutées ;
+- les registres ;
+- les accès mémoire ;
+- les branchements ;
+- la pile virtuelle.
 
-✅ Build reproductible
+## Frontière de Confiance
 
-✅ Architecture cohérente
-```
+ROM
+
+ ↓
+
+Emulator
+
+ ↓
+
+CPU
+
+ ↓
+
+Memory
+
+Les ROMs sont interprétées par la machine virtuelle.
+
+Aucune capacité observée ne permet à une ROM d'exécuter directement du code natif sur l'hôte.
+
+---
+
+# Constats
+
+## SEC‑001 — Contrôle de taille des ROMs
+
+### Gravité
+
+Informationnelle
+
+### Confiance
+
+Très élevée
+
+### Statut
+
+Protection présente
+
+### Description
+
+Le chargement des ROMs vérifie désormais explicitement :
+
+if (address >= RAM\_SIZE)
+
+avant toute écriture mémoire.
+
+### Résultat
+
+✅ Les ROMs dépassant la taille maximale de la mémoire virtuelle sont rejetées.
+
+### Risque résiduel
+
+Faible.
 
 ---
 
-# Périmètre
+## SEC‑002 — Limitation du nombre maximal de cycles
 
-## Code source
+### Gravité
 
-```txt
-src/main.cpp
+Informationnelle
 
-src/Azure8/CPU.cpp
-src/Azure8/CPU.h
+### Confiance
 
-src/Azure8/Memory.cpp
-src/Azure8/Memory.h
+Très élevée
 
-src/Azure8/Emulator.cpp
-src/Azure8/Emulator.h
+### Statut
 
-src/Core/Type.h
-```
+Protection présente
+
+### Description
+
+L'émulateur implémente désormais :
+
+constexpr u32 MAX\_CYCLES = 1000000;
+
+ainsi qu'un arrêt automatique lorsque cette limite est atteinte.
+
+### Résultat
+
+✅ Réduction du risque de déni de service local provoqué par une boucle infinie.
+
+### Risque résiduel
+
+Faible.
 
 ---
+
+## SEC‑003 — Registres invalides
+
+### Gravité
+
+Informationnelle
+
+### Confiance
+
+Très élevée
+
+### Statut
+
+Protection présente
+
+### Description
+
+Les identifiants de registre invalides provoquent désormais :
+
+- un diagnostic explicite ;
+- l'activation d'un état d'erreur ;
+- l'arrêt du CPU.
+
+### Résultat
+
+✅ Les erreurs de décodage des registres ne sont plus acceptées silencieusement.
+
+---
+
+## SEC‑004 — Wrap\-Around Mémoire 16 bits
+
+### Gravité
+
+Informationnelle
+
+### Confiance
+
+Élevée
+
+### Statut
+
+Comportement documenté
+
+### Description
+
+Les accès :
+
+Read16(0xFFFF)
+
+Write16(0xFFFF)
+
+effectuent un rebouclage naturel vers :
+
+0x0000
+
+du fait de l'espace d'adressage 16 bits.
+
+### Résultat
+
+✅ Comportement explicitement documenté dans l'architecture officielle.
+
+### Risque résiduel
+
+Aucun comportement inattendu observé.
+
+---
+
+# Contrôles de Sécurité Observés
+
+## SEC‑005 — Protection Stack Overflow
+
+### Statut
+
+Contrôle présent
+
+### Description
+
+Le CPU détecte les dépassements de pile.
+
+### Action
+
+- activation du flag dédié ;
+- arrêt contrôlé du CPU.
+
+---
+
+## SEC‑006 — Protection Stack Underflow
+
+### Statut
+
+Contrôle présent
+
+### Description
+
+Le CPU détecte les sous\-débordements de pile.
+
+### Action
+
+- activation du flag dédié ;
+- arrêt contrôlé du CPU.
+
+---
+
+## SEC‑007 — Gestion des opcodes inconnus
+
+### Statut
+
+Contrôle présent
+
+### Description
+
+Tout opcode non reconnu provoque :
+
+- un message d'erreur ;
+- l'arrêt de l'exécution.
+
+---
+
+## SEC‑008 — Réinitialisation du CPU testée
+
+### Statut
+
+Test observé
+
+### Couverture
+
+- FLAGS ;
+- SP ;
+- état HALT ;
+- Stack Overflow ;
+- Stack Underflow.
+
+---
+
+## SEC‑009 — Gestion des FLAGS testée
+
+### Statut
+
+Test observé
+
+### Couverture
+
+- ZERO ;
+- CARRY ;
+- NEGATIVE ;
+- OVERFLOW.
+
+---
+
+## SEC‑010 — Lecture et écriture mémoire testées
+
+### Statut
+
+Test observé
+
+### Couverture
+
+- Read8 ;
+- Write8 ;
+- Read16 ;
+- Write16.
+
+---
+
+## SEC‑011 — Fonctionnement de la pile testé
+
+### Statut
+
+Test observé
+
+### Couverture
+
+- Push8 ;
+- Pop8 ;
+- Push16 ;
+- Pop16.
+
+---
+
+## SEC‑012 — CALL et RET testés
+
+### Statut
+
+Test observé
+
+### Couverture
+
+- sauvegarde de l'adresse de retour ;
+- restauration de l'adresse de retour ;
+- cohérence du registre SP ;
+- cohérence du registre PC.
+
+---
+
+# Capacités d'Abus et Protections
+
+## Capacités Observées
+
+Une ROM peut :
+
+- lire la mémoire virtuelle ;
+- écrire la mémoire virtuelle ;
+- manipuler les registres ;
+- effectuer des branchements ;
+- effectuer des appels de sous\-routines ;
+- exécuter des boucles.
+
+## Capacités Non Observées
+
+Aucune capacité observée ne permet :
+
+- d'exécuter des commandes système ;
+- d'ouvrir un shell ;
+- d'établir une connexion réseau ;
+- de créer un processus ;
+- de charger du code natif ;
+- de modifier directement l'hôte.
+
+---
+
+# Dépendances, Build et Tests
+
+## Dépendances
+
+Aucune dépendance externe complexe n'a été observée dans le périmètre examiné.
+
+## Build
+
+Non exécuté.
 
 ## Tests
 
-```txt
-tests/
-```
+Observés mais non exécutés dans le cadre de cet audit.
+
+## CI/CD
+
+Non examiné.
 
 ---
 
-## Documentation
+# Plan de Remédiation
 
-```txt
-README.md
+## Priorité Haute
 
-CHANGELOG.md
-
-docs/
-```
+Aucune action critique requise.
 
 ---
 
-## Dépôt
+## Priorité Moyenne
 
-```txt
-Structure complète du projet
-```
+Ajouter des tests dédiés pour :
 
----
-
-# Audit Q1
-## Qualité du Code Source
-
-### Objectif
-
-Garantir que le code est lisible, maintenable et cohérent.
+- ROM surdimensionnée ;
+- Stack Overflow ;
+- Stack Underflow ;
+- opcode invalide ;
+- limite d'exécution MAX\_CYCLES.
 
 ---
 
-## CPU
+## Priorité Faible
 
-Fichiers :
+Documenter davantage :
 
-```txt
-CPU.cpp
-
-CPU.h
-```
-
-Vérifications :
-
-```txt
-⬜ Lisibilité
-
-⬜ Nommage cohérent
-
-⬜ Duplication excessive
-
-⬜ Fonctions inutilisées
-
-⬜ Variables inutilisées
-
-⬜ TODO oubliés
-
-⬜ Commentaires obsolètes
-```
+- les cas limites mémoire ;
+- les comportements de wrap\-around ;
+- les conventions de sécurité de l'architecture.
 
 ---
 
-## Mémoire
+# Couverture et Limites
 
-Fichiers :
+Le présent audit couvre uniquement :
 
-```txt
-Memory.cpp
+- CPU ;
+- Memory ;
+- Emulator ;
+- Types fondamentaux ;
+- plusieurs tests unitaires ;
+- la documentation architecture examinée.
 
-Memory.h
-```
+Les éléments suivants n'ont pas été vérifiés :
 
-Vérifications :
+- builds Debug ;
+- builds Release ;
+- exécution effective des tests ;
+- exécution effective des ROMs ;
+- performances ;
+- charge prolongée ;
+- workflows CI/CD ;
+- chaîne complète de publication.
 
-```txt
-⬜ Lisibilité
+Aucun scanner externe n'a été utilisé.
 
-⬜ Vérifications limites
+Aucune interaction réseau n'a été réalisée.
 
-⬜ Cohérence API
-
-⬜ Simplicité implémentation
-```
-
----
-
-## Émulateur
-
-Fichiers :
-
-```txt
-Emulator.cpp
-
-Emulator.h
-```
-
-Vérifications :
-
-```txt
-⬜ Lisibilité
-
-⬜ Responsabilités claires
-
-⬜ Gestion erreurs
-
-⬜ Découplage composants
-```
-
----
-
-## Types
-
-Fichier :
-
-```txt
-Type.h
-```
-
-Vérifications :
-
-```txt
-⬜ Types documentés
-
-⬜ Cohérence typedef
-
-⬜ Lisibilité
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit Q2
-## Qualité des Tests
-
-### Objectif
-
-Garantir une couverture fonctionnelle correcte.
-
----
-
-## Tests Infrastructure
-
-```txt
-TestCPU.cpp
-
-TestMemory.cpp
-
-TestStack.cpp
-
-TestFlags.cpp
-```
-
-Vérifications :
-
-```txt
-⬜ Couverture CPU
-
-⬜ Couverture mémoire
-
-⬜ Couverture pile
-
-⬜ Couverture FLAGS
-```
-
----
-
-## Tests Instructions
-
-```txt
-MOV
-
-LOAD
-
-STORE
-
-PUSH
-
-POP
-
-CALL
-
-RET
-
-INC
-
-DEC
-
-ADD
-
-SUB
-
-CMP
-
-JMP
-
-JZ
-
-JNZ
-```
-
-Vérifications :
-
-```txt
-⬜ Une instruction = un test dédié
-
-⬜ Cas nominal
-
-⬜ Cas limites
-```
-
----
-
-## Lisibilité
-
-```txt
-⬜ Nommage cohérent
-
-⬜ Structure cohérente
-
-⬜ Assertions explicites
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit Q3
-## Qualité du Dépôt
-
-### Objectif
-
-Valider l'organisation générale du projet.
-
----
-
-## Structure
-
-Arborescence attendue :
-
-```txt
-assets/
-
-docs/
-
-roms/
-
-samples/
-
-src/
-
-tests/
-
-tools/
-```
-
-Vérifications :
-
-```txt
-⬜ Tous les dossiers présents
-
-⬜ Aucun dossier inutile
-
-⬜ Structure cohérente
-```
-
----
-
-## Fichiers Racine
-
-```txt
-README.md
-
-CHANGELOG.md
-
-LICENSE
-
-azure8.module.json
-```
-
-Vérifications :
-
-```txt
-⬜ Présents
-
-⬜ À jour
-
-⬜ Cohérents
-```
-
----
-
-## Git
-
-Vérifications :
-
-```txt
-⬜ .gitignore valide
-
-⬜ Aucune sortie build versionnée
-
-⬜ Aucun fichier temporaire
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit Q4
-## Qualité de la Documentation
-
-### Objectif
-
-Garantir une documentation exploitable.
-
----
-
-## README
-
-Vérifications :
-
-```txt
-⬜ Présentation
-
-⬜ Installation
-
-⬜ Compilation
-
-⬜ Utilisation
-
-⬜ Architecture
-```
-
----
-
-## CHANGELOG
-
-Vérifications :
-
-```txt
-⬜ Historique cohérent
-
-⬜ Versions identifiées
-
-⬜ Modifications documentées
-```
-
----
-
-## Documentation Technique
-
-Documents :
-
-```txt
-Azure-8_CPU_Architecture_v1.0.md
-
-Azure-8_Technical_Specification_v0.0.3.md
-
-Azure-8_Instruction_Set_v0.0.3.md
-```
-
-Vérifications :
-
-```txt
-⬜ Complets
-
-⬜ Cohérents
-
-⬜ Compréhensibles
-```
-
----
-
-## Roadmaps
-
-Documents :
-
-```txt
-Azure-8_Roadmap_v0.0.1.md
-
-Azure-8_Roadmap_v0.0.2.md
-
-Azure-8_Roadmap_v0.0.3.md
-```
-
-Vérifications :
-
-```txt
-⬜ Historique cohérent
-
-⬜ Progression logique
-
-⬜ Objectifs atteints
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit Q5
-## Qualité du Manifest
-
-### Objectif
-
-Valider l'intégration AzureEngine.
-
----
-
-## Fichier
-
-```txt
-azure8.module.json
-```
-
----
-
-## Vérifications
-
-```txt
-⬜ id
-
-⬜ name
-
-⬜ version
-
-⬜ author
-
-⬜ type
-```
-
----
-
-## Cohérence
-
-Comparer avec :
-
-```txt
-README.md
-
-CHANGELOG.md
-
-Release Notes
-```
-
-Vérifications :
-
-```txt
-⬜ Même version
-
-⬜ Même nom
-
-⬜ Même identité
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit Q6
-## Qualité de Build
-
-### Objectif
-
-Garantir la reproductibilité de la release.
-
----
-
-## Build Debug
-
-Vérifications :
-
-```txt
-⬜ Compilation réussie
-
-⬜ Exécution réussie
-
-⬜ Tests exécutés
-
-⬜ Aucun blocage
-```
-
----
-
-## Build Release
-
-Vérifications :
-
-```txt
-⬜ Compilation réussie
-
-⬜ Exécution réussie
-```
-
----
-
-## Warnings
-
-Vérifications :
-
-```txt
-⬜ Aucun warning critique
-
-⬜ Aucun warning bloquant
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Audit Q7
-## Maintenabilité
-
-### Objectif
-
-Mesurer la capacité du projet à évoluer.
-
----
-
-## Vérifications
-
-```txt
-⬜ Architecture claire
-
-⬜ Responsabilités séparées
-
-⬜ Fichiers correctement nommés
-
-⬜ Documentation suffisante
-
-⬜ Extension possible
-```
-
----
-
-## Résultat
-
-```txt
-⬜ VALIDÉ
-
-⬜ NON VALIDÉ
-```
-
----
-
-# Synthèse
-
-| Domaine | Statut |
-|----------|----------|
-| Code Source | ⬜ |
-| Tests | ⬜ |
-| Dépôt | ⬜ |
-| Documentation | ⬜ |
-| Manifest | ⬜ |
-| Build | ⬜ |
-| Maintenabilité | ⬜ |
+Les conclusions du présent rapport ne valent que pour les éléments effectivement examinés.
 
 ---
 
 # Conclusion
 
-## Conditions de Validation
+L'analyse statique du cœur Azure‑8 montre une architecture simple, lisible et relativement bien isolée.
 
-Pour autoriser la publication :
+Les protections essentielles observées comprennent :
 
-```txt
-azure8-v0.0.3
-```
+- gestion des opcodes inconnus ;
+- protection de pile ;
+- détection des registres invalides ;
+- limitation de taille des ROMs ;
+- limitation du nombre maximal de cycles ;
+- arrêt contrôlé du processeur.
 
-les éléments suivants doivent être validés :
+Les risques précédemment identifiés lors de l'audit ont été corrigés ou documentés.
 
-```txt
-✅ Code source
-
-✅ Tests
-
-✅ Dépôt
-
-✅ Documentation
-
-✅ Manifest
-
-✅ Build
-
-✅ Maintenabilité
-```
+Aucune vulnérabilité critique ou de gravité élevée permettant une compromission directe de l'hôte n'a été observée dans les sources examinées.
 
 ---
 
-# Décision Finale
+# Décision
 
-```txt
-⬜ AUDIT VALIDÉ
+✅ AUDIT SÉCURITÉ VALIDÉ SUR LE PÉRIMÈTRE EXAMINÉ
 
-⬜ AUDIT NON VALIDÉ
-```
+Les protections de sécurité observées sont cohérentes avec les objectifs fonctionnels du projet Azure‑8.
 
----
+Cette décision ne constitue pas :
 
-# Autorisation Release
+- une validation du build ;
+- une validation de toutes les ROMs ;
+- une validation des performances ;
+- une validation opérationnelle complète du produit.
 
-```txt
-⬜ Publication autorisée
-
-⬜ Publication refusée
-```
-
----
-
-# Actions Correctives
-
-Anomalies détectées :
-
-```txt
-
-```
-
----
-
-# Remarques
-
-```txt
-
-```
+Elle concerne exclusivement les éléments effectivement examinés dans le cadre du présent audit.
 
 ---
 
 **Fin du document**
 
-**Quality_Audit_v0.0.3.md**
+**Security\_Audit\_v0.0.3.md**
 
 **Version : v0.0.3**
 
-**Statut : À réaliser avant publication officielle**
+**Version du rapport : 1.1**
+
+**Statut : Validé sur le périmètre examiné**
+

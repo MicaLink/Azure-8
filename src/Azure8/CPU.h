@@ -37,6 +37,8 @@ public:
 
     u8& GetRegister(u8 reg);
 
+    bool HasRegisterError() const;
+
     //-------------------------------------------------
     // Stack
     //-------------------------------------------------
@@ -117,4 +119,6 @@ private:
 
     bool m_StackOverflow = false;
     bool m_StackUnderflow = false;
+
+    bool m_RegisterError = false;
 };

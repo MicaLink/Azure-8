@@ -566,6 +566,11 @@ L'expérimentation
 Le développement bas niveau
 
 La validation des outils Azure‑8
+
+Les accès 16 bits réalisés à l'adresse 0xFFFF
+effectuent un rebouclage naturel vers 0x0000.
+Ce comportement est intentionnel et fait partie
+du modèle mémoire Azure‑8.
 ```
 
 tout en servant de base technique pour l'évolution future du projet.

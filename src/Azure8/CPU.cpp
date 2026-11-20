@@ -111,7 +111,14 @@ u8& CPU::GetRegister(u8 reg)
         case 0x03: return D;
     
         default:
+        {
+            printf("INVALID REGISTER %02X\n", reg);
+
+            m_RegisterError = true;
+            m_Halted = true;
+
             return A;
+        }
     }
 }
 

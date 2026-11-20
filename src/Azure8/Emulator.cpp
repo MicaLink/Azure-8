@@ -29,7 +29,7 @@ bool Emulator::LoadROM(const char* fileName)
     if (!file)
         return false;
     
-    u16 address = 0;
+    u32 address = 0;
 
     while (!feof(file))
     {
@@ -38,7 +38,17 @@ bool Emulator::LoadROM(const char* fileName)
         if (byte == EOF)
             break;
 
-        m_Memory.Write8(address++, static_cast<u8>(byte));
+        if (address >= RAM_SIZE)
+        {
+            printf("ROM TOO LARGE\n");
+            fclose(file);
+            return false;
+        }
+        
+
+        m_Memory.Write8(static_cast<u16>(address), static_cast<u8>(byte));
+
+        address++;
     }
     
     fclose(file);
@@ -64,9 +74,22 @@ void Emulator::Reset()
 
 void Emulator::Run()
 {
+    constexpr u32 MAX_CYCLES = 1000000;
+
+    u32 cycles = 0;
+
     while (!m_CPU.IsHalted())
     {
         m_CPU.Step(m_Memory);
+
+        cycles++;
+
+        if (cycles >= MAX_CYCLES)
+        {
+            printf("MAX CYCLES REACHED\n");
+            break;
+        }
+        
     }
     printf("Execution Completed\n");
 }
