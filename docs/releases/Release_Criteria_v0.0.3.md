@@ -20,7 +20,9 @@ Version : v0.0.3
 
 | Critère | État |
 |----------|----------|
-| Tests présents | ✅ |
+| Tests présents | ✅
+| Suite de tests exécutée | ✅ |
+| Échec observé | Aucun |
 | Harnais de tests présent | ✅ |
 | Audit qualité réalisé | ✅ |
 | Couverture mesurée | ⚪ Non vérifiée |
@@ -44,8 +46,8 @@ Version : v0.0.3
 |----------|----------|
 | Manifest cohérent | ✅ |
 | Release Notes présentes | ✅ |
-| Build Debug validé | ⚪ Non vérifié |
-| Build Release validé | ⚪ Non vérifié |
+| Build Debug validé | ✅ |
+| Build Release validé | ✅ |
 | Publication effectuée | ⚪ Non réalisée |
 
 ---

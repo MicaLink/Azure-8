@@ -443,7 +443,9 @@ Bonne cohérence documentation / code.
 
 ## Statut
 
-✅ Vérifié
+✅ Exécution réelle observée
+✅ Suite de tests complétée
+✅ Aucun échec observé
 
 ## Catégorie
 
@@ -477,7 +479,10 @@ Moyenne.
 
 ## Statut
 
-À vérifier
+✅ Build Debug exécuté avec succès
+✅ Build Release exécuté avec succès
+✅ Harnais de tests compilé
+✅ Suite de tests exécutée sans erreur observée
 
 ## Catégorie
 

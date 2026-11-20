@@ -59,15 +59,17 @@ Les audits du périmètre examiné ont été réalisés :
 
 ✅ Documentation cohérente
 
+✅ Build Debug exécuté
+
+✅ Build Release exécuté
+
+✅ AzureEngineTests.exe exécuté
+
+✅ Aucun échec observé pendant la campagne de tests
+
 ---
 
 # Éléments Non Vérifiés
-
-⚪ Build Debug
-
-⚪ Build Release
-
-⚪ Exécution réelle des tests
 
 ⚪ Mesure de couverture
 
