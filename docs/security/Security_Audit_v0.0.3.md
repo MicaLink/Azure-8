@@ -1,430 +1,570 @@
 # Security Audit v0.0.3
 
-Projet : **Azure\-8**
+Projet : Azure\-8
 
-Version Auditée : **v0.0.3**
+Version Auditée : v0.0.3
 
-Type : **Audit Sécurité et Robustesse**
+Type : Audit Défensif de Sécurité
 
-Statut : **En cours**
+Version du Rapport : 1.2
 
-Audit requis avant publication de : **azure8\-v0.0.3**
-
-Dernière mise à jour : **v0.0.3**
+Statut : Validé sur le périmètre examiné
 
 ---
 
-# Introduction
+# Résumé Exécutif
 
-Ce document a pour objectif d'évaluer la robustesse du moteur Azure‑8 avant sa première publication officielle.
+Le présent audit a été réalisé sur les composants cœur de la machine virtuelle Azure‑8.
 
-Azure‑8 n'étant pas exposé au réseau, cet audit se concentre sur la stabilité et la sécurité interne du moteur :
+L'analyse a porté sur :
 
-- gestion mémoire ;
-- gestion de pile ;
-- robustesse CPU ;
-- validation des ROMs ;
-- gestion des erreurs ;
-- comportement dans les cas limites.
+- le processeur virtuel ;
+- la gestion mémoire ;
+- le chargement des ROMs ;
+- le mécanisme de pile ;
+- les mécanismes de contrôle CPU ;
+- les tests unitaires disponibles ;
+- les frontières de confiance identifiables dans les sources examinées.
 
-L'objectif est de garantir qu'une ROM invalide ou un état inattendu ne provoque pas de comportement dangereux ou de corruption connue.
+L'audit a été réalisé exclusivement en lecture seule.
 
----
+Aucun build n'a été exécuté.
 
-# Périmètre
+Aucun test n'a été exécuté.
 
-## Composants Audités
+Aucune ROM n'a été exécutée.
 
-- CPU.cpp
-- CPU.h
-- Memory.cpp
-- Memory.h
-- Emulator.cpp
-- Emulator.h
+L'analyse repose exclusivement sur l'inspection statique du code, des tests et de la documentation examinés.
 
-## Tests Analysés
+## Synthèse
 
-- TestCPU.cpp
-- TestMemory.cpp
-- TestStack.cpp
-- TestInstructionCALL.cpp
-- TestInstructionRET.cpp
+### Contrôles de sécurité observés
 
----
-
-# Critères de Validation
-
-Pour autoriser la publication :
-
-✅ Aucun crash reproductible connu
-
-✅ Aucune corruption mémoire connue
-
-✅ Aucune corruption pile connue
-
-✅ Gestion correcte des erreurs
-
-✅ Arrêt propre du moteur
-
----
-
-# H1 — Gestion Mémoire
-
-## Objectif
-
-Vérifier la robustesse des opérations mémoire.
-
-## Fonctions Auditées
-
-- Read8()
-- Write8()
-- Read16()
-- Write16()
-
-## Vérifications
-
-### Fonctionnement Standard
-
-✅ Lecture mémoire normale
-
-✅ Écriture mémoire normale
-
-✅ Read16()
-
-✅ Write16()
-
-✅ Cohérence Little Endian
-
-### Cas Limites
-
-⬜ Adresse minimale
-
-⬜ Adresse maximale
-
-⬜ Lecture hors limites
-
-⬜ Écriture hors limites
-
-⬜ Read16 proche d'une limite mémoire
-
-⬜ Write16 proche d'une limite mémoire
-
-## Observations
-
-Les opérations standards sont couvertes par les tests existants.
-
-Aucun mécanisme explicite de contrôle de bornes mémoire n'a été identifié dans l'implémentation actuelle.
-
-## Résultat
-
-🟨 VALIDATION PARTIELLE
-
----
-
-# H2 — Gestion de Pile
-
-## Objectif
-
-Garantir l'intégrité du mécanisme de pile.
-
-## Fonctions Auditées
-
-- Push8()
-- Pop8()
-- Push16()
-- Pop16()
-
-## Vérifications
-
-### Utilisation Normale
-
-✅ Push8
-
-✅ Pop8
-
-✅ Push16
-
-✅ Pop16
-
-### Protection
+✅ Détection des opcodes inconnus
 
 ✅ Détection Stack Overflow
 
 ✅ Détection Stack Underflow
 
-✅ Arrêt du CPU en cas d'erreur
+✅ Détection des registres invalides
 
-### Cohérence
+✅ Contrôle explicite de la taille des ROMs chargées
 
-✅ Utilisation correcte du registre SP
-
-✅ Conservation des données empilées
-
-✅ Retour à l'état initial
-
-## Résultat
-
-✅ VALIDÉ
-
-## Commentaires
-
-Les mécanismes de protection de pile sont présents et les opérations standards sont couvertes par les tests disponibles.
-
----
-
-# H3 — Gestion CPU
-
-## Objectif
-
-Valider la robustesse du cycle CPU.
-
-## Vérifications
-
-### Cycle d'Exécution
-
-✅ Fetch
-
-✅ Decode
-
-✅ Execute
-
-### Gestion des Erreurs
-
-✅ Opcode inconnu détecté
+✅ Limitation du nombre maximal de cycles d'exécution
 
 ✅ Arrêt contrôlé du CPU
 
-### Initialisation
+✅ Isolation mémoire de la machine virtuelle
 
-✅ Reset()
+✅ Absence de fonctionnalités réseau observées
 
-✅ FLAGS réinitialisés
+✅ Absence d'exécution de commandes système observée
 
-✅ SP réinitialisé
+### Risques résiduels observés
 
-✅ État CPU cohérent après reset
+🟡 Certains comportements limites reposent sur le modèle mémoire documenté.
 
-### Fin d'Exécution
+🟡 Plusieurs protections sont observées statiquement mais n'ont pas été exécutées dans le cadre du présent audit.
 
-✅ HLT
+### Niveau de risque global
 
-✅ Arrêt propre
+🟢 Faible
 
-## Résultat
+Aucune vulnérabilité critique ou élevée permettant une compromission directe de l'hôte n'a été observée dans le périmètre examiné.
 
-✅ VALIDÉ
-
----
-
-# H4 — CALL / RET
-
-## Objectif
-
-Garantir la fiabilité des appels de sous\-routines.
-
-## Vérifications
-
-### CALL
-
-✅ Sauvegarde de l'adresse de retour
-
-✅ Mise à jour du SP
-
-✅ Mise à jour du PC
-
-### RET
-
-✅ Restauration de l'adresse de retour
-
-✅ Restauration du SP
-
-✅ Retour correct à l'appelant
-
-### Cas Complexes
-
-⬜ CALL imbriqués
-
-⬜ RET imbriqués
-
-⬜ RET sans CALL préalable
-
-⬜ Adresse de retour invalide
-
-## Résultat
-
-🟨 VALIDATION PARTIELLE
-
-## Commentaires
-
-Les comportements fondamentaux de CALL et RET sont validés par les tests disponibles.
+Cette conclusion est limitée aux composants effectivement analysés et ne constitue pas une preuve d'absence de vulnérabilité dans les parties du dépôt non examinées.
 
 ---
 
-# H5 — Validation ROM
+# Périmètre et Méthode
 
-## Objectif
+## Sources Auditées
 
-Évaluer le comportement du moteur face aux ROMs invalides.
+### Machine Virtuelle
 
-## Cas Vérifiés
+- CPU.h
+- CPU.cpp
+- Memory.h
+- Memory.cpp
+- Emulator.h
+- Emulator.cpp
+- Type.h
 
-✅ ROM valide
+### Tests
 
-✅ Fichier ROM inexistant
+- TestCPU.cpp
+- TestMemory.cpp
+- TestFlags.cpp
+- TestStack.cpp
+- TestInstructionCALL.cpp
+- TestInstructionRET.cpp
 
-✅ Opcode inconnu
+### Documentation de Référence
 
-## Cas Restants
+- Azure\-8\_CPU\_Architecture\_v1.0.md
 
-⬜ ROM vide
+## Méthode
 
-⬜ ROM incomplète
+Analyse statique :
 
-⬜ ROM aléatoire
+- du code source ;
+- des structures mémoire ;
+- des mécanismes de pile ;
+- des opcodes ;
+- des protections observées ;
+- des tests disponibles ;
+- de la documentation architecture.
 
-⬜ ROM corrompue
-
-⬜ ROM volumineuse
-
-## Résultat
-
-🟨 VALIDATION PARTIELLE
-
----
-
-# H6 — Gestion des Erreurs
-
-## Objectif
-
-Contrôler la qualité des réactions du moteur face aux erreurs.
-
-## Vérifications
-
-✅ Messages d'erreur présents
-
-✅ Opcode inconnu signalé
-
-✅ Stack Overflow signalé
-
-✅ Stack Underflow signalé
-
-✅ Arrêt contrôlé
-
-## Diagnostic
-
-✅ Erreurs visibles
-
-✅ Diagnostic exploitable
-
-## Résultat
-
-✅ VALIDÉ
+Aucune exécution n'a été réalisée.
 
 ---
 
-# H7 — Robustesse Générale
+# Architecture et Frontières de Confiance
 
-## Objectif
+## Entrée Non Fiable
 
-Valider le comportement du moteur dans des situations exceptionnelles.
+La principale entrée non fiable est :
 
-## Cas à Tester
+ROM utilisateur
 
-⬜ Boucle infinie
+chargée via :
 
-⬜ CALL récursif profond
+LoadROM()
 
-⬜ PC invalide
+La ROM contrôle :
 
-⬜ ROM aléatoire
+- les instructions exécutées ;
+- les registres ;
+- les accès mémoire ;
+- les branchements ;
+- la pile virtuelle.
 
-⬜ RAM saturée
+## Frontière de Confiance
 
-## Résultat
+ROM
 
-⬜ À TESTER
+ ↓
 
----
+Emulator
 
-# Résultats de l'Audit
+ ↓
 
-| Domaine | Résultat |
-| --- | --- |
-| Gestion Mémoire | 🟨 Partiellement validée |
-| Gestion de Pile | ✅ Validée |
-| Gestion CPU | ✅ Validée |
-| CALL / RET | 🟨 Partiellement validée |
-| Validation ROM | 🟨 Partiellement validée |
-| Gestion des Erreurs | ✅ Validée |
-| Robustesse Générale | ⬜ À tester |
+CPU
 
----
+ ↓
 
-# Synthèse
+Memory
 
-## Contrôles Validés
+Les ROMs sont interprétées par la machine virtuelle.
 
-✅ H2 — Gestion de Pile
-
-✅ H3 — Gestion CPU
-
-✅ H6 — Gestion des Erreurs
-
-## Contrôles Partiellement Validés
-
-🟨 H1 — Gestion Mémoire
-
-🟨 H4 — CALL / RET
-
-🟨 H5 — Validation ROM
-
-## Contrôles Restants
-
-⬜ H7 — Robustesse Générale
+Aucune capacité observée ne permet à une ROM d'exécuter directement du code natif sur l'hôte.
 
 ---
 
-# Risques Identifiés
+# Constats
 
-## Faibles
+## SEC‑001 — Contrôle de Taille des ROMs
 
-- Cas limites mémoire non documentés ;
-- ROMs invalides non totalement couvertes.
+### Statut
 
-## Moyens
+✅ Vérifié
 
-- Absence de campagne de test exhaustive sur les scénarios extrêmes.
+### Gravité
 
-## Critiques
+Informationnelle
 
-Aucun risque critique identifié à ce stade.
+### Confiance
+
+Très élevée
+
+### Description
+
+Le chargement des ROMs vérifie explicitement :
+
+if (address >= RAM\_SIZE)
+
+avant chaque écriture mémoire.
+
+### Résultat
+
+Les ROMs dépassant la taille maximale de la mémoire virtuelle sont rejetées proprement.
+
+### Risque Résiduel
+
+Faible.
+
+---
+
+## SEC‑002 — Limitation du Nombre de Cycles
+
+### Statut
+
+✅ Vérifié
+
+### Gravité
+
+Informationnelle
+
+### Confiance
+
+Très élevée
+
+### Description
+
+L'émulateur implémente une limite maximale d'exécution :
+
+constexpr u32 MAX\_CYCLES = 1000000;
+
+### Résultat
+
+Les boucles infinies ne peuvent plus monopoliser indéfiniment l'exécution.
+
+### Risque Résiduel
+
+Faible.
+
+---
+
+## SEC‑003 — Gestion des Registres Invalides
+
+### Statut
+
+✅ Vérifié
+
+### Gravité
+
+Informationnelle
+
+### Confiance
+
+Très élevée
+
+### Description
+
+Les identifiants de registre invalides provoquent :
+
+- un message d'erreur ;
+- l'activation d'un état d'erreur ;
+- l'arrêt contrôlé du CPU.
+
+### Résultat
+
+Les erreurs de décodage des registres ne sont plus acceptées silencieusement.
+
+---
+
+## SEC‑004 — Wrap‑Around Mémoire 16 Bits
+
+### Statut
+
+✅ Vérifié
+
+### Gravité
+
+Informationnelle
+
+### Confiance
+
+Élevée
+
+### Description
+
+Les accès 16 bits effectués à l'adresse :
+
+0xFFFF
+
+rebouclent naturellement vers :
+
+0x0000
+
+conformément au modèle mémoire 16 bits documenté.
+
+### Résultat
+
+Le comportement est explicitement documenté dans l'architecture officielle.
+
+### Risque Résiduel
+
+Aucun comportement inattendu observé dans le périmètre examiné.
+
+---
+
+# Contrôles de Sécurité Observés
+
+## SEC‑005 — Protection Stack Overflow
+
+### Statut
+
+✅ Vérifié
+
+### Description
+
+Le CPU détecte les dépassements de pile.
+
+### Action
+
+- activation du flag dédié ;
+- arrêt contrôlé du CPU.
+
+---
+
+## SEC‑006 — Protection Stack Underflow
+
+### Statut
+
+✅ Vérifié
+
+### Description
+
+Le CPU détecte les sous‑débordements de pile.
+
+### Action
+
+- activation du flag dédié ;
+- arrêt contrôlé du CPU.
+
+---
+
+## SEC‑007 — Gestion des Opcodes Inconnus
+
+### Statut
+
+✅ Vérifié
+
+### Description
+
+Tout opcode non reconnu provoque :
+
+- un diagnostic explicite ;
+- l'arrêt du processeur.
+
+---
+
+## SEC‑008 — Réinitialisation du CPU Testée
+
+### Statut
+
+✅ Test observé
+
+### Couverture
+
+- FLAGS ;
+- SP ;
+- état HALT ;
+- Stack Overflow ;
+- Stack Underflow.
+
+---
+
+## SEC‑009 — Gestion des FLAGS Testée
+
+### Statut
+
+✅ Test observé
+
+### Couverture
+
+- ZERO ;
+- CARRY ;
+- NEGATIVE ;
+- OVERFLOW.
+
+---
+
+## SEC‑010 — Lecture et Écriture Mémoire Testées
+
+### Statut
+
+✅ Test observé
+
+### Couverture
+
+- Read8 ;
+- Write8 ;
+- Read16 ;
+- Write16.
+
+---
+
+## SEC‑011 — Fonctionnement de la Pile Testé
+
+### Statut
+
+✅ Test observé
+
+### Couverture
+
+- Push8 ;
+- Pop8 ;
+- Push16 ;
+- Pop16.
+
+---
+
+## SEC‑012 — CALL et RET Testés
+
+### Statut
+
+✅ Test observé
+
+### Couverture
+
+- sauvegarde de l'adresse de retour ;
+- restauration de l'adresse de retour ;
+- cohérence du registre SP ;
+- cohérence du registre PC.
+
+---
+
+# Capacités d'Abus et Protections
+
+## Capacités Observées
+
+Une ROM peut :
+
+- lire la mémoire virtuelle ;
+- écrire la mémoire virtuelle ;
+- manipuler les registres ;
+- effectuer des branchements ;
+- effectuer des appels de sous‑routines ;
+- exécuter des boucles.
+
+## Capacités Non Observées
+
+Aucune capacité observée ne permet :
+
+- d'exécuter des commandes système ;
+- d'ouvrir un shell ;
+- d'établir une connexion réseau ;
+- de créer un processus ;
+- de charger du code natif ;
+- de modifier directement l'hôte.
+
+---
+
+# Dépendances, Build et Tests
+
+## Dépendances
+
+Aucune dépendance externe complexe n'a été observée dans le périmètre examiné.
+
+## Build
+
+Non exécuté.
+
+## Tests
+
+Observés mais non exécutés dans le cadre du présent audit.
+
+## CI/CD
+
+Non examiné.
+
+---
+
+# Plan de Remédiation
+
+## Priorité Haute
+
+Aucune action critique requise.
+
+---
+
+## Priorité Moyenne
+
+Ajouter des tests dédiés pour :
+
+- ROM surdimensionnée ;
+- Stack Overflow ;
+- Stack Underflow ;
+- opcode invalide ;
+- limite d'exécution MAX\_CYCLES.
+
+---
+
+## Priorité Faible
+
+Documenter davantage :
+
+- les cas limites mémoire ;
+- les comportements de rebouclage ;
+- les conventions de sécurité de l'architecture.
+
+---
+
+# Couverture et Limites
+
+Le présent audit couvre uniquement :
+
+- CPU ;
+- Memory ;
+- Emulator ;
+- Types fondamentaux ;
+- plusieurs tests unitaires ;
+- la documentation architecture examinée.
+
+Les éléments suivants n'ont pas été vérifiés :
+
+- builds Debug ;
+- builds Release ;
+- exécution effective des tests ;
+- exécution effective des ROMs ;
+- performances ;
+- charge prolongée ;
+- workflows CI/CD ;
+- chaîne complète de publication.
+
+Aucun scanner externe n'a été utilisé.
+
+Aucune interaction réseau n'a été réalisée.
+
+Les conclusions du présent rapport ne valent que pour les éléments effectivement examinés.
+
+Le présent rapport ne doit pas être interprété comme un audit exhaustif du dépôt Azure‑8.
+
+Les conclusions reposent exclusivement sur les fichiers effectivement examinés dans le cadre de cette analyse.
+
+Les composants, dépendances, scripts, workflows, branches, historiques Git, artefacts de build, ROMs et éléments non consultés ne sont pas couverts par cette conclusion.
+
+L'absence de constat dans ces zones ne constitue pas une preuve d'absence de vulnérabilité.
 
 ---
 
 # Conclusion
 
-L'analyse du moteur Azure‑8 met en évidence la présence effective de plusieurs mécanismes de protection importants :
+L'analyse statique du cœur Azure‑8 montre une architecture simple, lisible et relativement bien isolée.
 
-- détection des Stack Overflow ;
-- détection des Stack Underflow ;
+Les protections essentielles observées comprennent :
+
 - gestion des opcodes inconnus ;
-- gestion correcte du cycle CALL / RET ;
-- arrêt contrôlé du processeur ;
-- gestion des erreurs de chargement de ROM.
+- protection de pile ;
+- détection des registres invalides ;
+- limitation de taille des ROMs ;
+- limitation du nombre maximal de cycles ;
+- arrêt contrôlé du processeur.
 
-Aucune vulnérabilité critique n'a été identifiée pendant cette phase d'audit.
+Les risques précédemment identifiés lors de l'audit ont été corrigés ou documentés.
 
-Des validations complémentaires restent nécessaires pour les scénarios mémoire extrêmes, les ROMs invalides et les tests de robustesse générale.
+Aucune vulnérabilité critique ou de gravité élevée permettant une compromission directe de l'hôte n'a été observée dans les sources examinées.
 
-## Décision Actuelle
+Cette conclusion est limitée au périmètre effectivement audité et ne constitue pas une preuve d'absence de vulnérabilité dans les composants non examinés.
 
-🟨 AUDIT EN COURS
+---
 
-## Autorisation de Release
+# Décision
 
-⬜ Publication non encore autorisée
+✅ AUDIT SÉCURITÉ VALIDÉ SUR LE PÉRIMÈTRE EXAMINÉ
 
-La validation finale dépend de l'achèvement des contrôles H1, H4, H5 et H7.
+Les protections de sécurité observées sont cohérentes avec les objectifs fonctionnels du projet Azure‑8.
+
+Cette décision ne constitue pas :
+
+- une validation du build ;
+- une validation de toutes les ROMs ;
+- une validation des performances ;
+- une validation opérationnelle complète du produit.
+
+Elle concerne exclusivement les éléments effectivement examinés dans le cadre du présent audit.
 
 ---
 
@@ -434,5 +574,7 @@ La validation finale dépend de l'achèvement des contrôles H1, H4, H5 et H7.
 
 **Version : v0.0.3**
 
-**Statut : En cours**
+**Version du rapport : 1.2**
+
+**Statut : Validé sur le périmètre examiné**
 
