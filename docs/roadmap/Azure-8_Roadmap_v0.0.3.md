@@ -1,176 +1,91 @@
-# Azure-8 Roadmap v0.0.3
+# Azure\-8 Roadmap v0.0.3
 
-> Projet : **Azure-8**
->
-> Écosystème : **AzureEngine**
->
-> Version : **v0.0.3**
->
-> Statut : **Review**
->
-> Progression estimée : **92 %**
->
-> Type : **Première Release Officielle**
->
-> Dépôt : **Azure-8**
->
-> Tag cible :
->
-> ```txt
-> azure8-v0.0.3
-> ```
+Projet : Azure\-8
+
+Version : v0.0.3
+
+Statut : Release Candidate
+
+Type : Roadmap de Version
+
+Dernière mise à jour : Novembre 2026
 
 ---
 
-# Introduction
+# Vision
 
-La version v0.0.3 constitue la première version complète de la machine virtuelle Azure‑8.
+Azure‑8 est une machine virtuelle 8 bits conçue pour :
 
-Cette version marque la fin de la phase de conception fondamentale et la transition vers une publication officielle du projet.
+- l'apprentissage des concepts bas niveau ;
+- l'expérimentation autour des architectures CPU ;
+- la validation d'outils AzureEngine ;
+- l'exécution de ROMs Azure‑8 ;
+- la conception d'un environnement simple, lisible et documenté.
 
-Azure‑8 n'est désormais plus considéré comme le projet principal.
+Les principes directeurs du projet sont :
 
-Azure‑8 devient officiellement :
-
-```txt
-Le premier module de l'écosystème AzureEngine.
-```
-
-Cette roadmap couvre l'ensemble des travaux nécessaires avant la publication officielle de :
-
-```txt
-azure8-v0.0.3
-```
+- simplicité ;
+- prévisibilité ;
+- robustesse ;
+- testabilité ;
+- documentation.
 
 ---
 
-# Objectifs Stratégiques
+# Objectifs de la Version v0.0.3
 
-## Azure‑8
+La version v0.0.3 constitue une étape de stabilisation du cœur de la machine virtuelle.
 
-Valider :
+Objectifs principaux :
 
-```txt
-✅ Architecture CPU
-
-✅ Architecture mémoire
-
-✅ Architecture pile
-
-✅ Jeu d'instructions
-
-✅ Infrastructure de tests
-
-✅ Documentation technique
-```
+- finaliser le CPU Azure‑8 ;
+- finaliser le modèle mémoire ;
+- finaliser le système de pile ;
+- stabiliser le jeu d'instructions principal ;
+- renforcer la documentation ;
+- mettre en place les audits du projet ;
+- démontrer la compilation et l'exécution des tests.
 
 ---
 
-## AzureEngine
+# État Global de la Version
 
-Utiliser Azure‑8 pour :
-
-```txt
-✅ Valider le modèle de modules
-
-✅ Valider la documentation
-
-✅ Valider le workflow de développement
-
-✅ Préparer Azure8-SDK
-
-✅ Préparer Azure8-IDE
-```
-
----
-
-# État Général du Projet
-
-## Fonctionnalités
-
-```txt
-✅ TERMINÉ
-```
-
----
-
-## ROMs
-
-```txt
-✅ TERMINÉ
-```
-
----
-
-## Tests
-
-```txt
-✅ TERMINÉ
-```
-
----
-
-## Documentation
-
-```txt
-🟨 EN COURS DE FINALISATION
-```
-
----
-
-## Release
-
-```txt
-🟨 EN PRÉPARATION
-```
+| Domaine | État |
+| --- | --- |
+| Architecture | ✅ |
+| Documentation | ✅ |
+| Sécurité | ✅ |
+| Qualité | ✅ |
+| Build Debug | ✅ |
+| Build Release | ✅ |
+| Build Tests | ✅ |
+| Exécution des Tests | ✅ |
+| ROMs de Validation | ✅ |
+| Couverture Mesurée | ⚪ |
+| CI/CD | ⚪ |
 
 ---
 
 # Fonctionnalités Livrées
 
-## CPU
+## Architecture CPU
 
-```txt
-✅ Architecture 8 bits
+✅ CPU 8 bits
+
+✅ Registres A, B, C et D
+
+✅ Registres PC, SP et FLAGS
+
+✅ Architecture Little Endian
 
 ✅ Adressage mémoire 16 bits
-
-✅ Little Endian
-```
-
----
-
-## Registres
-
-### Utilisateur
-
-```txt
-✅ A
-
-✅ B
-
-✅ C
-
-✅ D
-```
-
----
-
-### Système
-
-```txt
-✅ PC
-
-✅ SP
-
-✅ FLAGS
-```
 
 ---
 
 ## Mémoire
 
-```txt
+✅ Espace mémoire 64 Ko
+
 ✅ Read8()
 
 ✅ Write8()
@@ -178,13 +93,13 @@ Utiliser Azure‑8 pour :
 ✅ Read16()
 
 ✅ Write16()
-```
+
+✅ Comportement frontière mémoire documenté
 
 ---
 
-## Pile
+## Gestion de Pile
 
-```txt
 ✅ Push8()
 
 ✅ Pop8()
@@ -192,51 +107,35 @@ Utiliser Azure‑8 pour :
 ✅ Push16()
 
 ✅ Pop16()
-```
+
+✅ CALL
+
+✅ RET
+
+✅ Détection Stack Overflow
+
+✅ Détection Stack Underflow
 
 ---
 
-## FLAGS
+## Jeu d'Instructions
 
-```txt
-✅ ZERO
+### Contrôle CPU
 
-✅ CARRY
-
-✅ NEGATIVE
-
-✅ OVERFLOW
-```
-
----
-
-# Jeu d'Instructions Livré
-
-## Contrôle CPU
-
-```txt
 ✅ NOP
 
 ✅ HLT
-```
 
----
+### Manipulation de Données
 
-## Manipulation de Données
-
-```txt
 ✅ MOV
 
 ✅ LOAD
 
 ✅ STORE
-```
 
----
+### Gestion de Pile
 
-## Pile
-
-```txt
 ✅ PUSH
 
 ✅ POP
@@ -244,13 +143,9 @@ Utiliser Azure‑8 pour :
 ✅ CALL
 
 ✅ RET
-```
 
----
+### Arithmétique
 
-## Arithmétique
-
-```txt
 ✅ INC
 
 ✅ DEC
@@ -258,112 +153,35 @@ Utiliser Azure‑8 pour :
 ✅ ADD
 
 ✅ SUB
-```
 
----
+### Comparaison
 
-## Comparaison
-
-```txt
 ✅ CMP
-```
 
----
+### Branchements
 
-## Branchements
-
-```txt
 ✅ JMP
 
 ✅ JZ
 
 ✅ JNZ
-```
 
 ---
 
-# Lot A
-## Architecture CPU
+# ROMs Disponibles
 
-### Objectif
+## Validation CPU
 
-Concevoir et implémenter l'architecture du processeur Azure‑8.
-
-### Statut
-
-```txt
-✅ TERMINÉ
-```
-
----
-
-# Lot B
-## Architecture Mémoire
-
-### Objectif
-
-Concevoir et implémenter la mémoire et l'adressage.
-
-### Statut
-
-```txt
-✅ TERMINÉ
-```
-
----
-
-# Lot C
-## Architecture Pile
-
-### Objectif
-
-Concevoir et implémenter le système de pile.
-
-### Statut
-
-```txt
-✅ TERMINÉ
-```
-
----
-
-# Lot D
-## Jeu d'Instructions
-
-### Objectif
-
-Concevoir et implémenter le jeu d'instructions officiel.
-
-### Statut
-
-```txt
-✅ TERMINÉ
-```
-
----
-
-# Lot E
-## Validation Fonctionnelle
-
-### Objectif
-
-Valider l'ensemble des fonctionnalités au moyen de ROMs de référence.
-
-### ROMs Fondamentales
-
-```txt
 ✅ nop.rom
 
 ✅ halt.rom
 
 ✅ invalid.rom
-```
 
 ---
 
-### ROMs Instructions
+## Validation Instructions
 
-```txt
 ✅ mov.rom
 
 ✅ load.rom
@@ -393,466 +211,248 @@ Valider l'ensemble des fonctionnalités au moyen de ROMs de référence.
 ✅ jz.rom
 
 ✅ jnz.rom
-```
 
 ---
 
-### ROMs Infrastructure
+## Validation Infrastructure
 
-```txt
 ✅ memory16.rom
 
 ✅ stack8.rom
 
 ✅ stack16.rom
-```
 
 ---
 
-### Résultat
+# Validation Réalisée
 
-```txt
-✅ 21 ROMs validées
+## Documentation
 
-✅ Validation fonctionnelle terminée
-```
+✅ Documentation\_Audit\_v0.0.3.md validé
 
----
+✅ Cohérence documentaire vérifiée
 
-# Lot F
-## Transformation en Module AzureEngine
+✅ Nommage harmonisé
 
-### Objectif
-
-Transformer Azure‑8 en module autonome conforme à la vision AzureEngine.
-
-### Réalisé
-
-```txt
-✅ Nouveau dépôt Azure‑8
-
-✅ README.md
-
-✅ CHANGELOG.md
-
-✅ Manifest module
-
-✅ Structure modulaire
-
-✅ Samples
-
-✅ Outils
-```
-
----
-
-### Résultat
-
-```txt
-✅ Azure‑8 est désormais indépendant
-
-✅ Prêt à être intégré dans AzureEngine
-```
-
----
-
-# Lot G
-## Consolidation Documentaire
-
-### Objectif
-
-Créer une documentation complète et maintenable.
-
-### Réalisé
-
-```txt
-✅ CPU Architecture
-
-✅ Technical Specification
-
-✅ Instruction Set
-
-✅ Architecture Guide
-
-✅ Roadmaps
-
-✅ Release Notes
-
-✅ Security Audit
-
-✅ Quality Audit
-
-✅ Documentation Audit
-```
-
----
-
-### Résultat
-
-```txt
-🟨 Audit documentaire à exécuter
-```
-
----
-
-# Lot H
-## Audit de Sécurité
-
-### Document
-
-```txt
-docs/security/Security_Audit_v0.0.3.md
-```
-
-### Objectif
-
-Valider la robustesse du moteur.
-
-### Contrôles
-
-```txt
-⬜ Mémoire
-
-⬜ Pile
-
-⬜ CPU
-
-⬜ CALL / RET
-
-⬜ ROM
-
-⬜ Gestion des erreurs
-
-⬜ Robustesse globale
-```
-
----
-
-### Critère de validation
-
-```txt
-✅ Aucun crash connu
-
-✅ Aucune corruption mémoire
-
-✅ Aucune corruption pile
-
-✅ Gestion correcte des erreurs
-```
-
----
-
-# Lot I
-## Audit Qualité
-
-### Document
-
-```txt
-docs/reports/Quality_Audit_v0.0.3.md
-```
-
-### Objectif
-
-Valider la qualité globale du projet.
-
-### Contrôles
-
-```txt
-⬜ Code source
-
-⬜ Tests
-
-⬜ Dépôt
-
-⬜ Documentation
-
-⬜ Manifest
-
-⬜ Build
-
-⬜ Maintenabilité
-```
-
----
-
-# Lot J
-## Audit de Cohérence Documentaire
-
-### Document
-
-```txt
-docs/reports/Documentation_Audit_v0.0.3.md
-```
-
-### Objectif
-
-Garantir que l'ensemble de la documentation décrit exactement le même système.
-
-### Contrôles
-
-```txt
-⬜ Versions
-
-⬜ Architecture CPU
-
-⬜ Jeu d'instructions
-
-⬜ ROMs
-
-⬜ Tests
-
-⬜ Roadmaps
-
-⬜ Manifest
-
-⬜ Release Notes
-```
-
----
-
-# Lot K
-## Validation Build
-
-### Build Debug
-
-```txt
-⬜ Compilation
-
-⬜ Exécution
-
-⬜ Tests
-
-⬜ Aucun blocage
-```
-
----
-
-### Build Release
-
-```txt
-⬜ Compilation
-
-⬜ Exécution
-
-⬜ Aucun blocage
-```
-
----
-
-### Qualité
-
-```txt
-⬜ 0 erreur
-
-⬜ 0 warning critique
-```
-
----
-
-# Lot L
-## Publication de la Release
-
-### Conditions Obligatoires
-
-```txt
-✅ Audit Sécurité validé
-
-✅ Audit Qualité validé
-
-✅ Audit Documentaire validé
-
-✅ Build Debug validé
-
-✅ Build Release validé
-
-✅ Release Notes finalisées
-
-✅ CHANGELOG finalisé
-```
-
----
-
-### Livraison
-
-#### Dépôt
-
-```txt
-Azure-8
-```
-
-#### Tag
-
-```txt
-azure8-v0.0.3
-```
-
-#### Release
-
-```txt
-Azure‑8 v0.0.3
-```
-
----
-
-### Résultat
-
-```txt
-✅ Première release officielle Azure‑8
-
-✅ Premier module officiel AzureEngine
-
-✅ Base de référence de l'écosystème AzureEngine
-```
-
----
-
-# Planning Après Publication
-
-Une fois la release v0.0.3 terminée :
-
-```txt
-Azure8-SDK v0.0.1
-
-↓
-
-Azure8-IDE v0.0.1
-
-↓
-
-AzureEngine Launcher
-
-↓
-
-CHIP‑8
-
-↓
-
-CHIP8-SDK
-
-↓
-
-CHIP8-IDE
-```
-
----
-
-# Progression Globale
-
-## Fonctionnalités
-
-```txt
-✅ 100 %
-```
-
----
-
-## ROMs
-
-```txt
-✅ 100 %
-```
-
----
-
-## Tests
-
-```txt
-✅ 100 %
-```
+✅ Guides mis à jour
 
 ---
 
 ## Architecture
 
-```txt
-✅ 100 %
-```
+✅ Architecture\_Consistency\_Report\_v0.0.3.md validé
+
+✅ Cohérence CPU / Mémoire / Pile vérifiée
+
+✅ Cohérence ISA vérifiée
 
 ---
 
-## Structure du Dépôt
+## Sécurité
 
-```txt
-✅ 100 %
-```
+✅ Security\_Audit\_v0.0.3.md validé
 
----
+### Correctifs Intégrés
 
-## Documentation
+✅ Contrôle taille ROM
 
-```txt
-🟨 95 %
-```
+✅ Limitation MAX\_CYCLES
 
----
+✅ Détection des registres invalides
 
-## Audit Sécurité
-
-```txt
-⬜ À réaliser
-```
+✅ Documentation du comportement mémoire aux limites
 
 ---
 
-## Audit Qualité
+## Qualité
 
-```txt
-⬜ À réaliser
-```
+✅ Quality\_Audit\_v0.0.3.md validé
 
----
+✅ Structure des sources vérifiée
 
-## Audit Documentaire
+✅ Structure des tests vérifiée
 
-```txt
-⬜ À réaliser
-```
+✅ Configuration Debug vérifiée
+
+✅ Configuration Release vérifiée
 
 ---
 
-## Validation Build
+# Validation Opérationnelle
 
-```txt
-⬜ À réaliser
-```
+## Build Debug
 
----
+✅ Compilation exécutée avec succès
 
-## Publication
-
-```txt
-🟨 Préparation finale
-```
+✅ AzureEngine.exe généré
 
 ---
 
-# Objectif Final
+## Build Release
 
-Publier une première release stable, documentée et auditée de la machine virtuelle Azure‑8 afin de :
+✅ Compilation Release exécutée avec succès
 
-```txt
-✅ Clôturer la phase fondatrice
+✅ Génération des artefacts observée
 
-✅ Valider le modèle AzureEngine
+---
 
-✅ Préparer Azure8-SDK
+## Tests
 
-✅ Préparer Azure8-IDE
-```
+✅ AzureEngineTests.exe généré
 
-et faire officiellement d'Azure‑8 :
+✅ Suite de tests exécutée
 
-```txt
-Le premier module de référence de l'écosystème AzureEngine.
-```
+### Mémoire
+
+✅ Réussite observée
+
+### Pile
+
+✅ Réussite observée
+
+### Flags
+
+✅ Réussite observée
+
+### CPU
+
+✅ Réussite observée
+
+### Instructions
+
+✅ MOV
+
+✅ LOAD
+
+✅ STORE
+
+✅ PUSH
+
+✅ POP
+
+✅ CALL
+
+✅ RET
+
+✅ INC
+
+✅ DEC
+
+✅ ADD
+
+✅ SUB
+
+✅ CMP
+
+✅ JMP
+
+✅ JZ
+
+✅ JNZ
+
+Aucun échec observé lors de la campagne de tests exécutée.
+
+---
+
+# Limites Connues
+
+Les éléments suivants demeurent non démontrés dans la version v0.0.3 :
+
+### Couverture
+
+⚪ Aucun taux de couverture mesuré
+
+⚪ Aucune métrique automatique de couverture
+
+---
+
+### Industrialisation
+
+⚪ Aucun pipeline CI/CD observé
+
+⚪ Aucune automatisation de validation observée
+
+---
+
+### Validation Avancée
+
+⚪ Aucun benchmark de performance
+
+⚪ Aucun test de charge prolongée
+
+⚪ Aucune campagne de fuzzing
+
+---
+
+# Priorités v0.0.4
+
+## P1 — Industrialisation
+
+- Mettre en place un pipeline CI/CD.
+- Automatiser les builds Debug et Release.
+- Automatiser l'exécution des tests.
+
+---
+
+## P2 — Couverture Qualité
+
+- Mettre en place une mesure automatique de couverture.
+- Produire des rapports de couverture.
+- Définir des objectifs minimums de couverture.
+
+---
+
+## P2 — Renforcement des Tests
+
+- Ajouter des tests Stack Overflow.
+- Ajouter des tests Stack Underflow.
+- Ajouter des tests ROM surdimensionnée.
+- Ajouter des tests de limite MAX\_CYCLES.
+- Ajouter davantage de cas limites mémoire.
+
+---
+
+## P3 — Documentation
+
+- Étendre les guides développeur.
+- Étendre les scénarios d'utilisation.
+- Formaliser les procédures de contribution.
+
+---
+
+# Évaluation de Release
+
+Documentation : ✅ Validée
+
+Architecture : ✅ Validée
+
+Qualité : ✅ Validée
+
+Sécurité : ✅ Validée
+
+Builds : ✅ Validés
+
+Tests : ✅ Exécutés avec succès
+
+---
+
+# Décision
+
+🟢 RELEASE CANDIDATE
+
+La version v0.0.3 atteint ses objectifs techniques principaux.
+
+Le cœur de la machine virtuelle est documenté, audité, compilé et testé.
+
+Les travaux restants concernent principalement l'industrialisation du projet, la mesure de couverture et l'automatisation de la validation.
 
 ---
 
 **Fin du document**
 
-**Azure-8_Roadmap_v0.0.3.md**
+**Azure\-8\_Roadmap\_v0.0.3.md**
 
 **Version : v0.0.3**
 
-**Statut : Review**
-**Tag cible : azure8-v0.0.3**
+**Statut : Release Candidate**
+
