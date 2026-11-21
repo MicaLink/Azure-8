@@ -615,12 +615,15 @@ L'architecture observée est cohérente, les responsabilités sont clairement s�
 
 Aucun défaut critique de qualité n'a été démontré dans les sources examinées.
 
-Certaines vérifications restent toutefois hors du périmètre du présent audit, notamment :
+Le présent audit n'a exécuté ni builds ni tests.
 
-- exécution des builds ;
-- exécution des tests ;
-- mesure de couverture ;
-- validation CI/CD.
+Des journaux de compilation, des artefacts de build
+et des résultats de tests ont été transmis
+séparément.
+
+Ces éléments constituent des preuves documentaires
+complémentaires mais ne correspondent pas à des
+exécutions reproduites dans le cadre du présent audit.
 
 ---
 

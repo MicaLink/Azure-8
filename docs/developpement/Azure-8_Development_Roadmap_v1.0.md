@@ -1,382 +1,511 @@
-# Azure-8 Development Roadmap v1.0
+# Azure\-8 Development Roadmap v1.0
 
-> Projet : **Azure-8**
->
-> Document : **Roadmap de Développement**
->
-> Version : **1.0**
->
-> Statut : **Officiel**
->
-> Portée : **Post v0.0.3**
+Projet : Azure\-8
 
----
+Version Cible : v1.0
 
-# Introduction
+Statut : Planification
 
-Important
+Type : Roadmap de Développement
 
-Ce document décrit les orientations actuellement envisagées
-pour le développement futur d'Azure‑8.
-
-Les fonctionnalités, outils et intégrations mentionnés
-constituent des objectifs de développement susceptibles
-d'évoluer avec l'écosystème AzureEngine.
-
-Ce document ne constitue pas un engagement ferme de livraison.
-
-Ce document décrit les orientations de développement futures du projet Azure‑8.
-
-Contrairement aux roadmaps de release :
-
-```txt
-Azure-8_Roadmap_v0.0.1.md
-
-Azure-8_Roadmap_v0.0.2.md
-
-Azure-8_Roadmap_v0.0.3.md
-```
-
-ce document présente la vision globale du projet après la publication de la version :
-
-```txt
-azure8-v0.0.3
-```
+Dernière mise à jour : Novembre 2026
 
 ---
 
-# Vision
+# Objectif
 
-Azure‑8 constitue la machine de référence de l'écosystème AzureEngine.
+Cette roadmap définit les travaux de développement nécessaires pour faire évoluer Azure‑8 depuis la release candidate v0.0.3 vers une version majeure v1.0 fonctionnelle, documentée et démontrable.
 
-Le projet doit permettre :
-
-```txt
-L'apprentissage du fonctionnement des processeurs
-
-L'expérimentation de nouveaux concepts
-
-Le développement d'outils dédiés
-
-La validation de l'écosystème AzureEngine
-```
+La version v1.0 doit démontrer la capacité de la plateforme à exécuter des applications interactives complètes au travers de ROMs de démonstration officielles.
 
 ---
 
-# Objectifs Long Terme
+# État de Référence
 
-## Stabilité
+La version v0.0.3 fournit :
 
-Maintenir :
+## Cœur de la Machine Virtuelle
 
-```txt
-Architecture simple
+✅ CPU 8 bits
 
-Code lisible
+✅ Mémoire 64 Ko
 
-Documentation complète
+✅ Architecture Little Endian
 
-Comportement prévisible
-```
+✅ Adressage mémoire 16 bits
 
----
+✅ Gestion des registres
 
-## Évolutivité
+✅ Gestion des FLAGS
 
-Permettre :
+✅ Gestion de la pile
 
-```txt
-Ajout de nouvelles instructions
-
-Ajout d'outils
-
-Ajout de fonctionnalités de débogage
-```
-
-sans remettre en cause l'architecture fondamentale.
+✅ Gestion des appels de sous\-programmes
 
 ---
 
-# Phase 1
-## Stabilisation Post v0.0.3
+## Jeu d'Instructions
+
+✅ NOP
+
+✅ HLT
+
+✅ MOV
+
+✅ LOAD
+
+✅ STORE
+
+✅ PUSH
+
+✅ POP
+
+✅ CALL
+
+✅ RET
+
+✅ INC
+
+✅ DEC
+
+✅ ADD
+
+✅ SUB
+
+✅ CMP
+
+✅ JMP
+
+✅ JZ
+
+✅ JNZ
+
+---
+
+## Validation
+
+✅ Audit documentaire validé sur le périmètre examiné
+
+✅ Audit qualité validé sur le périmètre examiné
+
+✅ Audit sécurité validé sur le périmètre examiné
+
+✅ Éléments de compilation observés
+
+✅ Journaux de tests transmis sans erreur visible
+
+---
+
+# Objectifs Majeurs de la Version 1.0
+
+## O1 — Plateforme Démontrable
+
+Permettre l'exécution d'applications interactives complètes.
+
+Livrables obligatoires :
+
+- Snake
+- Pong
+
+---
+
+## O2 — Industrialisation
+
+Améliorer la reproductibilité du projet.
+
+Livrables :
+
+- pipeline CI/CD ;
+- automatisation des builds ;
+- automatisation des tests ;
+- rapports de validation.
+
+---
+
+## O3 — Qualité Mesurable
+
+Mettre en place des métriques qualité objectives.
+
+Livrables :
+
+- mesure de couverture ;
+- rapports qualité ;
+- objectifs documentés.
+
+---
+
+# Phase 1 — Infrastructure d'Exécution
+
+## F1.1 — Sous\-système Vidéo
 
 Objectif :
 
-```txt
-Consolider Azure‑8 après la première release.
-```
+Définir un mécanisme d'affichage exploitable par les futures ROMs.
+
+Travaux :
+
+- conception du framebuffer ;
+- définition de la mémoire vidéo ;
+- gestion des accès mémoire vidéo ;
+- documentation de l'architecture graphique.
+
+Livrables :
+
+- Video\_Memory\_Specification\_v1.0.md
+- Display\_System\_v1.0.md
+
+Statut :
+
+⚪ À réaliser
+
+Priorité :
+
+P1
 
 ---
 
-### Travaux
-
-```txt
-Audit sécurité complet
-
-Audit qualité complet
-
-Audit documentaire
-
-Validation multiplateforme
-```
-
----
-
-### Résultat attendu
-
-```txt
-Version stable
-```
-
----
-
-# Phase 2
-## Azure8-SDK
+## F1.2 — Sous\-système Entrées
 
 Objectif :
 
-Créer le SDK officiel Azure‑8.
+Permettre aux ROMs d'interagir avec l'utilisateur.
+
+Travaux :
+
+- interface clavier ;
+- mapping des touches ;
+- abstraction des périphériques d'entrée ;
+- documentation du système.
+
+Livrables :
+
+- Input\_System\_v1.0.md
+
+Statut :
+
+⚪ À réaliser
+
+Priorité :
+
+P1
 
 ---
 
-### Fonctionnalités visées
-
-```txt
-Bibliothèques
-
-Outils assembleur
-
-Validation ROM
-
-API développeur
-
-Documentation SDK
-```
-
----
-
-### Livrable
-
-```txt
-Azure8-SDK v0.0.1
-```
-
----
-
-# Phase 3
-## Azure8-IDE
+## F1.3 — Gestion du Temps
 
 Objectif :
 
-Créer l'environnement de développement officiel.
+Permettre des applications interactives déterministes.
+
+Travaux :
+
+- système de temporisation ;
+- synchronisation d'exécution ;
+- gestion des cycles de mise à jour.
+
+Livrables :
+
+- Timing\_System\_v1.0.md
+
+Statut :
+
+⚪ À réaliser
+
+Priorité :
+
+P1
 
 ---
 
-### Fonctionnalités visées
+# Phase 2 — ROMs de Démonstration
 
-```txt
-Éditeur
+## F2.1 — Snake
 
-Compilation
+Livrable principal :
 
-Exécution
+roms/demos/snake.rom
 
-Débogage
+Fonctionnalités minimales :
 
-Visualisation mémoire
+- déplacement du serpent ;
+- gestion des collisions ;
+- génération de nourriture ;
+- score ;
+- écran de fin de partie.
 
-Visualisation registres
-```
+Critère d'acceptation :
 
----
+ROM fonctionnelle accompagnée de sa documentation.
 
-### Livrable
+Statut :
 
-```txt
-Azure8-IDE v0.0.1
-```
+⚪ À réaliser
 
----
+Priorité :
 
-# Phase 4
-## Débogage Avancé
-
-Évolutions possibles :
-
-```txt
-Step By Step
-
-Breakpoints
-
-Watch Memory
-
-Watch Registers
-```
+P1
 
 ---
 
-# Phase 5
-## Outils Additionnels
+## F2.2 — Pong
 
-Développement des outils du dépôt.
+Livrable principal :
+
+roms/demos/pong.rom
+
+Fonctionnalités minimales :
+
+- déplacement des raquettes ;
+- déplacement de la balle ;
+- collisions ;
+- score ;
+- redémarrage de partie.
+
+Critère d'acceptation :
+
+ROM fonctionnelle accompagnée de sa documentation.
+
+Statut :
+
+⚪ À réaliser
+
+Priorité :
+
+P1
 
 ---
 
-### ROM Validator
+# Phase 3 — Tests et Validation
+
+## F3.1 — Renforcement des Tests
+
+Travaux :
+
+- tests Stack Overflow ;
+- tests Stack Underflow ;
+- tests ROM surdimensionnée ;
+- tests MAX\_CYCLES ;
+- tests limites mémoire ;
+- tests d'entrées utilisateur.
+
+Statut :
+
+⚪ À réaliser
+
+Priorité :
+
+P2
+
+---
+
+## F3.2 — Couverture
 
 Objectif :
 
-```txt
-Validation automatique des ROMs.
-```
+Produire des métriques objectives.
+
+Livrables :
+
+- Test\_Coverage\_Report\_v1.0.md
+
+Indicateurs attendus :
+
+- couverture des modules CPU ;
+- couverture mémoire ;
+- couverture instructions ;
+- couverture sécurité.
+
+Statut :
+
+⚪ À réaliser
+
+Priorité :
+
+P2
 
 ---
 
-### ROM Dumper
+# Phase 4 — Industrialisation
 
-Objectif :
+## F4.1 — Pipeline CI/CD
 
-```txt
-Inspection des ROMs.
-```
+Travaux :
 
----
+- Build Debug ;
+- Build Release ;
+- Build Tests ;
+- exécution automatisée des tests.
 
-### Disassembler
+Livrables :
 
-Objectif :
+.github/workflows/
 
-```txt
-Désassemblage des binaires Azure‑8.
-```
+Statut :
 
----
+⚪ À réaliser
 
-# Phase 6
-## Intégration AzureEngine
+Priorité :
 
-Objectif :
-
-Faire d'Azure‑8 le module de référence.
+P2
 
 ---
 
-### Intégration
+## F4.2 — Validation Continue
 
-```txt
-AzureEngine Runtime
+Travaux :
 
-AzureEngine Launcher
+- génération automatique des rapports ;
+- contrôles qualité automatisés ;
+- publication des artefacts.
 
-Marketplace
-```
+Statut :
 
----
+⚪ À réaliser
 
-### Capacités
+Priorité :
 
-```txt
-Installation automatique
-
-Chargement automatique
-
-Gestion version module
-```
+P2
 
 ---
 
-# Évolutions Possibles
+# Documentation
 
-Les évolutions suivantes pourront être étudiées :
+## D1 — Guides Développeur
 
-```txt
-Interruptions
+Améliorations :
 
-Modes d'exécution
+- documentation vidéo ;
+- documentation entrées ;
+- documentation timing ;
+- tutoriels.
 
-Profiling CPU
+Statut :
 
-Statistiques runtime
-
-Couverture de tests avancée
-```
-
----
-
-# Hors Périmètre
-
-Les éléments suivants ne sont pas prévus à court terme :
-
-```txt
-Audio
-
-Vidéo
-
-Graphismes
-
-Réseau
-
-Système d'exploitation embarqué
-```
-
-Azure‑8 restera volontairement simple.
+⚪ À réaliser
 
 ---
 
-# Priorités
+## D2 — Documentation Utilisateur
 
-Ordre de développement recommandé :
+Améliorations :
 
-```txt
-1. Publication v0.0.3
+- guide d'utilisation ;
+- guide des ROMs ;
+- guide Snake ;
+- guide Pong.
 
-↓
+Statut :
 
-2. Azure8-SDK v0.0.1
-
-↓
-
-3. Azure8-IDE v0.0.1
-
-↓
-
-4. Outils avancés
-
-↓
-
-5. Intégration AzureEngine
-```
+⚪ À réaliser
 
 ---
 
-# Objectif Final
+# Critères de Validation de la Version 1.0
 
-Faire d'Azure‑8 :
+## Plateforme
 
-```txt
-La machine virtuelle de référence AzureEngine
+✅ CPU stable
 
-Une plateforme pédagogique
+✅ Mémoire stable
 
-Une plateforme d'expérimentation
+✅ Pile stable
 
-Une base de développement pour les futurs modules
-```
+✅ ISA stable
+
+✅ Documentation cohérente
 
 ---
 
-# Conclusion
+## Jeux de Démonstration
 
-La feuille de route Azure‑8 privilégie la stabilité, la qualité du code et la qualité documentaire.
+✅ Snake livré
 
-L'objectif principal n'est pas la complexité technique mais la création d'une plateforme robuste, maintenable et parfaitement documentée.
+✅ Pong livré
+
+✅ Documentation associée livrée
+
+---
+
+## Qualité
+
+✅ Tests disponibles
+
+✅ Couverture mesurée
+
+✅ Rapports de validation disponibles
+
+---
+
+## Industrialisation
+
+✅ Build automatisé
+
+✅ Tests automatisés
+
+✅ CI/CD opérationnel
+
+---
+
+# Risques
+
+## R1 — Affichage
+
+Sans système vidéo, Snake et Pong sont bloqués.
+
+Priorité :
+
+P1
+
+---
+
+## R2 — Entrées Utilisateur
+
+Sans gestion clavier, les démonstrations interactives sont impossibles.
+
+Priorité :
+
+P1
+
+---
+
+## R3 — Couverture
+
+L'absence de métriques de couverture limite la mesure réelle de la qualité.
+
+Priorité :
+
+P2
+
+---
+
+## R4 — Industrialisation
+
+L'absence d'automatisation ralentit la validation continue.
+
+Priorité :
+
+P2
+
+---
+
+# Décision
+
+La priorité absolue de la version 1.0 est la livraison des ROMs de démonstration :
+
+- Snake
+- Pong
+
+L'ensemble des développements futurs doit être orienté vers cet objectif.
+
+L'affichage, les entrées utilisateur, la gestion du temps, la couverture des tests et le CI/CD sont considérés comme des prérequis nécessaires pour atteindre la version 1.0.
 
 ---
 
 **Fin du document**
 
-**Azure-8_Development_Roadmap_v1.0.md**
+**Azure\-8\_Development\_Roadmap\_v1.0.md**
 
-**Version : 1.0**
+**Version cible : 1.0**
 
-**Statut : Officiel**
+**Statut : Planification**
+

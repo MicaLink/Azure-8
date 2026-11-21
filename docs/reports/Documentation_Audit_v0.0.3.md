@@ -414,7 +414,15 @@ Les éventuelles réserves restantes concernent uniquement des éléments qui n'
 
 # Éléments Non Vérifiés
 
-Les éléments suivants n'ont pas été démontrés ou revérifiés par exécution dans le cadre du présent audit :
+Les éléments suivants n'ont pas été revérifiés
+dans le cadre du présent audit documentaire.
+
+Des journaux de compilation et d'exécution de tests
+ont été transmis séparément et sont traités comme
+éléments de preuve externes au présent audit.
+
+Le présent audit n'a procédé lui-même à aucune
+compilation ni à aucune exécution.
 
 - succès des builds Debug ;
 - succès des builds Release ;

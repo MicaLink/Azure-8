@@ -4,7 +4,7 @@ Projet : Azure\-8
 
 Version : v0.0.3
 
-Statut : Release Candidate
+Statut : Released
 
 Type : Roadmap de Version
 
@@ -43,8 +43,8 @@ Objectifs principaux :
 - finaliser le système de pile ;
 - stabiliser le jeu d'instructions principal ;
 - renforcer la documentation ;
-- mettre en place les audits du projet ;
-- démontrer la compilation et l'exécution des tests.
+- formaliser les audits du projet ;
+- disposer d'éléments de preuve de compilation et de validation fonctionnelle.
 
 ---
 
@@ -59,9 +59,9 @@ Objectifs principaux :
 | Build Debug | ✅ |
 | Build Release | ✅ |
 | Build Tests | ✅ |
-| Exécution des Tests | ✅ |
-| ROMs de Validation | ✅ |
-| Couverture Mesurée | ⚪ |
+| Résultats de tests transmis | ✅ |
+| ROMs de validation | ✅ |
+| Couverture mesurée | ⚪ |
 | CI/CD | ⚪ |
 
 ---
@@ -94,7 +94,7 @@ Objectifs principaux :
 
 ✅ Write16()
 
-✅ Comportement frontière mémoire documenté
+✅ Comportement des accès mémoire aux limites documenté
 
 ---
 
@@ -224,23 +224,23 @@ Objectifs principaux :
 
 ---
 
-# Validation Réalisée
+# Audits Réalisés
 
 ## Documentation
 
-✅ Documentation\_Audit\_v0.0.3.md validé
+✅ Documentation\_Audit\_v0.0.3.md validé sur le périmètre examiné
 
 ✅ Cohérence documentaire vérifiée
 
 ✅ Nommage harmonisé
 
-✅ Guides mis à jour
+✅ Documentation réorganisée
 
 ---
 
 ## Architecture
 
-✅ Architecture\_Consistency\_Report\_v0.0.3.md validé
+✅ Architecture\_Consistency\_Report\_v0.0.3.md validé sur le périmètre examiné
 
 ✅ Cohérence CPU / Mémoire / Pile vérifiée
 
@@ -250,23 +250,23 @@ Objectifs principaux :
 
 ## Sécurité
 
-✅ Security\_Audit\_v0.0.3.md validé
+✅ Security\_Audit\_v0.0.3.md validé sur le périmètre examiné
 
-### Correctifs Intégrés
+### Correctifs intégrés
 
-✅ Contrôle taille ROM
+✅ Contrôle de taille des ROMs
 
 ✅ Limitation MAX\_CYCLES
 
 ✅ Détection des registres invalides
 
-✅ Documentation du comportement mémoire aux limites
+✅ Documentation explicite du comportement mémoire aux limites
 
 ---
 
 ## Qualité
 
-✅ Quality\_Audit\_v0.0.3.md validé
+✅ Quality\_Audit\_v0.0.3.md validé sur le périmètre examiné
 
 ✅ Structure des sources vérifiée
 
@@ -278,45 +278,57 @@ Objectifs principaux :
 
 ---
 
-# Validation Opérationnelle
+# Éléments de Validation Observés
 
-## Build Debug
+## Compilation
 
-✅ Compilation exécutée avec succès
+### Build Debug
 
-✅ AzureEngine.exe généré
+✅ Journal de compilation transmis
+
+✅ Génération de AzureEngine.exe observée
+
+✅ Artefacts de build observés
 
 ---
 
-## Build Release
+### Build Release
 
-✅ Compilation Release exécutée avec succès
+✅ Journal de compilation transmis
 
 ✅ Génération des artefacts observée
 
 ---
 
-## Tests
+### Build des Tests
 
-✅ AzureEngineTests.exe généré
+✅ Journal de compilation transmis
 
-✅ Suite de tests exécutée
+✅ Génération de AzureEngineTests.exe observée
+
+---
+
+## Résultats de Tests Transmis
+
+✅ Journal d'exécution de la suite de tests fourni
+
+✅ Aucune erreur visible dans les résultats transmis
 
 ### Mémoire
 
-✅ Réussite observée
+✅ Résultats transmis sans erreur visible
 
 ### Pile
 
-✅ Réussite observée
+✅ Résultats transmis sans erreur visible
 
 ### Flags
 
-✅ Réussite observée
+✅ Résultats transmis sans erreur visible
 
 ### CPU
 
-✅ Réussite observée
+✅ Résultats transmis sans erreur visible
 
 ### Instructions
 
@@ -350,37 +362,45 @@ Objectifs principaux :
 
 ✅ JNZ
 
-Aucun échec observé lors de la campagne de tests exécutée.
+✅ Aucun échec visible dans les journaux transmis
 
 ---
 
 # Limites Connues
 
-Les éléments suivants demeurent non démontrés dans la version v0.0.3 :
+## Couverture Qualité
 
-### Couverture
+⚪ Aucun taux de couverture mesuré observé
 
-⚪ Aucun taux de couverture mesuré
-
-⚪ Aucune métrique automatique de couverture
+⚪ Aucune métrique automatique de couverture observée
 
 ---
 
-### Industrialisation
+## Industrialisation
 
-⚪ Aucun pipeline CI/CD observé
+⚪ Aucun pipeline CI/CD observé dans le périmètre examiné
 
 ⚪ Aucune automatisation de validation observée
 
 ---
 
-### Validation Avancée
+## Validation Avancée
 
-⚪ Aucun benchmark de performance
+⚪ Aucun benchmark de performance observé
 
-⚪ Aucun test de charge prolongée
+⚪ Aucun test de charge prolongée observé
 
-⚪ Aucune campagne de fuzzing
+⚪ Aucune campagne de fuzzing observée
+
+---
+
+## Limites de Traçabilité
+
+Les résultats de compilation et de tests mentionnés dans cette roadmap reposent sur les journaux, artefacts et éléments de preuve transmis et conservés dans le cadre du projet.
+
+Aucune nouvelle compilation, exécution de tests, exécution de ROM ou validation dynamique n'a été réalisée dans le cadre de la revue documentaire associée.
+
+La présente roadmap synthétise l'état observé du projet et des audits disponibles. Elle ne constitue ni un audit, ni une certification indépendante.
 
 ---
 
@@ -391,6 +411,7 @@ Les éléments suivants demeurent non démontrés dans la version v0.0.3 :
 - Mettre en place un pipeline CI/CD.
 - Automatiser les builds Debug et Release.
 - Automatiser l'exécution des tests.
+- Formaliser les critères d'acceptation des builds.
 
 ---
 
@@ -398,7 +419,8 @@ Les éléments suivants demeurent non démontrés dans la version v0.0.3 :
 
 - Mettre en place une mesure automatique de couverture.
 - Produire des rapports de couverture.
-- Définir des objectifs minimums de couverture.
+- Définir des objectifs minimaux de couverture.
+- Intégrer les métriques qualité dans le cycle de validation.
 
 ---
 
@@ -407,7 +429,7 @@ Les éléments suivants demeurent non démontrés dans la version v0.0.3 :
 - Ajouter des tests Stack Overflow.
 - Ajouter des tests Stack Underflow.
 - Ajouter des tests ROM surdimensionnée.
-- Ajouter des tests de limite MAX\_CYCLES.
+- Ajouter des tests liés à MAX\_CYCLES.
 - Ajouter davantage de cas limites mémoire.
 
 ---
@@ -417,22 +439,23 @@ Les éléments suivants demeurent non démontrés dans la version v0.0.3 :
 - Étendre les guides développeur.
 - Étendre les scénarios d'utilisation.
 - Formaliser les procédures de contribution.
+- Consolider la documentation d'industrialisation.
 
 ---
 
 # Évaluation de Release
 
-Documentation : ✅ Validée
+Documentation : ✅ Validée sur le périmètre examiné
 
-Architecture : ✅ Validée
+Architecture : ✅ Validée sur le périmètre examiné
 
-Qualité : ✅ Validée
+Qualité : ✅ Validée sur le périmètre examiné
 
-Sécurité : ✅ Validée
+Sécurité : ✅ Validée sur le périmètre examiné
 
-Builds : ✅ Validés
+Builds : ✅ Éléments de compilation observés
 
-Tests : ✅ Exécutés avec succès
+Tests : ✅ Résultats transmis sans erreur visible
 
 ---
 
@@ -440,11 +463,18 @@ Tests : ✅ Exécutés avec succès
 
 🟢 RELEASE CANDIDATE
 
-La version v0.0.3 atteint ses objectifs techniques principaux.
+La version v0.0.3 atteint les principaux objectifs techniques définis pour le cœur de la machine virtuelle Azure‑8.
 
-Le cœur de la machine virtuelle est documenté, audité, compilé et testé.
+La documentation, l'architecture, la qualité et la sécurité ont fait l'objet d'audits dédiés validés sur leur périmètre respectif.
 
-Les travaux restants concernent principalement l'industrialisation du projet, la mesure de couverture et l'automatisation de la validation.
+Les éléments de compilation et de tests transmis sont cohérents avec l'état attendu du projet.
+
+Les travaux restants concernent principalement :
+
+- l'industrialisation ;
+- l'automatisation ;
+- la mesure de couverture ;
+- les métriques qualité.
 
 ---
 
@@ -454,5 +484,5 @@ Les travaux restants concernent principalement l'industrialisation du projet, la
 
 **Version : v0.0.3**
 
-**Statut : Release Candidate**
+**Statut : Released**
 
