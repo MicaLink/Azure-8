@@ -53,7 +53,7 @@ Les objectifs sont :
 
 ## Analysé
 
-### CPU
+#### CPU
 
 Première revue complète de :
 
@@ -82,7 +82,7 @@ Identification des éléments suivants :
 
 ---
 
-### Tests
+#### Tests
 
 Analyse complète des scénarios existants :
 
@@ -105,7 +105,7 @@ Constats :
 
 ## Réorganisé
 
-### Documentation
+#### Documentation
 
 Séparation complète de :
 
@@ -121,7 +121,7 @@ Archives historiques
 
 ---
 
-### Archivage
+#### Archivage
 
 Création de :
 
@@ -197,7 +197,7 @@ Identification :
 
 ## Prévu
 
-### Validation des FLAGS
+#### Validation des FLAGS
 
 Ajout des scénarios :
 
@@ -223,7 +223,7 @@ DEC_Overflow
 
 ---
 
-### Modularisation CPU
+#### Modularisation CPU
 
 Structure cible :
 
@@ -234,17 +234,17 @@ CPU.cpp
 CPU.h
 
 CPU/
-├─ CPUFlags.cpp
-├─ CPUFlags.h
-├─ CPUInstructions.cpp
-└─ CPUInstructions.h
++-- CPUFlags.cpp
++-- CPUFlags.h
++-- CPUInstructions.cpp
++-- CPUInstructions.h
 ```
 
 ---
 
-### Réduction du Switch
+#### Réduction du Switch
 
-Extraction progressive de la logique metier :
+Extraction progressive de la logique métier :
 
 ```cpp
 ExecuteMOV();
@@ -263,9 +263,9 @@ ExecuteRET();
 
 ---
 
-### Tests de Robustesse
+#### Tests de Robustesse
 
-Creation des tests :
+Création des tests :
 
 ```text
 TestStackOverflow.cpp
@@ -277,7 +277,7 @@ TestMemoryBoundary.cpp
 
 ---
 
-## État
+### État
 
 Statut :
 
@@ -462,9 +462,9 @@ Création de :
 
 ## Réorganisé
 
-### Dépôt
+#### Dépôt
 
-Structure normalisee :
+Structure normalisée :
 
 ```text
 assets/
@@ -478,7 +478,7 @@ tools/
 
 ---
 
-### Écosystème AzureEngine
+#### Écosystème AzureEngine
 
 Azure-8 devient officiellement :
 
@@ -519,19 +519,19 @@ azure8.module.json
 
 ---
 
-## Historique des versions
+### Historique des versions
 
 | Version | Statut |
 |----------|----------|
 | 0.0.1 | Historique |
 | 0.0.2 | Historique |
-| 0.0.3 | Premiere release officielle |
+| 0.0.3 | Première release officielle |
 | 0.0.4 | Consolidation en cours |
 
 ---
 
 Projet : Azure-8
 
-Ecosysteme : AzureEngine
+Écosystème : AzureEngine
 
 Premier module officiel AzureEngine
