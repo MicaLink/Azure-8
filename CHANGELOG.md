@@ -1,25 +1,306 @@
 # Changelog
 
-Toutes les évolutions importantes du projet **Azure‑8** sont documentées dans ce fichier.
+Toutes les évolutions significatives du projet **Azure‑8** sont documentées dans ce fichier.
 
-Le format s'inspire de **Keep a Changelog** et suit le versioning défini pour l'écosystème AzureEngine.
+Le format adopté s'inspire de **Keep a Changelog** tout en restant adapté à l'écosystème **AzureEngine**.
 
 ---
 
-# [0.0.3] - En préparation
+# [0.0.4] - En cours
 
 ## Vue d'ensemble
 
-Première release officielle d'Azure‑8.
+La version v0.0.4 est un cycle de consolidation du cœur Azure‑8.
+
+Cette version ne vise aucun ajout fonctionnel.
+
+Les objectifs sont :
+
+- la réduction de la dette technique ;
+- l'amélioration de la qualité du code ;
+- le renforcement des tests ;
+- la consolidation du CPU ;
+- l'amélioration de la maintenabilité ;
+- la réorganisation documentaire ;
+- la préparation des futures évolutions de l'écosystème AzureEngine.
+
+---
+
+## Ajouté
+
+### Gouvernance Technique
+
+- Core_Consolidation_Report_v0.0.4.md
+- Core_Review_Report_v0.0.4.md
+- Technical_Debt_Report_v0.0.4.md
+
+### Refactorisation
+
+- CPU_Modularization_Plan_v0.0.4.md
+- CPU_Refactoring_Checklist_v0.0.4.md
+
+### Validation
+
+- Flag_Coverage_Report_v0.0.4.md
+- Test_Matrix_v0.0.4.md
+- Arithmetic_Flag_Validation_Plan_v0.0.4.md
+
+### Planification
+
+- Azure-8_Roadmap_v0.0.4.md
+
+---
+
+## Analysé
+
+### CPU
+
+Première revue complète de :
+
+```text
+src/Azure8/CPU.h
+src/Azure8/CPU.cpp
+```
+
+Constats :
+
+- CPU fonctionnel ;
+- architecture globalement saine ;
+- responsabilités fortement centralisées ;
+- modularisation recommandée.
+
+---
+
+### Architecture
+
+Identification des éléments suivants :
+
+- CPU monolithique ;
+- logique FLAGS non isolée ;
+- logique ISA non isolée ;
+- switch d'opcodes centralisé.
+
+---
+
+### Tests
+
+Analyse complète des scénarios existants :
+
+```text
+TestFlags.cpp
+TestInstructionADD.cpp
+TestInstructionSUB.cpp
+TestInstructionINC.cpp
+TestInstructionDEC.cpp
+TestInstructionCMP.cpp
+```
+
+Constats :
+
+- CMP correctement couvert ;
+- couverture OVERFLOW insuffisamment démontrée ;
+- couverture des FLAGS arithmétiques incomplète.
+
+---
+
+## Réorganisé
+
+### Documentation
+
+Séparation complète de :
+
+```text
+Documentation active
+```
+
+et
+
+```text
+Archives historiques
+```
+
+---
+
+### Archivage
+
+Création de :
+
+```text
+docs/archive/
+```
+
+pour accueillir :
+
+- roadmaps historiques ;
+- releases historiques ;
+- rapports historiques ;
+- anciennes spécifications.
+
+---
+
+### Rapports
+
+Archivage des rapports v0.0.3 :
+
+- Architecture_Consistency_Report_v0.0.3.md
+- Documentation_Audit_v0.0.3.md
+- Quality_Audit_v0.0.3.md
+- Release_Report_v0.0.3.md
+- Security_Audit_v0.0.3.md
+
+---
+
+### Releases
+
+Archivage des livrables :
+
+- Azure-8_v0.0.3_Release_Checklist.md
+- Azure-8_v0.0.3_Release_Notes.md
+- Release_Criteria_v0.0.3.md
+
+---
+
+## Documenté
+
+### Dette Technique
+
+Identification et classification :
+
+- dette d'architecture ;
+- dette de tests ;
+- dette documentaire ;
+- dette de maintenabilité.
+
+---
+
+### Couverture des FLAGS
+
+Cartographie complète de :
+
+- ZERO ;
+- NEGATIVE ;
+- CARRY ;
+- OVERFLOW.
+
+---
+
+### Couverture des Tests
+
+Identification :
+
+- tests existants ;
+- tests manquants ;
+- zones de risque ;
+- priorités de validation.
+
+---
+
+## Prévu
+
+### Validation des FLAGS
+
+Ajout des scénarios :
+
+```text
+ADD_Zero
+ADD_Carry
+ADD_Negative
+ADD_Overflow
+
+SUB_Zero
+SUB_Carry
+SUB_Negative
+SUB_Overflow
+
+INC_Zero
+INC_Negative
+INC_Overflow
+
+DEC_Zero
+DEC_Negative
+DEC_Overflow
+```
+
+---
+
+### Modularisation CPU
+
+Structure cible :
+
+```text
+src/Azure8/
+
+CPU.cpp
+CPU.h
+
+CPU/
+├─ CPUFlags.cpp
+├─ CPUFlags.h
+├─ CPUInstructions.cpp
+└─ CPUInstructions.h
+```
+
+---
+
+### Réduction du Switch
+
+Extraction progressive de la logique metier :
+
+```cpp
+ExecuteMOV();
+ExecuteLOAD();
+ExecuteSTORE();
+
+ExecuteADD();
+ExecuteSUB();
+
+ExecutePUSH();
+ExecutePOP();
+
+ExecuteCALL();
+ExecuteRET();
+```
+
+---
+
+### Tests de Robustesse
+
+Creation des tests :
+
+```text
+TestStackOverflow.cpp
+TestStackUnderflow.cpp
+TestMaxCycles.cpp
+TestLargeROM.cpp
+TestMemoryBoundary.cpp
+```
+
+---
+
+## État
+
+Statut :
+
+```text
+Consolidation en cours
+```
+
+---
+
+# [0.0.3] - Première Release Officielle
+
+## Vue d'ensemble
+
+Première version officiellement publiée d'Azure‑8.
 
 Cette version marque :
 
 - l'achèvement de la première machine virtuelle Azure‑8 ;
-- la validation complète du cœur CPU ;
-- la validation du système mémoire ;
+- la validation du CPU ;
+- la validation de la mémoire ;
 - la validation du système de pile ;
 - la validation du jeu d'instructions v0.0.3 ;
-- la transformation d'Azure‑8 en premier module officiel AzureEngine.
+- l'intégration officielle dans l'écosystème AzureEngine.
 
 ---
 
@@ -30,14 +311,14 @@ Cette version marque :
 - CPU 8 bits
 - adressage mémoire 16 bits
 - architecture Little Endian
-- registres utilisateur A, B, C et D
-- registre PC (Program Counter)
-- registre SP (Stack Pointer)
+- registres utilisateur A, B, C, D
+- registre PC
+- registre SP
 - registre FLAGS
 
 ---
 
-### Gestion mémoire
+### Mémoire
 
 - Read8()
 - Write8()
@@ -46,7 +327,7 @@ Cette version marque :
 
 ---
 
-### Gestion de pile
+### Pile
 
 - Push8()
 - Pop8()
@@ -64,14 +345,14 @@ Cette version marque :
 
 ---
 
-### Jeu d'instructions
+### Jeu d'Instructions
 
 #### Contrôle CPU
 
 - NOP
 - HLT
 
-#### Manipulation des données
+#### Manipulation de données
 
 - MOV
 - LOAD
@@ -103,7 +384,7 @@ Cette version marque :
 
 ---
 
-### ROMs de validation
+### ROMs de Validation
 
 #### ROMs fondamentales
 
@@ -137,14 +418,14 @@ Cette version marque :
 
 ---
 
-### Tests automatisés
+### Tests Automatisés
 
 #### Infrastructure
 
-- TestCPU
-- TestMemory
-- TestStack
-- TestFlags
+- TestCPU.cpp
+- TestMemory.cpp
+- TestStack.cpp
+- TestFlags.cpp
 
 #### Instructions
 
@@ -168,28 +449,24 @@ Cette version marque :
 
 ### Documentation
 
-Ajout des documents suivants :
+Création de :
 
 - README.md
+- CHANGELOG.md
 - Azure-8_CPU_Architecture_v1.0.md
 - Azure-8_Technical_Specification_v0.0.3.md
 - Azure-8_Instruction_Set_v0.0.3.md
-- Azure-8_Architecture_Guide.md
-- Azure-8_Roadmap_v0.0.3.md
-- Azure-8_v0.0.3_Release_Notes.md
-- Security_Audit_v0.0.3.md
-- Quality_Audit_v0.0.3.md
-- Documentation_Audit_v0.0.3.md
-- Release_Report_v0.0.3.md
-- Azure-8_v0.0.3_Release_Checklist.md
+- Azure-8_Module_Specification_v1.0.md
 
 ---
 
-### Structure du dépôt
+## Réorganisé
 
-Réorganisation complète du dépôt :
+### Dépôt
 
-```txt
+Structure normalisee :
+
+```text
 assets/
 docs/
 roms/
@@ -203,58 +480,16 @@ tools/
 
 ### Écosystème AzureEngine
 
-Azure‑8 devient officiellement :
+Azure-8 devient officiellement :
 
-```txt
+```text
 Premier module officiel AzureEngine
 ```
 
-Ajout :
+Ajout de :
 
-- azure8.module.json
-- compatibilité avec le modèle de module AzureEngine
-- préparation de l'intégration future dans AzureEngine
-
----
-
-## Modifié
-
-- restructuration complète de la documentation ;
-- harmonisation des spécifications techniques ;
-- uniformisation des conventions de nommage ;
-- séparation du projet Azure‑8 du dépôt AzureEngine ;
-- préparation du processus de release.
-
----
-
-## Corrigé
-
-- incohérences documentaires historiques ;
-- organisation des spécifications ;
-- archivage des anciennes spécifications techniques v0.0.1 et v0.0.2.
-
----
-
-## Sécurité
-
-Audit en cours avant publication officielle :
-
-- validation mémoire ;
-- validation pile ;
-- validation CPU ;
-- validation chargement ROM ;
-- validation gestion des erreurs.
-
----
-
-## État de la release
-
-```txt
-Statut : Préparation Release
-
-Tag cible : azure8-v0.0.3
-
-Publication : En attente des audits finaux
+```text
+azure8.module.json
 ```
 
 ---
@@ -263,11 +498,11 @@ Publication : En attente des audits finaux
 
 ## Réalisé
 
-- évolution du processeur Azure‑8 ;
+- amélioration du processeur Azure‑8 ;
+- extension du jeu d'instructions ;
 - amélioration du système mémoire ;
-- ajout d'instructions supplémentaires ;
-- extension de la couverture de tests ;
-- amélioration de la documentation technique.
+- enrichissement des tests ;
+- amélioration de la documentation.
 
 ---
 
@@ -278,24 +513,25 @@ Publication : En attente des audits finaux
 - création du projet Azure‑8 ;
 - implémentation initiale du CPU ;
 - implémentation initiale de la mémoire ;
-- premières ROMs de test ;
+- premières ROMs de validation ;
 - premiers tests unitaires ;
-- premières spécifications techniques.
+- premières spécifications.
 
 ---
 
-## Versions
+## Historique des versions
 
 | Version | Statut |
 |----------|----------|
 | 0.0.1 | Historique |
 | 0.0.2 | Historique |
-| 0.0.3 | Préparation Release |
+| 0.0.3 | Premiere release officielle |
+| 0.0.4 | Consolidation en cours |
 
 ---
 
-**Projet : Azure‑8**
+Projet : Azure-8
 
-**Écosystème : AzureEngine**
+Ecosysteme : AzureEngine
 
-**Premier module officiel AzureEngine**
+Premier module officiel AzureEngine
