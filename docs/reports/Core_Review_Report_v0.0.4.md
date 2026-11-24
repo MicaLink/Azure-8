@@ -146,7 +146,7 @@ TestInstructionJNZ.cpp
 | Mémoire | 🟡 |
 | Pile | 🟡 |
 | Emulator | 🟡 |
-| FLAGS | 🟡 |
+| FLAGS | ✅ |
 | Tests | 🟡 |
 | Refactorisation | ⚪ |
 | Optimisation | ⚪ |
@@ -445,10 +445,10 @@ Type.h
 
 | Flag | État |
 |----------|----------|
-| ZERO | 🟡 |
-| NEGATIVE | 🟡 |
-| CARRY | 🟡 |
-| OVERFLOW | 🔴 |
+| ZERO | ✅ |
+| NEGATIVE | ✅ |
+| CARRY | ✅ |
+| OVERFLOW | ✅ |
 
 ---
 
@@ -456,39 +456,43 @@ Type.h
 
 ### ZERO
 
-- [ ] ADD
-- [ ] SUB
-- [ ] INC
-- [ ] DEC
-- [ ] CMP
+- ADD ✅
+- SUB ✅
+- INC ✅
+- DEC ✅
+- CMP ✅
 
 ### NEGATIVE
 
-- [ ] ADD
-- [ ] SUB
-- [ ] INC
-- [ ] DEC
-- [ ] CMP
+- ADD ✅
+- SUB ✅
+- INC ✅
+- DEC ✅
+- CMP ✅
 
 ### CARRY
 
-- [ ] ADD
-- [ ] SUB
-- [ ] CMP
+- ADD ✅
+- SUB ✅
+- CMP ✅
 
 ### OVERFLOW
 
-- [ ] ADD
-- [ ] SUB
-- [ ] INC
-- [ ] DEC
-- [ ] CMP
+- ADD ✅
+- SUB ✅
+- INC ✅
+- DEC ✅
 
 ---
 
 ## Risque Principal
 
-Le flag OVERFLOW représente actuellement la principale zone de consolidation identifiée.
+La validation des FLAGS est terminée.
+
+Le risque principal se situe désormais dans :
+- la modularisation du CPU ;
+- les tests de robustesse ;
+- les protections mémoire et pile.
 
 ---
 
@@ -734,7 +738,7 @@ La revue est terminée lorsque :
 | Mémoire | ⚪ |
 | Pile | ⚪ |
 | Emulator | ⚪ |
-| FLAGS | ⚪ |
+| FLAGS | ✅ |
 | Tests | ⚪ |
 | Maintenabilité | ⚪ |
 | Robustesse | ⚪ |
@@ -767,7 +771,10 @@ La revue est terminée lorsque :
 ### Observations
 
 - La couverture fonctionnelle actuelle est déjà importante.
-- Le flag OVERFLOW représente la principale zone de risque.
+- La validation complète des FLAGS a été réalisée.
+- ADD, SUB, INC et DEC disposent d'une couverture explicite du comportement ZERO, NEGATIVE, CARRY et/ou OVERFLOW selon les besoins de l'instruction.
+- CMP est documenté et OVERFLOW est déclaré non applicable à l'implémentation actuelle.
+- Le risque principal se déplace progressivement vers les tests de robustesse.
 - CPU.cpp devra être découpé pour améliorer sa maintenabilité.
 
 ### Décisions

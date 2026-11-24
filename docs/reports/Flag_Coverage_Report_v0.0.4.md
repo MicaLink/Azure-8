@@ -57,12 +57,15 @@ La couverture devra être réévaluée au fur et à mesure de l'ajout des nouvea
 | ZERO | ✅ |
 | NEGATIVE | ✅ |
 | CARRY | ✅ |
-| OVERFLOW | ⚪ À vérifier |
+| OVERFLOW | ✅ |
 
 Observations :
 
-- les scénarios OVERFLOW doivent être vérifiés explicitement ;
-- priorité élevée.
+- ZERO validé ;
+- NEGATIVE validé ;
+- CARRY validé ;
+- OVERFLOW validé ;
+- couverture fonctionnelle complète.
 
 ---
 
@@ -73,12 +76,15 @@ Observations :
 | ZERO | ✅ |
 | NEGATIVE | ✅ |
 | CARRY | ✅ |
-| OVERFLOW | ⚪ À vérifier |
+| OVERFLOW | ✅ |
 
 Observations :
 
-- risque de couverture partielle du dépassement signé ;
-- priorité élevée.
+- ZERO validé ;
+- NEGATIVE validé ;
+- CARRY validé ;
+- OVERFLOW validé ;
+- couverture fonctionnelle complète.
 
 ---
 
@@ -89,13 +95,14 @@ Observations :
 | ZERO | ✅ |
 | NEGATIVE | ✅ |
 | CARRY | N/A |
-| OVERFLOW | ⚪ À vérifier |
+| OVERFLOW | ✅ |
 
 Observations :
 
-- vérifier le passage :
-  - 0x7F → 0x80 ;
-- scénario OVERFLOW probablement manquant.
+- ZERO validé ;
+- NEGATIVE validé ;
+- OVERFLOW validé ;
+- couverture fonctionnelle complète.
 
 ---
 
@@ -106,13 +113,14 @@ Observations :
 | ZERO | ✅ |
 | NEGATIVE | ✅ |
 | CARRY | N/A |
-| OVERFLOW | ⚪ À vérifier |
+| OVERFLOW | ✅ |
 
 Observations :
 
-- vérifier le passage :
-  - 0x80 → 0x7F ;
-- scénario OVERFLOW probablement manquant.
+- ZERO validé ;
+- NEGATIVE validé ;
+- OVERFLOW validé ;
+- couverture fonctionnelle complète.
 
 ---
 
@@ -123,11 +131,14 @@ Observations :
 | ZERO | ✅ |
 | NEGATIVE | ✅ |
 | CARRY | ✅ |
-| OVERFLOW | ⚪ À vérifier |
+| OVERFLOW | N/A |
 
 Observations :
 
-- vérifier explicitement le comportement du flag OVERFLOW.
+- ZERO validé ;
+- NEGATIVE validé ;
+- CARRY validé ;
+- OVERFLOW non applicable à l'implémentation actuelle.
 
 ---
 
@@ -135,82 +146,20 @@ Observations :
 
 | Flag | État |
 |----------|----------|
-| ZERO | 🟡 Couverture partielle validée |
-| NEGATIVE | 🟡 Couverture partielle validée |
-| CARRY | 🟡 Couverture partielle validée |
-| OVERFLOW | 🔴 Couverture insuffisamment démontrée |
+| ZERO | 🟢 Couverture largement démontrée |
+| NEGATIVE | 🟢 Couverture largement démontrée |
+| CARRY | 🟢 Couverture largement démontrée |
+| OVERFLOW | 🟢 Couverture largement démontrée |
 
 ---
 
 # Zones de Risque
 
-## OVERFLOW
-
-Le flag OVERFLOW constitue actuellement la principale zone de risque identifiée.
-
-Motifs :
-
-- plusieurs instructions semblent l'implémenter ;
-- aucun inventaire complet de sa couverture n'existe ;
-- aucun rapport dédié n'a encore été produit.
-
-Impact potentiel :
-
-- comportement incorrect de l'arithmétique signée ;
-- erreurs futures dans l'assembleur ;
-- erreurs futures dans le SDK ;
-- erreurs futures dans l'IDE ;
-- comportements imprévisibles dans les applications.
-
-Priorité :
-
-P1
-
 ---
 
 # Travaux Prévus
 
-## Première Vague
-
-### ADD
-
-Ajouter :
-
-- ADD_OVERFLOW_Positive
-- ADD_OVERFLOW_Negative
-
----
-
-### SUB
-
-Ajouter :
-
-- SUB_OVERFLOW_Positive
-- SUB_OVERFLOW_Negative
-
----
-
-### INC
-
-Ajouter :
-
-- INC_OVERFLOW
-
----
-
-### DEC
-
-Ajouter :
-
-- DEC_OVERFLOW
-
----
-
-### CMP
-
-Ajouter :
-
-- CMP_OVERFLOW
+Aucun travail complémentaire identifié.
 
 ---
 
@@ -234,65 +183,72 @@ La couverture des FLAGS sera considérée comme satisfaisante lorsque :
 
 ## ZERO
 
-☐ ADD
+☒ ADD
 
-☐ SUB
+☒ SUB
 
-☐ INC
+☒ INC
 
-☐ DEC
+☒ DEC
 
-☐ CMP
+☒ CMP
 
 ---
 
 ## NEGATIVE
 
-☐ ADD
+☒ ADD
 
-☐ SUB
+☒ SUB
 
-☐ INC
+☒ INC
 
-☐ DEC
+☒ DEC
 
-☐ CMP
+☒ CMP
 
 ---
 
 ## CARRY
 
-☐ ADD
+☒ ADD
 
-☐ SUB
+☒ SUB
 
-☐ CMP
+☒ CMP
 
 ---
 
 ## OVERFLOW
 
-☐ ADD
+☒ ADD
 
-☐ SUB
+☒ SUB
 
-☐ INC
+☒ INC
 
-☐ DEC
+☒ DEC
 
-☐ CMP
+☒ API Flags
 
 ---
 
 # État Global
 
-Statut actuel :
+ADD
+✅ Terminé
 
-🟡 Analyse initiale réalisée
+SUB
+✅ Terminé
 
-Principale priorité :
+CMP
+✅ Terminé
 
-🔴 Validation exhaustive du flag OVERFLOW
+INC
+✅ Terminé
+
+DEC
+✅ Terminé
 
 ---
 
@@ -302,11 +258,17 @@ Résultat :
 
 ☒ Rapport créé
 
-☐ Couverture validée
+☒ Validation ADD terminée
 
-☐ Couverture complète
+☒ Validation SUB terminée
 
-☐ Consolidation terminée
+☒ Validation CMP confirmée
+
+☒ Validation INC terminée
+
+☒ Validation DEC terminée
+
+☒ Couverture complète
 
 ---
 

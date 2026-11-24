@@ -57,6 +57,8 @@ Le cœur doit devenir :
 
 ✅ Releases v0.0.3 archivées
 
+✅ Documentation de consolidation finalisée
+
 ---
 
 ## Analyse Technique
@@ -95,9 +97,13 @@ Le cœur doit devenir :
 
 ⚠ Switch d'opcodes centralisé
 
-⚠ FLAGS insuffisamment validés par les tests
+✅ Validation des FLAGS terminée.
 
-⚠ OVERFLOW insuffisamment démontré
+ADD ✅
+SUB ✅
+INC ✅
+DEC ✅
+CMP ✅
 
 ⚠ Tests de robustesse manquants
 
@@ -163,22 +169,20 @@ La priorité absolue est :
 
 # Priorité Stratégique
 
-L'analyse réelle du CPU et des tests a permis d'identifier une priorité plus importante que la modularisation :
+L'analyse du CPU et la validation complète des FLAGS
+ont confirmé que la modularisation du CPU constitue
+désormais la priorité stratégique du cycle v0.0.4.
 
-## Validation des FLAGS
+## Modularisation du CPU
 
-Le code implémente déjà :
+La validation des FLAGS est terminée.
 
-```text
-ZERO
-NEGATIVE
-CARRY
-OVERFLOW
-```
+La priorité stratégique devient :
 
-mais plusieurs comportements critiques ne sont actuellement pas démontrés par les tests.
-
-Avant toute refactorisation du CPU, les scénarios critiques doivent être validés afin de disposer d'un filet de sécurité contre les régressions.
+- isolation de la logique des FLAGS ;
+- isolation des instructions ;
+- réduction du switch d'opcodes ;
+- préparation de l'évolution future du cœur.
 
 ---
 
@@ -252,6 +256,10 @@ P1
 
 Valider explicitement les comportements des FLAGS au travers des instructions CPU.
 
+### Statut
+
+✅ Réalisé
+
 ### Contexte
 
 Les tests actuels démontrent principalement :
@@ -259,12 +267,15 @@ Les tests actuels démontrent principalement :
 - le fonctionnement des instructions ;
 - le fonctionnement de l'API des FLAGS.
 
-Ils ne démontrent pas suffisamment :
+Contexte historique :
 
+Les tests ne démontraient pas suffisamment :
 - ZERO ;
 - NEGATIVE ;
 - CARRY ;
 - OVERFLOW.
+
+Cette limitation a été traitée durant la v0.0.4.
 
 ---
 
@@ -285,7 +296,7 @@ P1
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -306,7 +317,7 @@ P1
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -326,7 +337,7 @@ P1
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -346,7 +357,7 @@ P1
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -364,7 +375,7 @@ P1
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -557,32 +568,10 @@ Test_Matrix_v0.0.4.md
 ## Nouveaux Tests Attendus
 
 ```text
-TestADD_Zero
-TestADD_Carry
-TestADD_Negative
-TestADD_Overflow
-
-TestSUB_Zero
-TestSUB_Carry
-TestSUB_Negative
-TestSUB_Overflow
-
-TestINC_Zero
-TestINC_Negative
-TestINC_Overflow
-
-TestDEC_Zero
-TestDEC_Negative
-TestDEC_Overflow
-
 TestStackOverflow.cpp
-
 TestStackUnderflow.cpp
-
 TestMaxCycles.cpp
-
 TestLargeROM.cpp
-
 TestMemoryBoundary.cpp
 ```
 
@@ -591,18 +580,6 @@ TestMemoryBoundary.cpp
 # Ordre Recommandé d'Exécution
 
 ## Phase 1
-
-Validation des FLAGS
-
-1. ADD
-2. SUB
-3. INC
-4. DEC
-5. CMP
-
----
-
-## Phase 2
 
 Modularisation CPU
 
@@ -613,7 +590,7 @@ Modularisation CPU
 
 ---
 
-## Phase 3
+## Phase 2
 
 Tests de robustesse
 
@@ -623,35 +600,39 @@ Tests de robustesse
 4. ROM surdimensionnée
 5. Frontières mémoire
 
+## Phase 3
+
+Validation finale
+
 ---
 
 # Critères de Sortie
 
 La v0.0.4 sera considérée comme terminée lorsque :
 
-✅ Documentation harmonisée
+☐ Documentation harmonisée
 
 ✅ Documentation réorganisée
 
-✅ CPU consolidé
+☐ CPU consolidé
 
-✅ Mémoire consolidée
+☐ Mémoire consolidée
 
-✅ Pile consolidée
+☐ Pile consolidée
 
 ✅ FLAGS validés
 
 ✅ OVERFLOW démontré
 
-✅ CPU modularisé
+☐ CPU modularisé
 
-✅ Switch simplifié
+☐ Switch simplifié
 
-✅ Tests de robustesse présents
+☐ Tests de robustesse présents
 
-✅ Aucun point critique ouvert
+☐ Aucun point critique ouvert
 
-✅ Aucune régression observée
+☐ Aucune régression observée
 
 ---
 
@@ -659,7 +640,7 @@ La v0.0.4 sera considérée comme terminée lorsque :
 
 État actuel :
 
-☐ Non commencé
+☒ Cycle initié
 
 ☒ Analyse terminée
 
@@ -667,7 +648,7 @@ La v0.0.4 sera considérée comme terminée lorsque :
 
 ☒ Réorganisation documentaire terminée
 
-☐ Validation FLAGS en cours
+☒ Validation FLAGS terminée
 
 ☐ Modularisation CPU en cours
 

@@ -38,7 +38,7 @@ La dette technique actuelle est principalement concentrée sur :
 |----------|----------|
 | CPU | 🔴 |
 | Architecture interne | 🔴 |
-| Couverture FLAGS | 🔴 |
+| Couverture FLAGS | 🟢 |
 | Tests de robustesse | 🔴 |
 | Maintenabilité | 🟡 |
 | Documentation | 🟡 |
@@ -259,7 +259,7 @@ ExecuteCALL();
 
 ### Titre
 
-Couverture OVERFLOW insuffisamment démontrée
+Validation OVERFLOW incomplète
 
 ### Priorité
 
@@ -267,7 +267,7 @@ P1
 
 ### Niveau de risque
 
-Élevé
+Modéré
 
 ### Description
 
@@ -275,11 +275,10 @@ La couverture du flag OVERFLOW n'est pas démontrée de manière explicite pour 
 
 ### Instructions concernées
 
-- ADD ;
-- SUB ;
-- INC ;
-- DEC ;
-- CMP.
+ADD : ✅ Validé
+SUB : ✅ Validé
+INC : ✅ Validé
+DEC : ✅ Validé
 
 ### Action corrective
 
@@ -293,7 +292,7 @@ Flag_Coverage_Report_v0.0.4.md
 
 ### Statut
 
-🟡 À traiter
+✅ Résolu
 
 ---
 
@@ -760,7 +759,6 @@ docs/reports/
 
 ### Tests
 
-- Couverture OVERFLOW ;
 - Stack Overflow ;
 - Stack Underflow ;
 - MAX_CYCLES ;
@@ -788,7 +786,7 @@ docs/reports/
 | Phase | Objectif | État |
 |---------|-----------|---------|
 | 1 | Réorganisation documentaire | ✅ |
-| 2 | Analyse du CPU | 🟡 |
+| 2 | Analyse du CPU | ✅ |
 | 3 | Modularisation CPU | ⚪ |
 | 4 | Réduction du switch | ⚪ |
 | 5 | Renforcement des tests | ⚪ |
@@ -820,7 +818,7 @@ La dette technique sera considérée comme suffisamment réduite lorsque :
 |----------|----------|
 | CPU | 🔴 |
 | Architecture CPU | 🔴 |
-| FLAGS | 🔴 |
+| FLAGS | ✅ |
 | Tests de robustesse | 🔴 |
 | Mémoire | 🟡 |
 | Documentation | 🟡 |
@@ -849,12 +847,13 @@ Résultat :
 
 Priorité immédiate :
 
-```text
-Analyse détaillée de CPU.h
-Analyse détaillée de CPU.cpp
-```
+Démarrage de la modularisation CPU.
 
-afin de démarrer concrètement la modularisation du processeur prévue dans le cycle v0.0.4.
+Objectif :
+
+- démarrer la modularisation CPU ;
+- isoler la logique des FLAGS ;
+- isoler l'implémentation des instructions.
 
 ---
 

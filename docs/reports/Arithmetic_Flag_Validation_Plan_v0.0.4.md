@@ -50,15 +50,43 @@ La validation doit démontrer :
 
 # État Actuel
 
+## Travaux Réalisés
+
+### ADD
+
+Validé :
+
+- ADD_Zero
+- ADD_Carry
+- ADD_Negative
+- ADD_Overflow
+
+Résultat :
+
+✅ Validation complète
+
+### SUB
+
+Validé :
+
+- SUB_Zero
+- SUB_Carry
+- SUB_Negative
+- SUB_Overflow
+
+Résultat :
+
+✅ Validation complète
+
 ## Couverture Confirmée
 
 | Instruction | Couverture Actuelle |
 |----------|----------|
 | CMP | ✅ Bonne |
-| ADD | ⚠ Partielle |
-| SUB | ⚠ Partielle |
-| INC | ⚠ Partielle |
-| DEC | ⚠ Partielle |
+| ADD | ✅ Complète |
+| SUB | ✅ Complète |
+| INC | ✅ Complète |
+| DEC | ✅ Complète |
 
 ---
 
@@ -70,7 +98,12 @@ CMP dispose déjà de scénarios validant :
 - NEGATIVE ;
 - CARRY.
 
-Les autres instructions valident principalement le résultat final mais pas les FLAGS associés.
+ADD, SUB, INC et DEC disposent désormais
+d'une validation explicite des FLAGS.
+
+Aucun travail fonctionnel restant identifié.
+
+La campagne de validation des FLAGS est terminée.
 
 ---
 
@@ -86,7 +119,7 @@ Validé :
 
 ---
 
-## Tests à Ajouter
+## Tests Implémentés
 
 ### ADD_Zero
 
@@ -161,7 +194,7 @@ Validé :
 
 ---
 
-## Tests à Ajouter
+## Tests Implémentés
 
 ### SUB_Zero
 
@@ -237,7 +270,7 @@ Validé :
 
 ---
 
-## Tests à Ajouter
+## Tests Implémentés
 
 ### INC_Zero
 
@@ -293,7 +326,7 @@ Validé :
 
 ---
 
-## Tests à Ajouter
+## Tests Implémentés
 
 ### DEC_Zero
 
@@ -373,66 +406,27 @@ Validation :
 
 ---
 
-## Vérification Requise
+## Décision Architecture
 
-Point à vérifier :
+CMP met à jour :
 
-```text
-CMP doit-il mettre à jour OVERFLOW ?
-```
+- ZERO ;
+- NEGATIVE ;
+- CARRY.
 
-Cette question devra être validée à partir :
+CMP ne met pas à jour :
 
-- des spécifications ISA ;
-- du comportement attendu de l'architecture.
+- OVERFLOW.
 
----
+Justification :
 
-# Priorisation
-
-## Priorité 1
-
-### ADD
-
-- ADD_Zero
-- ADD_Carry
-- ADD_Negative
-- ADD_Overflow
-
----
-
-### SUB
-
-- SUB_Zero
-- SUB_Carry
-- SUB_Negative
-- SUB_Overflow
-
----
-
-## Priorité 2
-
-### INC
-
-- INC_Zero
-- INC_Negative
-- INC_Overflow
-
----
-
-### DEC
-
-- DEC_Zero
-- DEC_Negative
-- DEC_Overflow
-
----
-
-## Priorité 3
-
-### CMP
-
-Vérification documentaire concernant OVERFLOW.
+- CMP est utilisé comme comparaison logique ;
+- les branchements actuellement disponibles (JZ, JNZ)
+  n'utilisent pas OVERFLOW ;
+- l'ISA v0.0.4 ne définit aucun branchement signé
+  nécessitant OVERFLOW ;
+- le comportement est cohérent avec l'implémentation
+  actuelle du CPU.
 
 ---
 
@@ -444,7 +438,7 @@ ADD
 
 État :
 
-⚪
+✅
 
 ---
 
@@ -454,7 +448,7 @@ SUB
 
 État :
 
-⚪
+✅
 
 ---
 
@@ -464,7 +458,7 @@ INC
 
 État :
 
-⚪
+✅
 
 ---
 
@@ -474,7 +468,7 @@ DEC
 
 État :
 
-⚪
+✅
 
 ---
 
@@ -484,7 +478,7 @@ CMP
 
 État :
 
-⚪
+✅
 
 ---
 
@@ -504,7 +498,7 @@ Technical_Debt_Report_v0.0.4.md
 
 État :
 
-⚪
+✅
 
 ---
 
@@ -538,7 +532,7 @@ La validation des FLAGS sera considérée comme terminée lorsque :
 | SUB | ✅ | ✅ | ✅ | ✅ |
 | INC | ✅ | ✅ | N/A | ✅ |
 | DEC | ✅ | ✅ | N/A | ✅ |
-| CMP | ✅ | ✅ | ✅ | À vérifier |
+| CMP | ✅ | ✅ | ✅ | N/A |
 
 ---
 
@@ -546,42 +540,41 @@ La validation des FLAGS sera considérée comme terminée lorsque :
 
 ## ADD
 
-- [ ] Zero
-- [ ] Carry
-- [ ] Negative
-- [ ] Overflow
+☒ Zero
+☒ Carry
+☒ Negative
+☒ Overflow
 
 ---
 
 ## SUB
 
-- [ ] Zero
-- [ ] Carry
-- [ ] Negative
-- [ ] Overflow
+☒ Zero
+☒ Carry
+☒ Negative
+☒ Overflow
 
 ---
 
 ## INC
 
-- [ ] Zero
-- [ ] Negative
-- [ ] Overflow
+☒ Zero
+☒ Negative
+☒ Overflow
 
 ---
 
 ## DEC
 
-- [ ] Zero
-- [ ] Negative
-- [ ] Overflow
+☒ Zero
+☒ Negative
+☒ Overflow
 
 ---
 
-## CMP
-
-- [ ] Comportement documenté
-- [ ] OVERFLOW vérifié
+CMP
+☒ Comportement documenté
+☒ OVERFLOW déclaré non applicable
 
 ---
 
@@ -591,13 +584,13 @@ Résultat :
 
 ☒ Plan rédigé
 
-☐ Implémentation démarrée
+☒ Implémentation démarrée
 
-☐ Validation partielle
+☒ Validation partielle
 
-☐ Validation complète
+☒ Validation complète
 
-☐ Couverture consolidée
+☒ Couverture consolidée
 
 ---
 
