@@ -23,7 +23,10 @@
 
                 "src\\Azure8\\CPU.cpp",
                 "src\\Azure8\\Memory.cpp",
-                "src\\Azure8\\Emulator.cpp"
+                "src\\Azure8\\Emulator.cpp",
+
+                "src\\Azure8\\CPU\\CPUFlags.cpp",
+                "src\\Azure8\\CPU\\CPUInstructions.cpp"
             ],
             "group": {
                 "kind": "build",
@@ -52,7 +55,10 @@
 
                 "src\\Azure8\\CPU.cpp",
                 "src\\Azure8\\Memory.cpp",
-                "src\\Azure8\\Emulator.cpp"
+                "src\\Azure8\\Emulator.cpp",
+
+                "src\\Azure8\\CPU\\CPUFlags.cpp",
+                "src\\Azure8\\CPU\\CPUInstructions.cpp"
             ],
             "problemMatcher": [
                 "$msCompile"
@@ -102,7 +108,10 @@
 
                 "src\\Azure8\\CPU.cpp",
                 "src\\Azure8\\Memory.cpp",
-                "src\\Azure8\\Emulator.cpp"
+                "src\\Azure8\\Emulator.cpp",
+
+                "src\\Azure8\\CPU\\CPUFlags.cpp",
+                "src\\Azure8\\CPU\\CPUInstructions.cpp"
             ],
             "problemMatcher": [
                 "$msCompile"

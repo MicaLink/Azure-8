@@ -37,10 +37,25 @@ public:
 
     u8& GetRegister(u8 reg);
 
-    bool HasRegisterError() const;
+    //-------------------------------------------------
+    // Program State
+    //-------------------------------------------------
+
+    u16 GetSP() const;
+    u16 GetPC() const;
+
+    u8 GetFlags() const;
 
     //-------------------------------------------------
-    // Stack
+    // Error State
+    //-------------------------------------------------
+
+    bool HasRegisterError() const;
+    bool HasStackOverflow() const;
+    bool HasStackUnderflow() const;
+
+    //-------------------------------------------------
+    // Stack Operations
     //-------------------------------------------------
 
     void Push8(Memory& memory, u8 value);
@@ -50,7 +65,7 @@ public:
     u16 Pop16(Memory& memory);
 
     //-------------------------------------------------
-    // Flags
+    // Flag Operations
     //-------------------------------------------------
 
     void SetFlag(u8 flag);
@@ -63,8 +78,32 @@ public:
     void UpdateNegativeFlag(u8 value);
     void UpdateOverflowFlag(bool overflow);
 
-    u8 GetFlags() const;
-    
+    //-------------------------------------------------
+    // Instruction Handlers
+    //-------------------------------------------------
+
+    void ExecuteMOV(Memory& memory);
+    void ExecuteLOAD(Memory& memory);
+    void ExecuteSTORE(Memory& memory);
+
+    void ExecutePUSH(Memory& memory);
+    void ExecutePOP(Memory& memory);
+
+    void ExecuteCALL(Memory& memory);
+    void ExecuteRET(Memory& memory);
+
+    void ExecuteINC(Memory& memory);
+    void ExecuteDEC(Memory& memory);
+
+    void ExecuteADD(Memory& memory);
+    void ExecuteSUB(Memory& memory);
+
+    void ExecuteCMP(Memory& memory);
+
+    void ExecuteJMP(Memory& memory);
+    void ExecuteJZ(Memory& memory);
+    void ExecuteJNZ(Memory& memory);
+
     //-------------------------------------------------
     // Debug
     //-------------------------------------------------
@@ -73,16 +112,6 @@ public:
     void DumpRegister() const;
     void DumpMemory(const Memory& memory, u16 startAddress, u16 count = 128) const;
 
-    //-------------------------------------------------
-    // Status
-    //-------------------------------------------------
-
-    u16 GetSP() const;
-    u16 GetPC() const;
-
-    bool HasStackOverflow() const;
-    bool HasStackUnderflow() const;
-
 private:
 
     //-------------------------------------------------
@@ -90,6 +119,7 @@ private:
     //-------------------------------------------------
 
     u8 FetchByte(Memory& memory);
+
 private:
 
     //-------------------------------------------------

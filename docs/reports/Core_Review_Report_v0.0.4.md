@@ -706,7 +706,7 @@ InstructionTable
 |---------|-----------|---------|
 | 1 | Analyse du cœur | 🟡 |
 | 2 | Cartographie des risques | ⚪ |
-| 3 | Modularisation CPU | ⚪ |
+| 3 | Modularisation CPU | 🟡 |
 | 4 | Réduction du switch | ⚪ |
 | 5 | Renforcement des tests | ⚪ |
 | 6 | Validation finale | ⚪ |

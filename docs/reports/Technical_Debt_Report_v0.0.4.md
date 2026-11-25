@@ -172,7 +172,7 @@ CPUFlags.h
 
 ### Statut
 
-🟡 Planifiée
+✅ Résolu
 
 ---
 
@@ -207,7 +207,7 @@ CPUInstructions.h
 
 ### Statut
 
-🟡 Planifiée
+✅ Résolu
 
 ---
 
@@ -787,7 +787,7 @@ docs/reports/
 |---------|-----------|---------|
 | 1 | Réorganisation documentaire | ✅ |
 | 2 | Analyse du CPU | ✅ |
-| 3 | Modularisation CPU | ⚪ |
+| 3 | Modularisation CPU | 🟡 |
 | 4 | Réduction du switch | ⚪ |
 | 5 | Renforcement des tests | ⚪ |
 | 6 | Validation finale | ⚪ |
