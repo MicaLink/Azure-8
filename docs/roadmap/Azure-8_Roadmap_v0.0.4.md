@@ -281,7 +281,7 @@ Cette limitation a été traitée durant la v0.0.4.
 
 ## T3.1 — Validation ADD
 
-Ajouter :
+Implémenté :
 
 ```text
 TestADD_Zero
@@ -302,7 +302,7 @@ P1
 
 ## T3.2 — Validation SUB
 
-Ajouter :
+Implémenté :
 
 ```text
 TestSUB_Zero
@@ -323,7 +323,7 @@ P1
 
 ## T3.3 — Validation INC
 
-Ajouter :
+Implémenté :
 
 ```text
 TestINC_Zero
@@ -343,7 +343,7 @@ P1
 
 ## T3.4 — Validation DEC
 
-Ajouter :
+Implémenté :
 
 ```text
 TestDEC_Zero
@@ -363,11 +363,18 @@ P1
 
 ## T3.5 — Vérification CMP
 
-Vérifier la cohérence entre :
+Décision prise :
 
-- implémentation ;
-- documentation ISA ;
-- comportement attendu concernant OVERFLOW.
+CMP met à jour :
+- ZERO ;
+- NEGATIVE ;
+- CARRY.
+
+CMP ne met pas à jour :
+- OVERFLOW.
+
+Statut :
+✅ Réalisé
 
 ### Priorité
 
