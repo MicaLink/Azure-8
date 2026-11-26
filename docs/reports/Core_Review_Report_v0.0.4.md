@@ -98,7 +98,10 @@ src/
 │  ├─ Emulator.h
 │  │
 │  └─ CPU/
-│      ├─ (future structure v0.0.4)
+│     ├─ CPUFlags.cpp
+│     ├─ CPUFlags.h
+│     ├─ CPUInstructions.cpp
+│     └─ CPUInstructions.h
 │
 └─ Core/
     └─ Type.h
@@ -148,7 +151,7 @@ TestInstructionJNZ.cpp
 | Emulator | 🟡 |
 | FLAGS | ✅ |
 | Tests | 🟡 |
-| Refactorisation | ⚪ |
+| Refactorisation | ✅ |
 | Optimisation | ⚪ |
 
 ### Légende
@@ -539,7 +542,7 @@ CPU.h
 
 ---
 
-## Architecture Cible
+## Architecture réalisée
 
 ```text
 src/Azure8/
@@ -593,11 +596,11 @@ Responsabilités :
 
 ## Validation
 
-- [ ] Structure définie
-- [ ] Dépendances identifiées
-- [ ] Plan de migration défini
-- [ ] Aucun changement fonctionnel
-- [ ] Compatibilité préservée
+✅ Structure implémentée
+✅ CPUFlags extrait
+✅ CPUInstructions extrait
+✅ Compatibilité préservée
+✅ Tests validés
 
 ---
 
@@ -626,8 +629,15 @@ ExecuteMOV();
 ExecuteLOAD();
 ExecuteSTORE();
 
+ExecuteINC();
+ExecuteDEC();
 ExecuteADD();
 ExecuteSUB();
+ExecuteCMP();
+
+ExecuteJMP();
+ExecuteJZ();
+ExecuteJNZ();
 
 ExecutePUSH();
 ExecutePOP();
@@ -658,10 +668,10 @@ InstructionTable
 
 ## Validation
 
-- [ ] Switch analysé
-- [ ] Responsabilités identifiées
-- [ ] Taille documentée
-- [ ] Plan de migration défini
+✅ Instructions extraites
+✅ Handlers créés
+✅ Switch allégé
+✅ Compatibilité validée
 
 ---
 
@@ -706,7 +716,7 @@ InstructionTable
 |---------|-----------|---------|
 | 1 | Analyse du cœur | 🟡 |
 | 2 | Cartographie des risques | ⚪ |
-| 3 | Modularisation CPU | 🟡 |
+| 3 | Modularisation CPU | ✅ |
 | 4 | Réduction du switch | ⚪ |
 | 5 | Renforcement des tests | ⚪ |
 | 6 | Validation finale | ⚪ |

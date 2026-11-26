@@ -398,7 +398,7 @@ P1
 
 ### Statut
 
-⚪ À réaliser
+🟡 En cours
 
 ---
 
@@ -441,7 +441,7 @@ P1
 
 ### Statut
 
-🟡 En cours
+✅ Réalisée
 
 ---
 
@@ -474,7 +474,7 @@ P1
 
 ### Statut
 
-⚪ À réaliser
+🟡 En cours
 
 ---
 
@@ -631,9 +631,13 @@ La v0.0.4 sera considérée comme terminée lorsque :
 
 ✅ OVERFLOW démontré
 
-☐ CPU modularisé
+✅ CPU modularisé
 
-☐ Switch simplifié
+✅ Instructions isolées
+
+✅ FLAGS isolés
+
+🟡 Switch simplifié
 
 ☐ Tests de robustesse présents
 

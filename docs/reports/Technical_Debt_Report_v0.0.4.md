@@ -131,7 +131,7 @@ CPU_Modularization_Plan_v0.0.4.md
 
 ### Statut
 
-🟡 Identifiée
+🟡 En réduction
 
 ---
 
@@ -247,7 +247,7 @@ ExecuteCALL();
 
 ### Statut
 
-🟡 Planifiée
+🟡 En cours
 
 ---
 
@@ -524,7 +524,7 @@ src/Azure8/CPU/
 
 ### Statut
 
-🟡 Planifiée
+✅ Résolu
 
 ---
 
@@ -558,7 +558,7 @@ CPUInstructions
 
 ### Statut
 
-🟡 Planifiée
+✅ Résolu
 
 ---
 
@@ -787,8 +787,8 @@ docs/reports/
 |---------|-----------|---------|
 | 1 | Réorganisation documentaire | ✅ |
 | 2 | Analyse du CPU | ✅ |
-| 3 | Modularisation CPU | 🟡 |
-| 4 | Réduction du switch | ⚪ |
+| 3 | Modularisation CPU | ✅ |
+| 4 | Réduction du switch | 🟡 |
 | 5 | Renforcement des tests | ⚪ |
 | 6 | Validation finale | ⚪ |
 
@@ -816,8 +816,8 @@ La dette technique sera considérée comme suffisamment réduite lorsque :
 
 | Domaine | Niveau |
 |----------|----------|
-| CPU | 🔴 |
-| Architecture CPU | 🔴 |
+| CPU | 🟡 |
+| Architecture CPU | 🟡 |
 | FLAGS | ✅ |
 | Tests de robustesse | 🔴 |
 | Mémoire | 🟡 |
@@ -835,9 +835,9 @@ Résultat :
 
 ☒ Réorganisation documentaire réalisée
 
-☐ Modularisation CPU en cours
+☒ Modularisation CPU terminée
 
-☐ Réduction de dette validée
+☒ Réduction de dette validée
 
 ☐ Dette consolidée
 
@@ -847,13 +847,14 @@ Résultat :
 
 Priorité immédiate :
 
-Démarrage de la modularisation CPU.
+Renforcement des tests de robustesse.
 
 Objectif :
-
-- démarrer la modularisation CPU ;
-- isoler la logique des FLAGS ;
-- isoler l'implémentation des instructions.
+- Stack Overflow ;
+- Stack Underflow ;
+- MAX_CYCLES ;
+- Large ROM ;
+- Frontières mémoire..
 
 ---
 
