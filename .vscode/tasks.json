@@ -86,6 +86,11 @@
                 "tests\\TestFlags.cpp",
                 "tests\\TestMemory.cpp",
                 "tests\\TestStack.cpp",
+                "tests\\TestStackOverflow.cpp",
+                "tests\\TestStackUnderflow.cpp",
+                "tests\\TestMemoryBoundary.cpp",
+                "tests\\TestLargeROM.cpp",
+                "tests\\TestMaxCycles.cpp",
 
                 "tests\\TestInstructionMOV.cpp",
                 "tests\\TestInstructionLOAD.cpp",

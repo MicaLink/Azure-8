@@ -36,8 +36,8 @@ La dette technique actuelle est principalement concentrée sur :
 
 | Domaine | Niveau |
 |----------|----------|
-| CPU | 🔴 |
-| Architecture interne | 🔴 |
+| CPU | 🟡 |
+| Architecture interne | 🟡 |
 | Couverture FLAGS | 🟢 |
 | Tests de robustesse | 🔴 |
 | Maintenabilité | 🟡 |
@@ -320,7 +320,7 @@ TestStackOverflow.cpp
 
 ### Statut
 
-🔴 Non traité
+✅ Résolu
 
 ---
 
@@ -348,7 +348,7 @@ TestStackUnderflow.cpp
 
 ### Statut
 
-🔴 Non traité
+✅ Résolu
 
 ---
 
@@ -376,7 +376,7 @@ TestMaxCycles.cpp
 
 ### Statut
 
-🔴 Non traité
+✅ Résolu
 
 ---
 
@@ -404,7 +404,7 @@ TestLargeROM.cpp
 
 ### Statut
 
-🔴 Non traité
+✅ Résolu
 
 ---
 
@@ -432,7 +432,7 @@ TestMemoryBoundary.cpp
 
 ### Statut
 
-🔴 Non traité
+✅ Résolu
 
 ---
 
@@ -789,7 +789,7 @@ docs/reports/
 | 2 | Analyse du CPU | ✅ |
 | 3 | Modularisation CPU | ✅ |
 | 4 | Réduction du switch | 🟡 |
-| 5 | Renforcement des tests | ⚪ |
+| 5 | Renforcement des tests | ✅ |
 | 6 | Validation finale | ⚪ |
 
 ---
@@ -819,7 +819,7 @@ La dette technique sera considérée comme suffisamment réduite lorsque :
 | CPU | 🟡 |
 | Architecture CPU | 🟡 |
 | FLAGS | ✅ |
-| Tests de robustesse | 🔴 |
+| Tests de robustesse | ✅ |
 | Mémoire | 🟡 |
 | Documentation | 🟡 |
 | Organisation documentaire | ✅ |
@@ -847,14 +847,8 @@ Résultat :
 
 Priorité immédiate :
 
-Renforcement des tests de robustesse.
-
-Objectif :
-- Stack Overflow ;
-- Stack Underflow ;
-- MAX_CYCLES ;
-- Large ROM ;
-- Frontières mémoire..
+Validation finale du cycle v0.0.4
+et harmonisation documentaire.
 
 ---
 

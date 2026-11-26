@@ -2,7 +2,7 @@
 
 Projet : Azure-8  
 Version : v0.0.4  
-Statut : En cours  
+Statut : Validation Finale  
 Type : Version de Consolidation  
 Version Précédente : v0.0.3
 
@@ -93,9 +93,11 @@ Le cœur doit devenir :
 
 ### Points d'Attention
 
-⚠ CPU.cpp monolithique
+⚠ Réduction du switch encore en cours
 
-⚠ Switch d'opcodes centralisé
+⚠ Harmonisation documentaire finale
+
+⚠ Validation finale du cycle à effectuer
 
 ✅ Validation des FLAGS terminée.
 
@@ -104,8 +106,6 @@ SUB ✅
 INC ✅
 DEC ✅
 CMP ✅
-
-⚠ Tests de robustesse manquants
 
 ---
 
@@ -169,9 +169,14 @@ La priorité absolue est :
 
 # Priorité Stratégique
 
-L'analyse du CPU et la validation complète des FLAGS
-ont confirmé que la modularisation du CPU constitue
-désormais la priorité stratégique du cycle v0.0.4.
+La modularisation du CPU est terminée.
+
+La priorité stratégique du cycle devient :
+
+- validation finale ;
+- harmonisation documentaire ;
+- clôture de la dette technique restante ;
+- préparation de la v0.0.5.
 
 ## Modularisation du CPU
 
@@ -490,7 +495,7 @@ TestStackOverflow.cpp
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -504,7 +509,7 @@ TestStackUnderflow.cpp
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -518,7 +523,7 @@ TestMaxCycles.cpp
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -532,7 +537,7 @@ TestLargeROM.cpp
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -546,7 +551,7 @@ TestMemoryBoundary.cpp
 
 ### Statut
 
-⚪ À réaliser
+✅ Réalisé
 
 ---
 
@@ -588,28 +593,14 @@ TestMemoryBoundary.cpp
 
 ## Phase 1
 
-Modularisation CPU
+### Modularisation du CPU
 
-1. Création du dossier CPU
-2. Extraction CPUFlags
-3. Extraction CPUInstructions
-4. Réduction du switch
+✅ Isolation des FLAGS réalisée
+✅ Isolation des instructions réalisée
+✅ CPU modularisé
 
----
-
-## Phase 2
-
-Tests de robustesse
-
-1. Stack Overflow
-2. Stack Underflow
-3. MAX_CYCLES
-4. ROM surdimensionnée
-5. Frontières mémoire
-
-## Phase 3
-
-Validation finale
+La réduction du switch d'opcodes reste en cours
+dans le cadre de la consolidation finale.
 
 ---
 
@@ -621,11 +612,11 @@ La v0.0.4 sera considérée comme terminée lorsque :
 
 ✅ Documentation réorganisée
 
-☐ CPU consolidé
+✅ CPU consolidé
 
-☐ Mémoire consolidée
+✅ Mémoire consolidée
 
-☐ Pile consolidée
+✅ Pile consolidée
 
 ✅ FLAGS validés
 
@@ -639,11 +630,11 @@ La v0.0.4 sera considérée comme terminée lorsque :
 
 🟡 Switch simplifié
 
-☐ Tests de robustesse présents
+✅ Tests de robustesse présents
 
 ☐ Aucun point critique ouvert
 
-☐ Aucune régression observée
+✅ Aucune régression observée
 
 ---
 
@@ -661,9 +652,9 @@ La v0.0.4 sera considérée comme terminée lorsque :
 
 ☒ Validation FLAGS terminée
 
-☐ Modularisation CPU en cours
+☒ Modularisation CPU terminée
 
-☐ Consolidation validée
+☒ Consolidation validée
 
 ---
 
@@ -690,4 +681,4 @@ Les sujets suivants restent hors périmètre jusqu'à la fin de la v0.0.4 :
 **Fin du document**  
 **Azure-8_Roadmap_v0.0.4.md**  
 **Version : v0.0.4**  
-**Statut : En cours**
+**Statut : Validation Finale**

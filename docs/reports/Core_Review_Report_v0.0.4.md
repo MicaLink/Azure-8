@@ -150,7 +150,7 @@ TestInstructionJNZ.cpp
 | Pile | 🟡 |
 | Emulator | 🟡 |
 | FLAGS | ✅ |
-| Tests | 🟡 |
+| Tests | ✅ |
 | Refactorisation | ✅ |
 | Optimisation | ⚪ |
 
@@ -693,11 +693,11 @@ InstructionTable
 
 | Test | Statut |
 |----------|----------|
-| TestStackOverflow.cpp | 🔴 |
-| TestStackUnderflow.cpp | 🔴 |
-| TestMaxCycles.cpp | 🔴 |
-| TestLargeROM.cpp | 🔴 |
-| TestMemoryBoundary.cpp | 🔴 |
+| TestStackOverflow.cpp | ✅ |
+| TestStackUnderflow.cpp | ✅ |
+| TestMaxCycles.cpp | ✅ |
+| TestLargeROM.cpp | ✅ |
+| TestMemoryBoundary.cpp | ✅ |
 
 ---
 
@@ -744,14 +744,14 @@ La revue est terminée lorsque :
 
 | Domaine | État |
 |----------|----------|
-| CPU | ⚪ |
-| Mémoire | ⚪ |
-| Pile | ⚪ |
+| CPU | ✅ |
+| Mémoire | ✅ |
+| Pile | ✅ |
 | Emulator | ⚪ |
 | FLAGS | ✅ |
-| Tests | ⚪ |
+| Tests | ✅ |
 | Maintenabilité | ⚪ |
-| Robustesse | ⚪ |
+| Robustesse | ✅ |
 
 ---
 

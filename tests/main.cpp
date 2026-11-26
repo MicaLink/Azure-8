@@ -1,6 +1,19 @@
 #include <cstdio>
 
 //-----------------------------------------------------
+// Emulator
+//-----------------------------------------------------
+
+void TestROMMaximumSize();
+void TestROMTooLarge();
+
+//-----------------------------------------------------
+// Infinite Loop
+//-----------------------------------------------------
+
+void TestMaxCycles();
+
+//-----------------------------------------------------
 // Memory
 //-----------------------------------------------------
 
@@ -22,6 +35,32 @@ void TestZeroFlag();
 void TestNegativeFlag();
 void TestCarryFlag();
 void TestOverflowFlag();
+
+//-----------------------------------------------------
+// Stack Overflow
+//-----------------------------------------------------
+
+void TestStackOverflow();
+void TestStackOverflowPush16();
+
+//-----------------------------------------------------
+// Stack Underflow
+//-----------------------------------------------------
+
+void TestStackUnderflowPop8();
+void TestStackUnderflowPop16();
+
+//-----------------------------------------------------
+// Memory Boundary
+//-----------------------------------------------------
+
+void TestMemoryBoundaryLow();
+void TestMemoryBoundaryHigh();
+
+void TestMemoryBoundaryRead16Low();
+void TestMemoryBoundaryRead16High();
+
+void TestMemoryBoundaryWrite16High();
 
 //-----------------------------------------------------
 // CPU
@@ -61,6 +100,27 @@ int main()
     printf("========================================\n");
     printf("AzureEngine Test Suite\n");
     printf("========================================\n\n");
+
+    //-------------------------------------------------
+    // Emulator
+    //-------------------------------------------------
+
+    printf("Running Large ROM Tests...\n");
+
+    TestROMMaximumSize();
+    TestROMTooLarge();
+
+    printf("Large ROM Tests Passed\n\n");
+
+    //-------------------------------------------------
+    // Infinite Loop
+    //-------------------------------------------------
+
+    printf("Running Max Cycles Tests...\n");
+
+    TestMaxCycles();
+
+    printf("Max Cycles Tests Passed\n\n");
 
     //-------------------------------------------------
     // Memory
@@ -123,6 +183,44 @@ int main()
     TestJNZ();
 
     printf("Instruction Tests Passed\n\n");
+
+    //-----------------------------------------------------
+    // Stack Overflow
+    //-----------------------------------------------------
+
+    printf("Running Stack Overflow Tests...\n");
+
+    TestStackOverflow();
+    TestStackOverflowPush16();
+
+    printf("Stack Overflow Tests Passed\n\n");
+
+    //-----------------------------------------------------
+    // Stack Underflow
+    //-----------------------------------------------------
+
+    printf("Running Stack Underflow Tests...\n");
+
+    TestStackUnderflowPop8();
+    TestStackUnderflowPop16();
+
+    printf("Stack Underflow Tests Passed\n\n");
+
+    //-------------------------------------------------
+    // Memory Boundary
+    //-------------------------------------------------
+
+    printf("Running Memory Boundary Tests...\n");
+
+    TestMemoryBoundaryLow();
+    TestMemoryBoundaryHigh();
+
+    TestMemoryBoundaryRead16Low();
+    TestMemoryBoundaryRead16High();
+
+    TestMemoryBoundaryWrite16High();
+
+    printf("Memory Boundary Tests Passed\n\n");
 
     //-------------------------------------------------
     // CPU
