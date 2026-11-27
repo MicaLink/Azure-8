@@ -104,6 +104,10 @@ public:
     void ExecuteJZ(Memory& memory);
     void ExecuteJNZ(Memory& memory);
 
+    void ExecuteNOP();
+    void ExecuteHLT();
+    void HandleUnknownOpcode(u8 opcode);
+
     //-------------------------------------------------
     // Debug
     //-------------------------------------------------
@@ -111,6 +115,9 @@ public:
     void DumpStack(const Memory& memory, u16 count = 16) const;
     void DumpRegister() const;
     void DumpMemory(const Memory& memory, u16 startAddress, u16 count = 128) const;
+
+    void SetDebugEnabled(bool enabled);
+    bool IsDebugEnabled() const;
 
 private:
 
@@ -151,4 +158,6 @@ private:
     bool m_StackUnderflow = false;
 
     bool m_RegisterError = false;
+
+    bool m_DebugEnabled = false;
 };

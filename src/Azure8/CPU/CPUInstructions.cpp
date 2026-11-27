@@ -1,6 +1,8 @@
 #include "../CPU.h"
 #include "../Memory.h"
 
+#include <cstdio>
+
 //-------------------------------------------------
 // Data Transfer
 //-------------------------------------------------
@@ -223,4 +225,25 @@ void CPU::ExecuteJNZ(Memory& memory)
     {
         PC = address;
     }
+}
+
+//-------------------------------------------------
+// CPU Control
+//-------------------------------------------------
+
+void CPU::ExecuteNOP()
+{
+
+}
+
+void CPU::ExecuteHLT()
+{
+    printf("CPU HALTED\n");
+    m_Halted = true;
+}
+
+void CPU::HandleUnknownOpcode(u8 opcode)
+{
+    printf("UNKNOWN OPCODE %02X\n", opcode);
+    m_Halted = true;
 }

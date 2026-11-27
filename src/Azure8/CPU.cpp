@@ -289,6 +289,24 @@ void CPU::DumpMemory(const Memory& memory, u16 startAddress, u16 count) const
 }
 
 //-----------------------------------------------------
+// SetDebugEnabled
+//-----------------------------------------------------
+
+void CPU::SetDebugEnabled(bool enabled)
+{
+    m_DebugEnabled = enabled;
+}
+
+//-----------------------------------------------------
+// IsDebugEnabled
+//-----------------------------------------------------
+
+bool CPU::IsDebugEnabled() const
+{
+    return m_DebugEnabled;
+}
+
+//-----------------------------------------------------
 // Step
 //-----------------------------------------------------
 
@@ -296,104 +314,33 @@ void CPU::Step(Memory& memory)
 {
     const u8 opcode = FetchByte(memory);
 
-    printf("PC=%04X SP=%04X FLAGS=%02X OPCODE=%02X\n", static_cast<u16>(PC - 1), SP, FLAGS, opcode);
+    if (m_DebugEnabled)
+        printf("PC=%04X SP=%04X FLAGS=%02X OPCODE=%02X\n", static_cast<u16>(PC - 1), SP, FLAGS, opcode);
 
     switch (opcode)
     {
-        case OPCODE_NOP:
-        {
-            break;
-        }
-        case OPCODE_MOV:
-        {
-            ExecuteMOV(memory);
-            break;
-        }
-        case OPCODE_LOAD:
-        {
-            ExecuteLOAD(memory);
-            break;
-        }
-        case OPCODE_STORE:
-        {
-            ExecuteSTORE(memory);
-            break;
-        }
-        case OPCODE_PUSH:
-        {
-            ExecutePUSH(memory);
-            break;
-        }
-        case OPCODE_POP:
-        {
-            ExecutePOP(memory);
-            break;
-        }
-        case OPCODE_CALL:
-        {
-            ExecuteCALL(memory);
-            break;
-        }
-        case OPCODE_RET:
-        {
-            ExecuteRET(memory);
-            break;
-        }
+        case OPCODE_NOP: ExecuteNOP(); break;
+        case OPCODE_MOV: ExecuteMOV(memory); break;
+        case OPCODE_LOAD: ExecuteLOAD(memory); break;
+        case OPCODE_STORE: ExecuteSTORE(memory); break;
 
-        case OPCODE_INC:
-        {
-            ExecuteINC(memory);
-            break;
-        }
-        case OPCODE_DEC:
-        {
-            ExecuteDEC(memory);
-            break;
-        }
-        case OPCODE_ADD:
-        {
-            ExecuteADD(memory);
-            break;
-        }
-        case OPCODE_SUB:
-        {
-            ExecuteSUB(memory);
-            break;
-        }
-        case OPCODE_CMP:
-        {
-            ExecuteCMP(memory);
-            break;
-        }
-        case OPCODE_JMP:
-        {
-            ExecuteJMP(memory);
-            break;
-        }
-        case OPCODE_JZ:
-        {
-            ExecuteJZ(memory);
-            break;
-        }
-        case OPCODE_JNZ:
-        {
-            ExecuteJNZ(memory);
-            break;
-        }
-        case OPCODE_HLT:
-        {
-            printf("CPU HALTED\n");
+        case OPCODE_PUSH: ExecutePUSH(memory); break;
+        case OPCODE_POP: ExecutePOP(memory); break;
+        case OPCODE_CALL: ExecuteCALL(memory); break;
+        case OPCODE_RET: ExecuteRET(memory); break;
 
-            m_Halted = true;
-            break;
-        }
-        default:
-        {
-            printf("UNKNOWN OPCODE %02X\n", opcode);
+        case OPCODE_INC: ExecuteINC(memory); break;
+        case OPCODE_DEC: ExecuteDEC(memory); break;
+        case OPCODE_ADD: ExecuteADD(memory); break;
+        case OPCODE_SUB: ExecuteSUB(memory); break;
+        case OPCODE_CMP: ExecuteCMP(memory); break;
 
-            m_Halted = true;
-
-            break;
-        }
+        case OPCODE_JMP: ExecuteJMP(memory); break;
+        case OPCODE_JZ: ExecuteJZ(memory); break;
+        case OPCODE_JNZ: ExecuteJNZ(memory); break;
+        
+        case OPCODE_HLT: ExecuteHLT(); break;
+        
+        default: HandleUnknownOpcode(opcode); break;
     }
 }

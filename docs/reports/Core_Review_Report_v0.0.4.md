@@ -3,7 +3,7 @@
 Projet : Azure-8  
 Version : v0.0.4  
 Type : Revue Technique du Cœur Azure‑8  
-Statut : Draft  
+Statut : Validation Finale
 Cycle : Consolidation du Cœur
 
 ---
@@ -145,14 +145,14 @@ TestInstructionJNZ.cpp
 
 | Domaine | État |
 |----------|----------|
-| CPU | 🟡 |
-| Mémoire | 🟡 |
-| Pile | 🟡 |
-| Emulator | 🟡 |
+| CPU | ✅ |
+| Mémoire | ✅ |
+| Pile | ✅ |
+| Emulator | ✅ |
 | FLAGS | ✅ |
 | Tests | ✅ |
 | Refactorisation | ✅ |
-| Optimisation | ⚪ |
+| Optimisation | 🟡 |
 
 ### Légende
 
@@ -206,23 +206,23 @@ CPU.cpp
 
 | Instruction | État |
 |------------|----------|
-| NOP | ⚪ |
-| HLT | ⚪ |
-| MOV | ⚪ |
-| LOAD | ⚪ |
-| STORE | ⚪ |
-| PUSH | ⚪ |
-| POP | ⚪ |
-| CALL | ⚪ |
-| RET | ⚪ |
-| INC | ⚪ |
-| DEC | ⚪ |
-| ADD | ⚪ |
-| SUB | ⚪ |
-| CMP | ⚪ |
-| JMP | ⚪ |
-| JZ | ⚪ |
-| JNZ | ⚪ |
+| NOP | ✅ |
+| HLT | ✅ |
+| MOV | ✅ |
+| LOAD | ✅ |
+| STORE | ✅ |
+| PUSH | ✅ |
+| POP | ✅ |
+| CALL | ✅ |
+| RET | ✅ |
+| INC | ✅ |
+| DEC | ✅ |
+| ADD | ✅ |
+| SUB | ✅ |
+| CMP | ✅ |
+| JMP | ✅ |
+| JZ | ✅ |
+| JNZ | ✅ |
 
 ---
 
@@ -492,10 +492,9 @@ Type.h
 
 La validation des FLAGS est terminée.
 
-Le risque principal se situe désormais dans :
-- la modularisation du CPU ;
-- les tests de robustesse ;
-- les protections mémoire et pile.
+Les principaux travaux restant ouverts concernent :
+
+- harmonisation documentaire.
 
 ---
 
@@ -509,11 +508,10 @@ Le fichier :
 CPU.cpp
 ```
 
-centralise actuellement plusieurs responsabilités.
+centralisait initialement plusieurs responsabilités.
 
-Cette structure est adaptée au démarrage du projet mais deviendra progressivement plus difficile à maintenir.
-
-La v0.0.4 a pour objectif de préparer une architecture CPU plus modulaire sans modifier le comportement du processeur.
+La modularisation réalisée durant la v0.0.4 a permis
+d'isoler les FLAGS et les instructions dans des composants dédiés.
 
 ---
 
@@ -672,6 +670,10 @@ InstructionTable
 ✅ Handlers créés
 ✅ Switch allégé
 ✅ Compatibilité validée
+✅ NOP extrait
+✅ HLT extrait
+✅ Gestion des opcodes inconnus extraite
+✅ Switch réduit à un rôle de dispatch
 
 ---
 
@@ -689,7 +691,7 @@ InstructionTable
 
 ---
 
-## Tests de Consolidation Manquants
+## Tests de Consolidation Ajoutés
 
 | Test | Statut |
 |----------|----------|
@@ -703,10 +705,10 @@ InstructionTable
 
 ## Validation des FLAGS
 
-- [ ] ZERO
-- [ ] NEGATIVE
-- [ ] CARRY
-- [ ] OVERFLOW
+- [x] ZERO
+- [x] NEGATIVE
+- [x] CARRY
+- [x] OVERFLOW
 
 ---
 
@@ -714,12 +716,12 @@ InstructionTable
 
 | Phase | Objectif | État |
 |---------|-----------|---------|
-| 1 | Analyse du cœur | 🟡 |
-| 2 | Cartographie des risques | ⚪ |
+| 1 | Analyse du cœur | ✅ |
+| 2 | Cartographie des risques | ✅ |
 | 3 | Modularisation CPU | ✅ |
-| 4 | Réduction du switch | ⚪ |
-| 5 | Renforcement des tests | ⚪ |
-| 6 | Validation finale | ⚪ |
+| 4 | Réduction du switch | ✅ |
+| 5 | Renforcement des tests | ✅ |
+| 6 | Validation finale | 🟡 |
 
 ---
 
@@ -727,16 +729,16 @@ InstructionTable
 
 La revue est terminée lorsque :
 
-- [ ] CPU analysé
-- [ ] Mémoire analysée
-- [ ] Pile analysée
-- [ ] Emulator analysé
-- [ ] Duplications identifiées
-- [ ] Simplifications identifiées
-- [ ] Plan de modularisation validé
-- [ ] Plan de réduction du switch validé
-- [ ] Lacunes de tests identifiées
-- [ ] Priorités de consolidation définies
+- [x] CPU analysé
+- [x] Mémoire analysée
+- [x] Pile analysée
+- [x] Emulator analysé
+- [x] Duplications identifiées
+- [x] Simplifications identifiées
+- [x] Plan de modularisation validé
+- [x] Plan de réduction du switch validé
+- [x] Lacunes de tests identifiées
+- [x] Priorités de consolidation définies
 
 ---
 
@@ -747,10 +749,10 @@ La revue est terminée lorsque :
 | CPU | ✅ |
 | Mémoire | ✅ |
 | Pile | ✅ |
-| Emulator | ⚪ |
+| Emulator | ✅ |
 | FLAGS | ✅ |
 | Tests | ✅ |
-| Maintenabilité | ⚪ |
+| Maintenabilité | ✅ |
 | Robustesse | ✅ |
 
 ---
@@ -759,9 +761,8 @@ La revue est terminée lorsque :
 
 - [ ] Non commencé
 - [x] Préparation terminée
-- [ ] Analyse en cours
-- [ ] Analyse terminée
-- [ ] Consolidation validée
+- [x] Analyse terminée
+- [x] Consolidation validée
 
 ---
 
@@ -784,8 +785,9 @@ La revue est terminée lorsque :
 - La validation complète des FLAGS a été réalisée.
 - ADD, SUB, INC et DEC disposent d'une couverture explicite du comportement ZERO, NEGATIVE, CARRY et/ou OVERFLOW selon les besoins de l'instruction.
 - CMP est documenté et OVERFLOW est déclaré non applicable à l'implémentation actuelle.
-- Le risque principal se déplace progressivement vers les tests de robustesse.
-- CPU.cpp devra être découpé pour améliorer sa maintenabilité.
+- La modularisation du CPU a été réalisée.
+- La couverture des tests de robustesse a été complétée.
+- Le switch principal a été réduit à un rôle de dispatch.
 
 ### Décisions
 
@@ -802,4 +804,4 @@ La revue est terminée lorsque :
 **Fin du document**  
 **Core_Review_Report_v0.0.4.md**  
 **Version : v0.0.4**  
-**Statut : Draft**
+**Statut : Validation Finale**

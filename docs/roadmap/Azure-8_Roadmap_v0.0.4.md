@@ -57,7 +57,7 @@ Le cœur doit devenir :
 
 ✅ Releases v0.0.3 archivées
 
-✅ Documentation de consolidation finalisée
+✅ Documentation de consolidation rédigée
 
 ---
 
@@ -92,8 +92,6 @@ Le cœur doit devenir :
 ✅ Couverture fonctionnelle de base existante
 
 ### Points d'Attention
-
-⚠ Réduction du switch encore en cours
 
 ⚠ Harmonisation documentaire finale
 
@@ -177,17 +175,6 @@ La priorité stratégique du cycle devient :
 - harmonisation documentaire ;
 - clôture de la dette technique restante ;
 - préparation de la v0.0.5.
-
-## Modularisation du CPU
-
-La validation des FLAGS est terminée.
-
-La priorité stratégique devient :
-
-- isolation de la logique des FLAGS ;
-- isolation des instructions ;
-- réduction du switch d'opcodes ;
-- préparation de l'évolution future du cœur.
 
 ---
 
@@ -403,7 +390,7 @@ P1
 
 ### Statut
 
-🟡 En cours
+✅ Réalisé
 
 ---
 
@@ -479,7 +466,7 @@ P1
 
 ### Statut
 
-🟡 En cours
+✅ Réalisé
 
 ---
 
@@ -598,9 +585,11 @@ TestMemoryBoundary.cpp
 ✅ Isolation des FLAGS réalisée
 ✅ Isolation des instructions réalisée
 ✅ CPU modularisé
-
-La réduction du switch d'opcodes reste en cours
-dans le cadre de la consolidation finale.
+✅ NOP extrait
+✅ HLT extrait
+✅ Gestion des opcodes inconnus extraite
+✅ Switch réduit à un simple mécanisme de dispatch
+✅ Réduction du switch terminée
 
 ---
 
@@ -628,7 +617,7 @@ La v0.0.4 sera considérée comme terminée lorsque :
 
 ✅ FLAGS isolés
 
-🟡 Switch simplifié
+✅ Switch simplifié
 
 ✅ Tests de robustesse présents
 

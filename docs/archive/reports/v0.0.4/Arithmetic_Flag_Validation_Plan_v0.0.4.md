@@ -3,7 +3,7 @@
 Projet : Azure-8  
 Version : v0.0.4  
 Type : Plan de Validation des FLAGS  
-Statut : Draft  
+Statut : Terminé
 Cycle : Consolidation du Cœur
 
 ---
@@ -19,7 +19,10 @@ L'analyse du CPU et des tests existants a montré que :
 - les scénarios de validation sont partiellement couverts ;
 - plusieurs cas critiques ne sont actuellement pas démontrés par les tests.
 
-La validation des FLAGS constitue la priorité technique principale de la v0.0.4.
+La validation des FLAGS a constitué la priorité technique
+principale du début du cycle v0.0.4.
+
+Cette campagne est désormais terminée.
 
 ---
 
@@ -44,7 +47,7 @@ La validation doit démontrer :
 - les cas limites ;
 - les transitions critiques ;
 - la cohérence avec l'ISA ;
-- l'absence de régression lors de la future modularisation du CPU.
+- l'absence de régression après la modularisation du CPU.
 
 ---
 
@@ -583,18 +586,13 @@ CMP
 Résultat :
 
 ☒ Plan rédigé
-
-☒ Implémentation démarrée
-
-☒ Validation partielle
-
 ☒ Validation complète
-
 ☒ Couverture consolidée
+☒ Campagne clôturée
 
 ---
 
 **Fin du document**  
 **Arithmetic_Flag_Validation_Plan_v0.0.4.md**  
 **Version : v0.0.4**  
-**Statut : Draft**
+**Statut : Terminé**
